@@ -22,6 +22,7 @@ extern BOOL hideAutoplaySwitch();
 extern BOOL castConfirm();
 extern BOOL ytMiniPlayer();
 extern BOOL hidePreviousAndNextButton();
+extern BOOL ytDisableHighContrastIcons();
 
 // Settings
 %hook YTAppSettingsPresentationData
@@ -40,6 +41,15 @@ extern BOOL hidePreviousAndNextButton();
 - (void)updateuYouPlusSectionWithEntry:(id)entry {
     YTSettingsViewController *delegate = [self valueForKey:@"_dataDelegate"];
     NSBundle *tweakBundle = uYouPlusBundle();
+    
+    YTSettingsSectionItem *ytDisableHighContrastIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Disable The High Contrast Icons" titleDescription:@"App restart is required."];
+    ytDisableHighContrastIcons.hasSwitch = YES;
+    ytDisableHighContrastIcons.switchVisible = YES;
+    ytDisableHighContrastIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastIcons_enabled"];
+    ytDisableHighContrastIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytDisableHighContrastIcons_enabled"];
+        return YES;
+    };
 
     YTSettingsSectionItem *hidePreviousAndNextButton = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"HIDE_PREVIOUS_AND_NEXT_BUTTON") titleDescription:LOC(@"HIDE_PREVIOUS_AND_NEXT_BUTTON_DESC")];
     hidePreviousAndNextButton.hasSwitch = YES;
@@ -149,7 +159,7 @@ extern BOOL hidePreviousAndNextButton();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore, ytDisableHighContrastIcons]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

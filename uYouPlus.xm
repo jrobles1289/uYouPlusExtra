@@ -66,6 +66,9 @@ BOOL castConfirm() {
 BOOL ytMiniPlayer() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytMiniPlayer_enabled"];
 }
+BOOL ytDisableHighContrastIcons () {
+     return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastIcons_enabled"];
+}
 
 # pragma mark - Tweaks
 // YTMiniPlayerEnabler: https://github.com/level3tjg/YTMiniplayerEnabler/
@@ -616,11 +619,28 @@ static void replaceTab(YTIGuideResponse *response) {
     if([[self _viewControllerForAncestor].parentViewController.parentViewController isKindOfClass:%c(YTWatchMiniBarViewController)]) {
         return NO;
     }
-        return %orig;
+            return %orig;
 }
 %end
 %end
 
+%group gYTDisableHighContrastIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+         return [UIColor colorWithWhite:0.5 alpha:1];
+}
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+}
+%end
+%end
+	 
 # pragma mark - ctor
 %ctor {
     %init;
@@ -635,5 +655,8 @@ static void replaceTab(YTIGuideResponse *response) {
     }
     if (bigYTMiniPlayer() && (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPad)) {
        %init(Main);
+    }
+    if (ytDisableHighContrastIcons()) {
+       %init(gYTDisableHighContrastIcons);
     }
 }

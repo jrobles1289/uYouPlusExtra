@@ -66,6 +66,12 @@ BOOL castConfirm() {
 BOOL ytMiniPlayer() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytMiniPlayer_enabled"];
 }
+BOOL ytDisableHighContrastIcons () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastIcons_enabled"];
+}
+BOOL ytOldIconStyle () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytOldIconStyle_enabled"];
+}
 
 # pragma mark - Tweaks
 // YTMiniPlayerEnabler: https://github.com/level3tjg/YTMiniplayerEnabler/
@@ -643,6 +649,35 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 %end
 
+%group gYTDisableHighContrastIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+         return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+- (UIColor *)text {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+- (UIColor *)sponsorblocksettingscontroller {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+%end
+%end
+
 // iOS 16 uYou crash fix - @level3tjg: https://github.com/qnblackcat/uYouPlus/pull/224
 %group iOS16
 %hook OBPrivacyLinkButton
@@ -682,5 +717,8 @@ static void replaceTab(YTIGuideResponse *response) {
     }
     if (@available(iOS 16, *)) {
        %init(iOS16);
+    }
+    if (ytDisableHighContrastIcons()) {
+       %init(gYTDisableHighContrastIcons);
     }
 }

@@ -22,6 +22,8 @@ extern BOOL hideAutoplaySwitch();
 extern BOOL castConfirm();
 extern BOOL ytMiniPlayer();
 extern BOOL hidePreviousAndNextButton();
+extern BOOL ytDisableHighContrastIcons();
+extern BOOL ytOldIconStyle();
 
 // Settings
 %hook YTAppSettingsPresentationData
@@ -40,6 +42,24 @@ extern BOOL hidePreviousAndNextButton();
 - (void)updateuYouPlusSectionWithEntry:(id)entry {
     YTSettingsViewController *delegate = [self valueForKey:@"_dataDelegate"];
     NSBundle *tweakBundle = uYouPlusBundle();
+
+    YTSettingsSectionItem *ytOldIconStyle = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Monochromatic Icons" titleDescription:@"YTDisableHighContrastIcons must be enabled and App restart is required."];
+    ytOldIconStyle.hasSwitch = YES;
+    ytOldIconStyle.switchVisible = YES;
+    ytOldIconStyle.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"ytOldIconStyle_enabled"];
+    ytOldIconStyle.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+	    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytOldIconStyle_enabled"];
+	    return YES;
+    };
+
+    YTSettingsSectionItem *ytDisableHighContrastIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Revert The High Contrast Icons (YTDisableHighContrastIcons)" titleDescription:@"App restart is required."];
+    ytDisableHighContrastIcons.hasSwitch = YES;
+    ytDisableHighContrastIcons.switchVisible = YES;
+    ytDisableHighContrastIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastIcons_enabled"];
+    ytDisableHighContrastIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytDisableHighContrastIcons_enabled"];
+        return YES;
+    };
 
     YTSettingsSectionItem *hidePreviousAndNextButton = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"HIDE_PREVIOUS_AND_NEXT_BUTTON") titleDescription:LOC(@"HIDE_PREVIOUS_AND_NEXT_BUTTON_DESC")];
     hidePreviousAndNextButton.hasSwitch = YES;
@@ -149,7 +169,8 @@ extern BOOL hidePreviousAndNextButton();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore, ytDisableHighContrastIcons, ytOldIconStyle]];
+    [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO]
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

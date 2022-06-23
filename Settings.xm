@@ -170,7 +170,6 @@ extern BOOL ytOldIconStyle();
     };
 
     NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore, ytDisableHighContrastIcons, ytOldIconStyle]];
-    [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO]
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

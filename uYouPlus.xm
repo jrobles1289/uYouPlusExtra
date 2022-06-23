@@ -663,14 +663,31 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
  }
-- (UIColor *)text {
+- (UIColor *)text { // doesn't work with youtube 17.24.4 or newer
     if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
  }
-%hook sponserBlockButton
-- (UIColor *)sponsorblocksettingscontroller {
+- (UIColor *)sponserBlockButton {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+- (UIColor *)SponsorBlockSettingsController {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+- (UIColor *)SponsorBlockRequest {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ } 
+- (UIColor *)SponsorBlockViewController {
     if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }

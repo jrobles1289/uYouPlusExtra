@@ -668,11 +668,7 @@ static void replaceTab(YTIGuideResponse *response) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
-  }
-%end
-%end	
-
-%group gYTDisableHighContrastIcons
+ }
 %hook sponserBlockButton
 - (UIColor *)sponsorblocksettingscontroller {
     if (self.pageStyle == 1) {

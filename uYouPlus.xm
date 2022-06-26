@@ -692,6 +692,8 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
  }
+%end
+
 %hook sponsorBlockButton
 - (UIColor *)iSponsorBlock {
     if (self.pageStyle == 1) {

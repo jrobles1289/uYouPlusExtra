@@ -674,8 +674,6 @@ static void replaceTab(YTIGuideResponse *response) {
 
 %group gYTDisableHighContrastIcons
 %hook YTCommonColorPalette
-%end
-%hook sponsorBlockButton
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
          return [UIColor colorWithWhite:0.565 alpha:1];
@@ -694,7 +692,8 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
  }
-- (UIColor *)SponsorBlockViewController {
+%hook sponsorBlockButton
+- (UIColor *)iSponsorBlock {
     if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }

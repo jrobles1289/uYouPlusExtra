@@ -674,9 +674,7 @@ static void replaceTab(YTIGuideResponse *response) {
 
 %group gYTDisableHighContrastIcons
 %hook YTCommonColorPalette
-}
 %end
-
 %hook sponsorBlockButton
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {

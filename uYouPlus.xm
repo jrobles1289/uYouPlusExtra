@@ -696,7 +696,7 @@ static void replaceTab(YTIGuideResponse *response) {
 
 %hook sponsorBlockButton
 - (UIColor *)iSponsorBlock {
-    if (self.pageStyle == 1) {
+    if (self.view.overlayView == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
         return [UIColor colorWithWhite:0.5 alpha:1];

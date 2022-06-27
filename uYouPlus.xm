@@ -686,15 +686,12 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
  }
-- (UIColor *)text { // doesn't work with youtube 17.24.4 or newer
+- (UIColor *)textPrimaryInverse { // Testing different text methods since 17.24.4 removed an old one
     if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
  }
-%end
-
-%hook sponsorBlockButton
 - (UIColor *)iSponsorBlock {
     if (self.overlayView == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];

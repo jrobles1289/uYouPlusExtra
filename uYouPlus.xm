@@ -262,21 +262,9 @@ BOOL GreenIcons () {
 %end
 
 // Enable Shorts scroll bar - @level3tjg - https://reddit.com/r/jailbreak/comments/v29yvk/_/iasl1l0/
-%hook YTReelPlayerViewControllerSub
-- (BOOL)shouldEnablePlayerBar { return YES; }
-%end
-
 %hook YTReelPlayerViewController
 - (BOOL)shouldEnablePlayerBar { return YES; }
 %end
-
-// Hide the download playlist button of uYou cuz it's broken ?!
-// %hook YTPlaylistHeaderViewController
-// - (void)viewDidLoad {
-//     %orig;
-//     self.downloadsButton.hidden = YES;
-// }
-// %end
 
 // Workaround for issue #54
 %hook YTMainAppVideoPlayerOverlayViewController
@@ -306,7 +294,7 @@ BOOL GreenIcons () {
 }
 %end
 
-// 
+// uYou's slide settings?
 %hook FRPSliderCell
 - (void)didMoveToWindow {
     %orig;
@@ -318,7 +306,7 @@ BOOL GreenIcons () {
 }
 %end
 
-// Hide Paid Promotion Card
+// YTNoPaidPromo: https://github.com/PoomSmart/YTNoPaidPromo
 %hook YTMainAppVideoPlayerOverlayViewController
 - (void)setPaidContentWithPlayerData:(id)data {
     if (hidePaidPromotionCard()) {}
@@ -393,7 +381,7 @@ BOOL GreenIcons () {
 %end
 
 # pragma mark - OLED dark mode by BandarHL
-UIColor* raisedColor = [UIColor colorWithRed:0.02 green:0.02 blue:0.02 alpha:1.0];
+UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:1.0];
 %group gOLED
 %hook YTCommonColorPalette
 - (UIColor *)brandBackgroundSolid {

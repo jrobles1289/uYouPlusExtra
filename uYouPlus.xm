@@ -739,6 +739,15 @@ static void replaceTab(YTIGuideResponse *response) {
         return [UIColor colorWithWhite:0.5 alpha:1];
  } 
 %end
+
+%hook sponserBlockButton
+- (UIColor *)iSponserBlock {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ } 
+%end
 %end
 
 %group gBlueIcons
@@ -755,6 +764,15 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
  }
+%end
+
+%hook sponserBlockButton
+- (UIColor *)iSponserBlock {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ } 
 %end
 %end
 
@@ -773,6 +791,15 @@ static void replaceTab(YTIGuideResponse *response) {
         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
  }
 %end
+
+%hook sponserBlockButton
+- (UIColor *)iSponserBlock {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ } 
+%end
 %end
 
 %group gOrangeIcons
@@ -789,6 +816,15 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
  }
+%end
+
+%hook sponserBlockButton
+- (UIColor *)iSponserBlock {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ } 
 %end
 %end
 

@@ -25,6 +25,7 @@ extern BOOL hidePreviousAndNextButton();
 extern BOOL hidePaidPromotionCard();
 extern BOOL ytDisableHighContrastIcons();
 extern BOOL ytOldIconStyle();
+extern BOOL ytNotificationFix();
 extern BOOL BlueIcons();
 extern BOOL RedIcons();
 extern BOOL OrangeIcons();
@@ -103,7 +104,16 @@ extern BOOL GreenIcons();
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"BlueIcons_enabled"];
         return YES;
     };
-
+    
+    YTSettingsSectionItem *ytNotificationFix = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Solve Notification Crash on uYou 2.1 (ytNotificationFix)" titleDescription:@"Tries its best to solve a uYou crash and App restart is required."];
+    ytNotificationFix.hasSwitch = YES;
+    ytNotificationFix.switchVisible = YES;
+    ytNotificationFix.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"ytNotificationFix_enabled"];
+    ytNotificationFix.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+       [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytNotificationFix_enabled"];
+       return YES;
+    };
+    
     YTSettingsSectionItem *ytOldIconStyle = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Monochromatic Icons (YTOldIconStyle)" titleDescription:@"YTDisableHighContrastIcons must be enabled and App restart is required."];
     ytOldIconStyle.hasSwitch = YES;
     ytOldIconStyle.switchVisible = YES;
@@ -239,7 +249,7 @@ extern BOOL GreenIcons();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore, ytDisableHighContrastIcons, ytOldIconStyle, BlueIcons, RedIcons, OrangeIcons, PinkIcons, PurpleIcons, GreenIcons]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore, ytDisableHighContrastIcons, ytOldIconStyle, ytNotificationFix, BlueIcons, RedIcons, OrangeIcons, PinkIcons, PurpleIcons, GreenIcons]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

@@ -902,7 +902,7 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 
 // YouTube Notification uYou crash fix - @arichorn
-// not ready yet!
+// not ready yet! currently seeing if i can make the tweak to function!
 
 # pragma mark - ctor
 %ctor {

@@ -77,6 +77,9 @@ BOOL ytDisableHighContrastIcons () {
 BOOL ytOldIconStyle () {
       return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytOldIconStyle_enabled"];
 }
+BOOL ytNotificationFix () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytNotificationFix_enabled"];
+}
 BOOL BlueIcons () {
       return [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueIcons_enabled"];
 }
@@ -898,6 +901,9 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 %end
 
+// YouTube Notification uYou crash fix - @arichorn
+// not ready yet!
+
 # pragma mark - ctor
 %ctor {
     %init;
@@ -921,6 +927,9 @@ static void replaceTab(YTIGuideResponse *response) {
     }
     if (ytDisableHighContrastIcons()) {
        %init(gYTDisableHighContrastIcons);
+    }
+    if (ytNotificationFix()) {
+       %init(gYTNotificationFix)
     }
     if (BlueIcons()) {
        %init(gBlueIcons);

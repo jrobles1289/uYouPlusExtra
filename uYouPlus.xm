@@ -746,16 +746,7 @@ static void replaceTab(YTIGuideResponse *response) {
 
 %hook YTColor
 - (UIColor *)white1 {
-    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-        return [UIColor colorWithWhite:0.565 alpha:1];
-     }
-        return [UIColor colorWithWhite:0.5 alpha:1];
- } 
-%end
-
-%hook sponserBlockButton
-- (UIColor *)iSponserBlock {
-    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+    if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
@@ -763,7 +754,7 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 %end
 
-%group gBlueIcons
+%group gBlueIcons // New UIColor System
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -779,9 +770,9 @@ static void replaceTab(YTIGuideResponse *response) {
  }
 %end
 
-%hook sponserBlockButton
-- (UIColor *)iSponserBlock {
-    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+%hook YTColor
+- (UIColor *)white1 {
+    if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
@@ -789,7 +780,7 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 %end
 
-%group gRedIcons
+%group gRedIcons // New UIColor System
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -805,9 +796,9 @@ static void replaceTab(YTIGuideResponse *response) {
  }
 %end
 
-%hook sponserBlockButton
-- (UIColor *)iSponserBlock {
-    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+%hook YTColor
+- (UIColor *)white1 {
+    if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
@@ -830,18 +821,9 @@ static void replaceTab(YTIGuideResponse *response) {
         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
  }
 %end
-
-%hook sponserBlockButton
-- (UIColor *)iSponserBlock {
-    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-        return [UIColor colorWithWhite:0.565 alpha:1];
-     }
-        return [UIColor colorWithWhite:0.5 alpha:1];
- } 
-%end
 %end
 
-%group gPinkIcons
+%group gPinkIcons // New UIColor System
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -855,6 +837,15 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
  }
+%end
+
+%hook YTColor
+- (UIColor *)white1 {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ } 
 %end
 %end
 

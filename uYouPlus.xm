@@ -11,6 +11,7 @@
 #import "Tweaks/YouTubeHeader/YTIPivotBarSupportedRenderers.h"
 #import "Tweaks/YouTubeHeader/YTIPivotBarRenderer.h"
 #import "Tweaks/YouTubeHeader/YTIBrowseRequest.h"
+#import "Tweaks/YouTubeHeader/YTColor.h"
 #import "Tweaks/YouTubeHeader/YTCommonColorPalette.h"
 #import "Tweaks/YouTubeHeader/ASCollectionView.h"
 #import "Tweaks/YouTubeHeader/YTPlayerOverlay.h"
@@ -737,6 +738,15 @@ static void replaceTab(YTIGuideResponse *response) {
  }
 - (UIColor *)overlayTextTertiary {
     if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ } 
+%end
+
+%hook YTColor
+- (UIColor *)white1 {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
         return [UIColor colorWithWhite:0.5 alpha:1];

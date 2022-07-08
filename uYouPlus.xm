@@ -921,9 +921,9 @@ static void replaceTab(YTIGuideResponse *response) {
     }
     if (ytDisableHighContrastIcons()) {
        %init(gYTDisableHighContrastIcons);
-    }
-    if (ytNotificationFix()) {
-       %init(gYTNotificationFix)
+//  }
+//  if (ytNotificationFix()) {
+//     %init(gYTNotificationFix)
     }
     if (BlueIcons()) {
        %init(gBlueIcons);

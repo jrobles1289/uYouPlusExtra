@@ -270,6 +270,11 @@ BOOL GreenIcons () {
 - (BOOL)shouldEnablePlayerBar { return YES; }
 %end
 
+// Disable YouTube Heatwave on Video Player (YouTube 17.19.2 or newer) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
+%hook YTInlinePlayerBarContainerView
+- (BOOL)canShowHeatwave { return NO;}
+%end
+
 // Workaround for issue #54
 %hook YTMainAppVideoPlayerOverlayViewController
 - (void)updateRelatedVideos {
@@ -742,10 +747,7 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithWhite:0.5 alpha:1];
  } 
-%end
-
-%hook YTColor
-- (UIColor *)white1 {
+- (UIColor *)themedOverlayBackground {
     if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
@@ -768,10 +770,7 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
  }
-%end
-
-%hook YTColor
-- (UIColor *)white1 {
+- (UIColor *)themedOverlayBackground {
     if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
@@ -794,10 +793,7 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
  }
-%end
-
-%hook YTColor
-- (UIColor *)white1 {
+- (UIColor *)themedOverlayBackground {
     if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }
@@ -837,10 +833,7 @@ static void replaceTab(YTIGuideResponse *response) {
      }
         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
  }
-%end
-
-%hook YTColor
-- (UIColor *)white1 {
+- (UIColor *)themedOverlayBackground {
     if (self.pageStyle == 1) {
         return [UIColor colorWithWhite:0.565 alpha:1];
      }

@@ -1,3 +1,10 @@
+# uYouPlus - Extra Features added by arichorn
+YTDisableHighContrastIcons (this tweak wasn't added by qnblackcat so that's why this fork existed. and it took hours to implement)
+YTDisableHighContrastIconsColorExtension (adds a lot of Icon Colors. Blue, Red, Orange, Pink, Purple & Green)
+YTABConfig (not in the original uYouPlus but uYouPlusExtra adds it so you configure this through out the YouTube app)
+YouTube Heatwaves Feature Force-Disabled (uYouPlusExtra disables this feature just so it won't mess with iSponsorBlock)
+
+# uYouPlus Preview
 ![cydia-1900000830-iphone-0-1628105716 3](https://user-images.githubusercontent.com/52943116/135612614-3d3138cb-2a3d-4ed1-9244-905bab8f5c9f.PNG)
 
 # Table of Contents

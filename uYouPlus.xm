@@ -268,9 +268,13 @@ BOOL GreenIcons () {
 - (void)showSurveyWithRenderer:(id)arg1 surveyParentResponder:(id)arg2 {}
 %end
 
-// Enable Shorts scroll bar - @level3tjg - https://reddit.com/r/jailbreak/comments/v29yvk/_/iasl1l0/
+// Enable Shorts scroll bar - @PoomSmart & @level3tjg
 %hook YTReelPlayerViewController
-- (BOOL)shouldEnablePlayerBar { return YES; }
+- (BOOL)shouldAlwaysEnablePlayerBar { return YES; }
+%end
+
+%hook YTInlinePlayerBarContainerView
+- (void)setUserInteractionEnabled:(BOOL)enabled { %orig(YES); }
 %end
 
 // Disable YouTube Heatwave on Video Player (YouTube 17.19.2 or newer) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/

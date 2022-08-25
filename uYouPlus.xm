@@ -31,8 +31,8 @@ NSBundle *tweakBundle = uYouPlusBundle();
 
 static NSString *accessGroupID() {
     NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,
-                           @"bundleSeedID", kSecAttrAccount,
+                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,          
+	     	           @"bundleSeedID", kSecAttrAccount,
                            @"", kSecAttrService,
                            (id)kCFBooleanTrue, kSecReturnAttributes,
                            nil];
@@ -46,7 +46,7 @@ static NSString *accessGroupID() {
 
     return accessGroup;
 }
-
+ 
 BOOL hideHUD() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hideHUD_enabled"];
 }
@@ -88,6 +88,33 @@ BOOL ytMiniPlayer() {
 }
 BOOL hidePaidPromotionCard() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hidePaidPromotionCard_enabled"];
+}
+BOOL ytDisableHighContrastIcons () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastIcons_enabled"];
+}
+BOOL ytOldIconStyle () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytOldIconStyle_enabled"];
+}
+BOOL ytNotificationFix () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytNotificationFix_enabled"];
+}
+BOOL BlueIcons () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueIcons_enabled"];
+}
+BOOL RedIcons () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"RedIcons_enabled"];
+}
+BOOL OrangeIcons () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"OrangeIcons_enabled"];
+}
+BOOL PinkIcons () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"PinkIcons_enabled"];
+}
+BOOL PurpleIcons () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"PurpleIcons_enabled"];
+}
+BOOL GreenIcons () {
+      return [[NSUserDefaults standardUserDefaults] boolForKey:@"GreenIcons_enabled"];
 }
 
 # pragma mark - Tweaks
@@ -274,7 +301,12 @@ BOOL hidePaidPromotionCard() {
 %end
 
 %hook YTReelPlayerViewControllerSub // v16.42.3 - @level3tjg: https://reddit.com/r/jailbreak/comments/v29yvk/_/iasl1l0/
- - (BOOL)shouldEnablePlayerBar { return YES; }
+- (BOOL)shouldEnablePlayerBar { return YES; }
+%end
+
+// Disable YouTube Heatwave on Video Player (YouTube 17.19.2 or newer) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
+%hook YTInlinePlayerBarContainerView
+- (BOOL)canShowHeatwave { return NO;}
 %end
 
 // Workaround for issue #54
@@ -415,7 +447,7 @@ BOOL hidePaidPromotionCard() {
 }
 
 + (NSString *)sharedAccessGroup {
-    return accessGroupID();
+   return accessGroupID();
 }
 %end
 
@@ -790,6 +822,244 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 %end
 
+%group gYTDisableHighContrastIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+         return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+%end
+%end
+
+%group gYTDisableHighContrastIcons // 16.42.3
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+         return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithWhite:0.565 alpha:1];
+     }
+        return [UIColor colorWithWhite:0.5 alpha:1];
+ }
+%end
+%end
+
+%group gBlueIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+%end
+%end
+
+%group gBlueIcons // 16.42.3 Version
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+%end
+%end
+
+%group gRedIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+%end
+%end
+
+%group gRedIcons // 16.42.3 Version
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+%end
+%end
+
+%group gOrangeIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+%end
+%end
+
+%group gOrangeIcons // 16.42.3 Version
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+%end
+%end
+
+%group gPinkIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+%end
+%end
+
+%group gPinkIcons // 16.42.3 Version
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+%end
+%end
+
+%group gPurpleIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+%end
+%end
+
+%group gPurpleIcons // 16.42.3 Version
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+%end
+%end
+
+%group gGreenIcons
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+%end
+%end
+
+%group gGreenIcons // 16.42.3 Version
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+%end
+%end
+
 // iOS 16 uYou crash fix - @level3tjg: https://github.com/qnblackcat/uYouPlus/pull/224
 %group iOS16
 %hook OBPrivacyLinkButton
@@ -808,6 +1078,9 @@ static void replaceTab(YTIGuideResponse *response) {
 }
 %end
 %end
+
+// YouTube Notification uYou crash fix - @arichorn
+// not ready yet! currently seeing if i can make the tweak to function!
 
 # pragma mark - ctor
 %ctor {
@@ -829,5 +1102,29 @@ static void replaceTab(YTIGuideResponse *response) {
     }
     if (@available(iOS 16, *)) {
        %init(iOS16);
+    }
+    if (ytDisableHighContrastIcons()) {
+       %init(gYTDisableHighContrastIcons);
+//  }
+//  if (ytNotificationFix()) {
+//     %init(gYTNotificationFix)
+    }
+    if (BlueIcons()) {
+       %init(gBlueIcons);
+    }
+    if (RedIcons()) {
+       %init(gRedIcons);
+    }
+    if (OrangeIcons()) {
+       %init(gOrangeIcons);
+    }
+    if (PinkIcons()) {
+       %init(gPinkIcons);
+    }
+    if (PurpleIcons()) {
+       %init(gPurpleIcons);
+    }
+    if (GreenIcons()) {
+       %init(gGreenIcons);
     }
 }

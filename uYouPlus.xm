@@ -249,6 +249,16 @@ BOOL GreenIcons () {
 }
 %end
 
+// Workaround for qnblackcat/uYouPlus#10
+%hook boolSettingsVC
+- (instancetype)initWithTitle:(NSString *)title sections:(NSArray *)sections footer:(NSString *)footer {
+    if (@available(iOS 15, *))
+        if (![self valueForKey:@"_lastNotifiedTraitCollection"])
+            [self setValue:[UITraitCollection currentTraitCollection] forKey:@"_lastNotifiedTraitCollection"];
+    return %orig;
+}
+%end
+
 // YTClassicVideoQuality: https://github.com/PoomSmart/YTClassicVideoQuality
 %hook YTVideoQualitySwitchControllerFactory
 - (id)videoQualitySwitchControllerWithParentResponder:(id)responder {
@@ -339,7 +349,9 @@ BOOL GreenIcons () {
                          attribute:(NSLayoutAttribute)attr2
                         multiplier:(CGFloat)multiplier
                           constant:(CGFloat)c {
-  if (![view1.accessibilityIdentifier isEqualToString:@"com.miro.uyou"]) return %orig;
+  if (![view1 isKindOfClass:%c(YTReelPlayerBottomButton)] &&
+    ![view1.accessibilityIdentifier isEqualToString:@"com.miro.uyou"])
+  return %orig;
   if (!view2) {
     view1.hidden = YES;
     return [NSLayoutConstraint alloc];

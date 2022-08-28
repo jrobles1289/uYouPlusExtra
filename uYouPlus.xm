@@ -378,6 +378,15 @@ BOOL GreenIcons () {
 }
 %end
 
+// Prevent uYou player bar from showing when not playing downloaded media
+%hook PlayerManager
+- (void)pause {
+  if ([@([self progress]) isEqualToNumber:[NSDecimalNumber notANumber]])
+    return;
+  %orig;
+}
+%end
+
 // Hide YouTube Shorts banner in Home page? - @MiRO92 - YTNoShorts: https://github.com/MiRO92/YTNoShorts
 %hook YTAsyncCollectionView
 - (id)cellForItemAtIndexPath:(NSIndexPath *)indexPath {

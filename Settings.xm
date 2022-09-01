@@ -23,6 +23,13 @@ extern BOOL castConfirm();
 extern BOOL ytMiniPlayer();
 extern BOOL hidePreviousAndNextButton();
 extern BOOL hidePaidPromotionCard();
+extern BOOL ytDisableHighContrastIcons();
+extern BOOL BlueIcons();
+extern BOOL RedIcons();
+extern BOOL OrangeIcons();
+extern BOOL PinkIcons();
+extern BOOL PurpleIcons();
+extern BOOL GreenIcons();
 
 // Settings
 %hook YTAppSettingsPresentationData
@@ -50,6 +57,69 @@ extern BOOL hidePaidPromotionCard();
     selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
         exit(0);
     }];
+
+    YTSettingsSectionItem *GreenIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Green UI" titleDescription:@"Green UI (have every other ui colors off) App restart is required."];
+    GreenIcons.hasSwitch = YES;
+    GreenIcons.switchVisible = YES;
+    GreenIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"GreenIcons_enabled"];
+    GreenIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"GreenIcons_enabled"];
+        return YES;
+    };
+
+    YTSettingsSectionItem *PurpleIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Purple UI" titleDescription:@"Purple UI (have every other ui colors off) App restart is required."];
+    PurpleIcons.hasSwitch = YES;
+    PurpleIcons.switchVisible = YES;
+    PurpleIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"PurpleIcons_enabled"];
+    PurpleIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"PurpleIcons_enabled"];
+        return YES;
+    };
+
+    YTSettingsSectionItem *PinkIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Pink UI" titleDescription:@"Pink UI (have every other ui colors off) App restart is required."];
+    PinkIcons.hasSwitch = YES;
+    PinkIcons.switchVisible = YES;
+    PinkIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"PinkIcons_enabled"];
+    PinkIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"PinkIcons_enabled"];
+        return YES;
+    };
+
+    YTSettingsSectionItem *OrangeIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Orange UI" titleDescription:@"Orange UI (have every other ui colors off) App restart is required."];
+    OrangeIcons.hasSwitch = YES;
+    OrangeIcons.switchVisible = YES;
+    OrangeIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"OrangeIcons_enabled"];
+    OrangeIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"OrangeIcons_enabled"];
+        return YES;
+    };
+
+    YTSettingsSectionItem *RedIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Red UI" titleDescription:@"Red UI (have every other ui colors off) App restart is required."];
+    RedIcons.hasSwitch = YES;
+    RedIcons.switchVisible = YES;
+    RedIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RedIcons_enabled"];
+    RedIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"RedIcons_enabled"];
+        return YES;
+    };
+
+    YTSettingsSectionItem *BlueIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"Blue UI") titleDescription:LOC(@"Blue UI (have every other ui colors off) App restart is required.")];
+    BlueIcons.hasSwitch = YES;
+    BlueIcons.switchVisible = YES;
+    BlueIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueIcons_enabled"];
+    BlueIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"BlueIcons_enabled"];
+        return YES;
+    };
+
+    YTSettingsSectionItem *ytDisableHighContrastIcons = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Revert The High Contrast Icons (YTDisableHighContrastIcons)" titleDescription:@"App restart is required."];
+    ytDisableHighContrastIcons.hasSwitch = YES;
+    ytDisableHighContrastIcons.switchVisible = YES;
+    ytDisableHighContrastIcons.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastIcons_enabled"];
+    ytDisableHighContrastIcons.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytDisableHighContrastIcons_enabled"];
+        return YES;
+    };
 
     YTSettingsSectionItem *hidePaidPromotionCard = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"HIDE_PAID_PROMOTION_CARDS") titleDescription:LOC(@"HIDE_PAID_PROMOTION_CARDS_DESC")];
     hidePaidPromotionCard.hasSwitch = YES;
@@ -168,7 +238,7 @@ extern BOOL hidePaidPromotionCard();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[killApp, autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[killApp, autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, reExplore, ytDisableHighContrastIcons, BlueIcons, RedIcons, OrangeIcons, PinkIcons, PurpleIcons, GreenIcons]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

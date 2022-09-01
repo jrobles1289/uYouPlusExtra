@@ -881,23 +881,6 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 %end
 
-%group gYTDisableHighContrastIcons // 16.42.3
-%hook YTColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithWhite:0.565 alpha:1];
-     }
-         return [UIColor colorWithWhite:0.5 alpha:1];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithWhite:0.565 alpha:1];
-     }
-        return [UIColor colorWithWhite:0.5 alpha:1];
- }
-%end
-%end
-
 %group gBlueIcons
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {

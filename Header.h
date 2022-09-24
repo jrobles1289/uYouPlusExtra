@@ -1,3 +1,5 @@
+#import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
 #import "Tweaks/YouTubeHeader/YTPlayerViewController.h"
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
@@ -52,17 +54,7 @@
 - (id)activeVideo;
 @end
 
-// BigYTMiniPlayer
-@interface YTMainAppVideoPlayerOverlayView : UIView
-- (UIViewController *)_viewControllerForAncestor;
-@end
-
 @interface YTWatchMiniBarView : UIView
-@end
-
-// YTAutoFullScreen
-@interface YTPlayerViewController (YTAFS)
-- (void)autoFullscreen;
 @end
 
 // OLED Darkmode
@@ -95,3 +87,36 @@
 
 @interface UIPredictionViewController : UIViewController
 @end
+
+// DontEatMyContent/BigYTMiniPlayer/YTAutoFullScreen
+@interface YTPlayerViewController (YTPlayerViewControllerCategory)
+- (void)autoFullscreen;
+- (id)activeVideoPlayerOverlay;
+- (id)playerView;
+@end
+
+@interface YTPlayerView : UIView
+- (BOOL)zoomToFill;
+- (id)renderingView;
+- (id)playerView;
+@end
+
+@interface MLHAMSBDLSampleBufferRenderingView : UIView
+@end
+
+@interface YTMainAppVideoPlayerOverlayViewController : UIViewController
+- (BOOL)isFullscreen;
+- (id)videoPlayerOverlayView;
+- (id)activeVideoPlayerOverlay;
+@end
+
+@interface YTMainAppVideoPlayerOverlayView : UIView
+- (UIViewController *)_viewControllerForAncestor;
++ (CGFloat)topButtonAdditionalPadding;
+@end
+
+NSString* deviceName();
+BOOL isDeviceSupported();
+void activate(); 
+void deactivate();
+void center();

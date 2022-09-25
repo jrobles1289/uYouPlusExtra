@@ -63,7 +63,7 @@ extern BOOL GreenUI();
 
     YTSettingsSectionItem *GreenUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Green UI" titleDescription:@"Green UI (have every other ui colors off) App restart is required."];
     GreenUI.hasSwitch = YES;
-    GreenUI.switchVisible = NO;
+    GreenUI.switchVisible = YES;
     GreenUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"GreenUI_enabled"];
     GreenUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"GreenUI_enabled"];
@@ -72,7 +72,7 @@ extern BOOL GreenUI();
 
     YTSettingsSectionItem *PurpleUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Purple UI" titleDescription:@"Purple UI (have every other ui colors off) App restart is required."];
     PurpleUI.hasSwitch = YES;
-    PurpleUI.switchVisible = NO;
+    PurpleUI.switchVisible = YES;
     PurpleUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"PurpleUI_enabled"];
     PurpleUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"PurpleUI_enabled"];
@@ -81,7 +81,7 @@ extern BOOL GreenUI();
 
     YTSettingsSectionItem *PinkUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Pink UI" titleDescription:@"Pink UI (have every other ui colors off) App restart is required."];
     PinkUI.hasSwitch = YES;
-    PinkUI.switchVisible = NO;
+    PinkUI.switchVisible = YES;
     PinkUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"PinkUI_enabled"];
     PinkUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"PinkUI_enabled"];
@@ -90,7 +90,7 @@ extern BOOL GreenUI();
 
     YTSettingsSectionItem *OrangeUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Orange UI" titleDescription:@"Orange UI (have every other ui colors off) App restart is required."];
     OrangeUI.hasSwitch = YES;
-    OrangeUI.switchVisible = NO;
+    OrangeUI.switchVisible = YES;
     OrangeUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"OrangeUI_enabled"];
     OrangeUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"OrangeUI_enabled"];
@@ -99,7 +99,7 @@ extern BOOL GreenUI();
 
     YTSettingsSectionItem *RedUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Red UI" titleDescription:@"Red UI (have every other ui colors off) App restart is required."];
     RedUI.hasSwitch = YES;
-    RedUI.switchVisible = NO;
+    RedUI.switchVisible = YES;
     RedUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RedUI_enabled"];
     RedUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"RedUI_enabled"];
@@ -108,7 +108,7 @@ extern BOOL GreenUI();
 
     YTSettingsSectionItem *BlueUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"Blue UI") titleDescription:LOC(@"Blue UI (have every other ui colors off) App restart is required.")];
     BlueUI.hasSwitch = YES;
-    BlueUI.switchVisible = NO;
+    BlueUI.switchVisible = YES;
     BlueUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueUI_enabled"];
     BlueUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"BlueUI_enabled"];
@@ -268,7 +268,7 @@ extern BOOL GreenUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[killApp, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, BlueUI, RedUI, OrangeUI, PinkUI, PurpleUI, GreenUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[killApp, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, replacePreviousAndNextButton, dontEatMyContent, reExplore, ytDisableHighContrastUI, BlueUI, RedUI, OrangeUI, PinkUI, PurpleUI, GreenUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

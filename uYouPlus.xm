@@ -2,6 +2,8 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <dlfcn.h>
+#import <sys/utsname.h>
+#import <substrate.h>
 #import "Header.h"
 #import "Tweaks/YouTubeHeader/YTVideoQualitySwitchOriginalController.h"
 #import "Tweaks/YouTubeHeader/YTPlayerViewController.h"
@@ -49,7 +51,7 @@ static NSString *accessGroupID() {
     return accessGroup;
 }
 
-//
+// 
 BOOL hideHUD() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hideHUD_enabled"];
 }
@@ -99,7 +101,7 @@ BOOL replacePreviousAndNextButton() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"replacePreviousAndNextButton_enabled"];
 }
 BOOL dontEatMyContent() {
-     return [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
 }
 BOOL ytDisableHighContrastUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastUI_enabled"];
@@ -1209,7 +1211,7 @@ void center() {
        %init(gReplacePreviousAndNextButton);
     }
     if (dontEatMyContent() && isDeviceSupported()) {
-        %init(gDontEatMyContent);
+       %init(gDontEatMyContent);
     }
     if (@available(iOS 16, *)) {
        %init(iOS16);

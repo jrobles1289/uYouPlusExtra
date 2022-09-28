@@ -131,7 +131,7 @@ extern BOOL GreenUI();
     dontEatMyContent.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"dontEatMyContent_enabled"];
         return YES;
-     };
+    };
 
     YTSettingsSectionItem *replacePreviousAndNextButton = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"REPLACE_PREVIOUS_NEXT_BUTTON") titleDescription:LOC(@"REPLACE_PREVIOUS_NEXT_BUTTON_DESC")];
     replacePreviousAndNextButton.hasSwitch = YES;

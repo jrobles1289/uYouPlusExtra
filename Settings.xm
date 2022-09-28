@@ -130,6 +130,8 @@ extern BOOL GreenUI();
     dontEatMyContent.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
     dontEatMyContent.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"dontEatMyContent_enabled"];
+        return YES;
+     };
 
     YTSettingsSectionItem *replacePreviousAndNextButton = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"REPLACE_PREVIOUS_NEXT_BUTTON") titleDescription:LOC(@"REPLACE_PREVIOUS_NEXT_BUTTON_DESC")];
     replacePreviousAndNextButton.hasSwitch = YES;
@@ -266,7 +268,7 @@ extern BOOL GreenUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[killApp, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, BlueUI, RedUI, OrangeUI, PinkUI, PurpleUI, GreenUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[killApp, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, dontEatMyContent, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, BlueUI, RedUI, OrangeUI, PinkUI, PurpleUI, GreenUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

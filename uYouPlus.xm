@@ -2,8 +2,6 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <dlfcn.h>
-#import <sys/utsname.h>
-#import <substrate.h>
 #import "Header.h"
 #import "Tweaks/YouTubeHeader/YTVideoQualitySwitchOriginalController.h"
 #import "Tweaks/YouTubeHeader/YTPlayerViewController.h"
@@ -35,8 +33,8 @@ NSBundle *tweakBundle = uYouPlusBundle();
 // Keychain patching
 static NSString *accessGroupID() {
     NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,
-                           @"bundleSeedID", kSecAttrAccount,
+                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,          
+	     	           @"bundleSeedID", kSecAttrAccount,
                            @"", kSecAttrService,
                            (id)kCFBooleanTrue, kSecReturnAttributes,
                            nil];
@@ -51,7 +49,6 @@ static NSString *accessGroupID() {
     return accessGroup;
 }
 
-// 
 BOOL hideHUD() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hideHUD_enabled"];
 }
@@ -94,14 +91,32 @@ BOOL ytMiniPlayer() {
 BOOL hidePaidPromotionCard() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hidePaidPromotionCard_enabled"];
 }
-BOOL fixGoogleSignIn() {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"fixGoogleSignIn_enabled"];
+BOOL fixGoogleSigin() {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"fixGoogleSigin_enabled"];
 }
 BOOL replacePreviousAndNextButton() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"replacePreviousAndNextButton_enabled"];
 }
-BOOL dontEatMyContent() {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
+BOOL ytDisableHighContrastUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastUI_enabled"];
+}
+BOOL BlueUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueUI_enabled"];
+}
+BOOL RedUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"RedUI_enabled"];
+}
+BOOL OrangeUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"OrangeUI_enabled"];
+}
+BOOL PinkUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"PinkUI_enabled"];
+}
+BOOL PurpleUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"PurpleUI_enabled"];
+}
+BOOL GreenUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"GreenUI_enabled"];
 }
 
 # pragma mark - Tweaks
@@ -157,6 +172,11 @@ BOOL dontEatMyContent() {
 - (id)initWithMessage:(id)arg1 dismissHandler:(id)arg2 {
     return hideHUD() ? nil : %orig;
 }
+%end
+
+// Hide Update Dialog: https://github.com/PoomSmart/YouTubeHeader/blob/main/YTGlobalConfig.h
+%hook YTGlobalConfig
+- (BOOL)shouldBlockUpgradeDialog { return YES;}
 %end
 
 // YTAutoFullScreen: https://github.com/PoomSmart/YTAutoFullScreen/
@@ -304,6 +324,11 @@ BOOL dontEatMyContent() {
 
 %hook YTInlinePlayerBarContainerView
 - (void)setUserInteractionEnabled:(BOOL)enabled { %orig(YES); }
+%end
+
+// Hide YouTube Heatwave in Video Player (YouTube 17.19.2 or newer) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
+%hook YTInlinePlayerBarContainerView
+- (BOOL)canShowHeatwave { return NO;}
 %end
 
 // Workaround for issue #54
@@ -488,34 +513,10 @@ BOOL dontEatMyContent() {
 }
 %end
 
-// Fix "Google couldn't confirm this attempt to sign in is safe. If you think this is a mistake, you can close and try again to sign in" - qnblackcat/uYouPlus#420
-// Thanks to @AhmedBafkir and @kkirby - https://github.com/qnblackcat/uYouPlus/discussions/447#discussioncomment-3672881
-%group gFixGoogleSignIn
-%hook SSORPCService
-+ (id)URLFromURL:(id)arg1 withAdditionalFragmentParameters:(NSDictionary *)arg2 {
-    NSURL *orig = %orig;
-    NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:orig resolvingAgainstBaseURL:NO];
-    NSMutableArray *newQueryItems = [urlComponents.queryItems mutableCopy];
-    for (NSURLQueryItem *queryItem in urlComponents.queryItems) {
-        if ([queryItem.name isEqualToString:@"system_version"]
-         || [queryItem.name isEqualToString:@"app_version"]
-         || [queryItem.name isEqualToString:@"kdlc"]
-         || [queryItem.name isEqualToString:@"kss"]
-         || [queryItem.name isEqualToString:@"lib_ver"]
-         || [queryItem.name isEqualToString:@"device_model"]) {
-            [newQueryItems removeObject:queryItem];
-        }
-    }
-    urlComponents.queryItems = [newQueryItems copy];
-    return urlComponents.URL;
-}
-%end
-%end
-
 // Fix "You can't sign in to this app because Google can't confirm that it's safe" warning when signing in. by julioverne & PoomSmart
 // https://gist.github.com/PoomSmart/ef5b172fd4c5371764e027bea2613f93
 // https://github.com/qnblackcat/uYouPlus/pull/398
-/* 
+/*
 %group gDevice_challenge_request_hack
 %hook SSOService
 + (id)fetcherWithRequest:(NSMutableURLRequest *)request configuration:(id)configuration {
@@ -538,6 +539,7 @@ BOOL dontEatMyContent() {
 + (NSString *)accessGroup {
     return accessGroupID();
 }
+
 + (NSString *)sharedAccessGroup {
     return accessGroupID();
 }
@@ -881,141 +883,124 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 %end
 
-// DontEatMyContent - @therealFoxster: https://github.com/therealFoxster/DontEatMyContent
-double aspectRatio = 16/9;
-bool zoomedToFill = false;
-
-MLHAMSBDLSampleBufferRenderingView *renderingView;
-NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstraint, *centerYConstraint;
-
-%group gDontEatMyContent
-%hook YTPlayerViewController
-- (void)viewDidAppear:(BOOL)animated {
-    YTPlayerView *playerView = [self playerView];
-    UIView *renderingViewContainer = MSHookIvar<UIView *>(playerView, "_renderingViewContainer");
-    renderingView = [playerView renderingView];
-
-    CGFloat constant = 23; // Make renderingView a bit larger since safe area has sizeable margins from the notch and side borders; tested on iPhone 13 mini
-
-    widthConstraint = [renderingView.widthAnchor constraintEqualToAnchor:renderingViewContainer.safeAreaLayoutGuide.widthAnchor constant:constant];
-    heightConstraint = [renderingView.heightAnchor constraintEqualToAnchor:renderingViewContainer.safeAreaLayoutGuide.heightAnchor constant:constant];
-    centerXConstraint = [renderingView.centerXAnchor constraintEqualToAnchor:renderingViewContainer.centerXAnchor];
-    centerYConstraint = [renderingView.centerYAnchor constraintEqualToAnchor:renderingViewContainer.centerYAnchor];
-    
-    // playerView.backgroundColor = [UIColor greenColor];
-    // renderingViewContainer.backgroundColor = [UIColor redColor];
-    // renderingView.backgroundColor = [UIColor blueColor];
-
-    YTMainAppVideoPlayerOverlayViewController *activeVideoPlayerOverlay = [self activeVideoPlayerOverlay];
-
-    // Must check class since YTInlineMutedPlaybackPlayerOverlayViewController doesn't have -(BOOL)isFullscreen
-    if ([NSStringFromClass([activeVideoPlayerOverlay class]) isEqualToString:@"YTMainAppVideoPlayerOverlayViewController"] && [activeVideoPlayerOverlay isFullscreen]) {
-        activate();
-    } else {
-        center();
-    }
-
-    %orig(animated);
-}
-- (void)didPressToggleFullscreen {  
-    YTMainAppVideoPlayerOverlayViewController *activeVideoPlayerOverlay = [self activeVideoPlayerOverlay];
-    
-    if (![activeVideoPlayerOverlay isFullscreen]) // Entering fullscreen
-        activate();
-    else // Exiting fullscreen
-        deactivate();
-    
-    %orig;
-}
-- (void)didSwipeToEnterFullscreen { 
-    %orig; activate(); 
-}
-- (void)didSwipeToExitFullscreen { 
-    %orig; deactivate();
-}
-- (void)singleVideo:(id)arg1 aspectRatioDidChange:(CGFloat)arg2 {
-    aspectRatio = arg2;
-    if (aspectRatio == 0.0) { 
-        // App backgrounded
-    } else if (aspectRatio < THRESHOLD) {
-        deactivate();
-    } else {
-        activate();
-    }
-    %orig(arg1, arg2);
-}
+%group gYTDisableHighContrastUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+ }
+%end
 %end
 
-%hook YTVideoZoomOverlayView
-- (void)didRecognizePinch:(UIPinchGestureRecognizer *)pinchGestureRecognizer {
-    // %log((CGFloat) [pinchGestureRecognizer scale], (CGFloat) [pinchGestureRecognizer velocity]);
-    if ([pinchGestureRecognizer velocity] <= 0.0) { // >>Zoom out<<
-        zoomedToFill = false;
-        activate();
-    } else if ([pinchGestureRecognizer velocity] > 0.0) { // <<Zoom in>>
-        zoomedToFill = true;
-        deactivate();
-    }
-    %orig(pinchGestureRecognizer);
-}
-- (void)flashAndHideSnapIndicator {}
-// https://github.com/lgariv/UniZoom/blob/master/Tweak.xm
-- (void)setSnapIndicatorVisible:(bool)arg1 {
-    %orig(NO);
-}
+%group gBlueUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
 %end
-%end // gDontEatMyContent
+%end
 
-// DontEatMycontent - detecting device model
-// https://stackoverflow.com/a/11197770/19227228
-NSString* deviceName() {
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-}
+%group gRedUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+%end
+%end
 
-BOOL isDeviceSupported() {
-    NSString *identifier = deviceName();
-    NSArray *unsupportedDevices = UNSUPPORTED_DEVICES;
-    
-    for (NSString *device in unsupportedDevices) {
-        if ([device isEqualToString:identifier]) {
-            return NO;
-        }
-    }
+%group gOrangeUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+%end
+%end
 
-    if ([identifier containsString:@"iPhone"]) {
-        NSString *model = [identifier stringByReplacingOccurrencesOfString:@"iPhone" withString:@""];
-        model = [model stringByReplacingOccurrencesOfString:@"," withString:@"."];
-        if ([identifier isEqualToString:@"iPhone13,1"]) { // iPhone 12 mini
-            return YES; 
-        } else if ([model floatValue] >= 14.0) { // iPhone 13 series and newer
-            return YES;
-        } else return NO;
-    } else return NO;
-}
+%group gPinkUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+%end
+%end
 
-void activate() {
-    if (aspectRatio < THRESHOLD || zoomedToFill) return;
-    // NSLog(@"activate");
-    center();
-    renderingView.translatesAutoresizingMaskIntoConstraints = NO;
-    widthConstraint.active = YES;
-    heightConstraint.active = YES;
-}
+%group gPurpleUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+%end
+%end
 
-void deactivate() {
-    // NSLog(@"deactivate");
-    center();
-    renderingView.translatesAutoresizingMaskIntoConstraints = YES;
-    widthConstraint.active = NO;
-    heightConstraint.active = NO;
-}
-
-void center() {
-    centerXConstraint.active = YES;
-    centerYConstraint.active = YES;
-}
+%group gGreenUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+%end
+%end
 
 // iOS 16 uYou crash fix - @level3tjg: https://github.com/qnblackcat/uYouPlus/pull/224
 %group iOS16
@@ -1060,13 +1045,31 @@ void center() {
     if (replacePreviousAndNextButton()) {
        %init(gReplacePreviousAndNextButton);
     }
-    if (dontEatMyContent() && isDeviceSupported()) {
-       %init(gDontEatMyContent);
-    }
     if (@available(iOS 16, *)) {
        %init(iOS16);
     }
-    if (!fixGoogleSignIn()) {
-       %init(gFixGoogleSignIn);
+    // if (!fixGoogleSigin()) {
+    //    %init(gDevice_challenge_request_hack);
+    // }
+    if (ytDisableHighContrastUI()) {
+       %init(gYTDisableHighContrastUI);
+    }
+    if (BlueUI()) {
+       %init(gBlueUI);
+    }
+    if (RedUI()) {
+       %init(gRedUI);
+    }
+    if (OrangeUI()) {
+       %init(gOrangeUI);
+    }
+    if (PinkUI()) {
+       %init(gPinkUI);
+    }
+    if (PurpleUI()) {
+       %init(gPurpleUI);
+    }
+    if (GreenUI()) {
+       %init(gGreenUI);
     }
 }

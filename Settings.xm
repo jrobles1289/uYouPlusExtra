@@ -23,8 +23,9 @@ extern BOOL castConfirm();
 extern BOOL ytMiniPlayer();
 extern BOOL hidePreviousAndNextButton();
 extern BOOL hidePaidPromotionCard();
-extern BOOL fixGoogleSigin();
+extern BOOL fixGoogleSignIn();
 extern BOOL replacePreviousAndNextButton();
+extern BOOL dontEatMyContent();
 extern BOOL ytDisableHighContrastUI();
 extern BOOL BlueUI();
 extern BOOL RedUI();
@@ -123,6 +124,13 @@ extern BOOL GreenUI();
         return YES;
     };
 
+    YTSettingsSectionItem *dontEatMyContent = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"DONT_EAT_MY_CONTENT") titleDescription:LOC(@"DONT_EAT_MY_CONTENT_DESC")];
+    dontEatMyContent.hasSwitch = YES;
+    dontEatMyContent.switchVisible = YES;
+    dontEatMyContent.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
+    dontEatMyContent.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"dontEatMyContent_enabled"];
+
     YTSettingsSectionItem *replacePreviousAndNextButton = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"REPLACE_PREVIOUS_NEXT_BUTTON") titleDescription:LOC(@"REPLACE_PREVIOUS_NEXT_BUTTON_DESC")];
     replacePreviousAndNextButton.hasSwitch = YES;
     replacePreviousAndNextButton.switchVisible = YES;
@@ -131,16 +139,15 @@ extern BOOL GreenUI();
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"replacePreviousAndNextButton_enabled"];
         return YES;
     };
-    /*
-    YTSettingsSectionItem *fixGoogleSigin = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"FIX_GOOGLE_SIGNIN") titleDescription:LOC(@"FIX_GOOGLE_SIGNIN_DESC")];
-    fixGoogleSigin.hasSwitch = YES;
-    fixGoogleSigin.switchVisible = YES;
-    fixGoogleSigin.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"fixGoogleSigin_enabled"];
-    fixGoogleSigin.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
-        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"fixGoogleSigin_enabled"];
+    
+    YTSettingsSectionItem *fixGoogleSignIn = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"FIX_GOOGLE_SIGNIN") titleDescription:LOC(@"FIX_GOOGLE_SIGNIN_DESC")];
+    fixGoogleSignIn.hasSwitch = YES;
+    fixGoogleSignIn.switchVisible = YES;
+    fixGoogleSignIn.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"fixGoogleSignIn_enabled"];
+    fixGoogleSignIn.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"fixGoogleSignIn_enabled"];
         return YES;
     };
-    */
     
     YTSettingsSectionItem *hidePaidPromotionCard = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"HIDE_PAID_PROMOTION_CARDS") titleDescription:LOC(@"HIDE_PAID_PROMOTION_CARDS_DESC")];
     hidePaidPromotionCard.hasSwitch = YES;
@@ -259,7 +266,7 @@ extern BOOL GreenUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[killApp, autoFull, castConfirm, ytMiniPlayer, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, BlueUI, RedUI, OrangeUI, PinkUI, PurpleUI, GreenUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[killApp, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, BlueUI, RedUI, OrangeUI, PinkUI, PurpleUI, GreenUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

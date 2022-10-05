@@ -182,7 +182,6 @@ const SomeReactNativeComponent = () => {
         </View>
     );
 }
-%end
 
 // Hide HUD Messages
 %hook YTHUDMessageView

@@ -2,6 +2,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <dlfcn.h>
+#import <RNHomeIndicator.h>
 #import <sys/utsname.h>
 #import <substrate.h>
 #import "Header.h"
@@ -166,6 +167,21 @@ BOOL GreenUI () {
 - (BOOL)replaceNextPaddleWithFastForwardButtonForSingletonVods { return YES; }
 - (BOOL)replacePreviousPaddleWithRewindButtonForSingletonVods { return YES; }
 %end
+%end
+
+// Hide Home Bar
+UIViewController *rootViewController = [HomeIndicatorViewController new];
+
+import PrefersHomeIndicatorAutoHidden from 'react-native-home-indicator';
+
+const SomeReactNativeComponent = () => {
+    return (
+        <View>
+            <PrefersHomeIndicatorAutoHidden />
+            ...
+        </View>
+    );
+}
 %end
 
 // Hide HUD Messages

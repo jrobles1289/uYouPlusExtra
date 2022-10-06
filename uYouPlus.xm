@@ -168,24 +168,6 @@ BOOL GreenUI () {
 %end
 %end
 
-// Hide Home Bar
-class ViewController: UIViewController  
-{  
-    var shouldHideHomeIndicator = false
-    
-    override func prefersHomeIndicatorAutoHidden() -> Bool  
-    {  
-        return shouldHideHomeIndicator  
-    }
-    
-    override func viewDidAppear(_ animated: Bool)  
-    {  
-        super.viewDidAppear(animated)  
-        self.shouldHideHomeIndicator = true  
-        self.setNeedsUpdateOfHomeIndicatorAutoHidden()  
-    }  
-}
-
 // Hide HUD Messages
 %hook YTHUDMessageView
 - (id)initWithMessage:(id)arg1 dismissHandler:(id)arg2 {

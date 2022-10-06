@@ -6,6 +6,11 @@
 #define UNSUPPORTED_DEVICES @[@"iPhone14,3", @"iPhone14,6", @"iPhone14,8"] // DontEatMycontent
 #define THRESHOLD 1.99 // DontEatMycontent
 
+// Home Bar
+@interface HomeIndicatorViewController : UIViewController
+@property BOOL prefersAutoHidden;
+@end
+
 // IAmYouTube
 @interface SSOConfiguration : NSObject
 @end

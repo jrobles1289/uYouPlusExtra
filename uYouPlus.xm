@@ -170,17 +170,21 @@ BOOL GreenUI () {
 %end
 
 // Hide Home Bar
-UIViewController *rootViewController = [HomeIndicatorViewController new];
-
-import PrefersHomeIndicatorAutoHidden from 'react-native-home-indicator';
-
-const SomeReactNativeComponent = () => {
-    return (
-        <View>
-            <PrefersHomeIndicatorAutoHidden />
-            ...
-        </View>
-    );
+class ViewController: UIViewController  
+{  
+    var shouldHideHomeIndicator = false
+    
+    override func prefersHomeIndicatorAutoHidden() -> Bool  
+    {  
+        return shouldHideHomeIndicator  
+    }
+    
+    override func viewDidAppear(_ animated: Bool)  
+    {  
+        super.viewDidAppear(animated)  
+        self.shouldHideHomeIndicator = true  
+        self.setNeedsUpdateOfHomeIndicatorAutoHidden()  
+    }  
 }
 
 // Hide HUD Messages

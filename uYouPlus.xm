@@ -2,7 +2,6 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <dlfcn.h>
-#import <RNHomeIndicator.h>
 #import <sys/utsname.h>
 #import <substrate.h>
 #import "Header.h"

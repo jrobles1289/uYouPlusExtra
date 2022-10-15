@@ -100,7 +100,7 @@ extern BOOL PinkUI();
     };
 
     NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[ytDisableHighContrastUI, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
-    [delegate setSectionItems:sectionItems forCategory:YTDHCUISection title:@"uYouPlus Customization" titleDescription:nil headerHidden:NO];
+    [delegate setSectionItems:sectionItems forCategory:YTDHCUISection title:@"uYouPlus Personalization" titleDescription:nil headerHidden:NO];
 }
 
 - (void)updateSectionForCategory:(NSUInteger)category withEntry:(id)entry {

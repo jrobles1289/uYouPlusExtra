@@ -5,14 +5,14 @@ ARCHS = arm64
 MODULES = jailed
 FINALPACKAGE = 1
 CODESIGN_IPA = 0
-PACKAGE_VERSION = 17.41.2_2.1_F3
+PACKAGE_VERSION = 17.41.2_2.1_F4
 
 TWEAK_NAME = uYouPlus
 DISPLAY_NAME = YouTube
 BUNDLE_ID = com.google.ios.youtube
  
 uYouPlus_INJECT_DYLIBS = Tweaks/uYou/Library/MobileSubstrate/DynamicLibraries/uYou.dylib .theos/obj/libcolorpicker.dylib .theos/obj/iSponsorBlock.dylib .theos/obj/YTUHD.dylib .theos/obj/YouPiP.dylib .theos/obj/YouTubeDislikesReturn.dylib .theos/obj/YoutubeSpeed.dylib
-uYouPlus_FILES = uYouPlus.xm Settings.xm Settings2.xm Settings3.xm
+uYouPlus_FILES = uYouPlus.xm Settings.xm Settings2.xm
 uYouPlus_IPA = ./tmp/Payload/YouTube.app
 uYouPlus_FRAMEWORKS = UIKit Security
 uYouPlus_CFLAGS = -fobjc-arc -DTWEAK_VERSION=$(PACKAGE_VERSION)

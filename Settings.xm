@@ -7,7 +7,7 @@
 - (void)updateYTDHCUISectionWithEntry:(id)entry;
 @end
 
-static const NSInteger YTDHCUISection = 101;
+static const NSInteger YTDHCUISection = 501;
 
 extern NSBundle *uYouPlusBundle();
 extern BOOL ytDisableHighContrastUI();

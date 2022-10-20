@@ -9,7 +9,7 @@
 - (void)updateuYouPlusSectionWithEntry:(id)entry;
 @end
 
-static const NSInteger uYouPlusSection = 100;
+static const NSInteger uYouPlusSection = 500;
 
 extern NSBundle *uYouPlusBundle();
 extern BOOL hideHUD();

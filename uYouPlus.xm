@@ -370,6 +370,11 @@ BOOL GreenUI () {
 - (BOOL)enablePlayerBarForVerticalVideoWhenControlsHiddenInFullscreen { return YES; }
 %end
 
+// Rounded Thumbnails (Enabled by Default for uYouPlusExtra)
+%hook YTGlobalConfig
+- (BOOL)uiSystemsClientGlobalConfigEnableRoundedThumbnailsForNative { return YES; }
+%end
+
 // Hide YouTube Heatwave in Video Player (YouTube v17.19.2 or newer) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
 %group gNoHeatwaves
 %hook YTInlinePlayerBarContainerView

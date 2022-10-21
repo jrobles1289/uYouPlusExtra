@@ -1,4 +1,4 @@
-TARGET = iphone:clang:latest:14.0
+TARGET = iphone:clang:latest:13.0
 uYouPlus_USE_FLEX = 0
 uYouPlus_USE_FISHHOOK = 0
 ARCHS = arm64
@@ -11,7 +11,7 @@ TWEAK_NAME = uYouPlus
 DISPLAY_NAME = YouTube
 BUNDLE_ID = com.google.ios.youtube
  
-uYouPlus_INJECT_DYLIBS = Tweaks/uYou/Library/MobileSubstrate/DynamicLibraries/uYou.dylib .theos/obj/libcolorpicker.dylib .theos/obj/iSponsorBlock.dylib .theos/obj/YTUHD.dylib .theos/obj/YouPiP.dylib .theos/obj/YouTubeDislikesReturn.dylib .theos/obj/YoutubeSpeed.dylib
+uYouPlus_INJECT_DYLIBS = Tweaks/uYou/Library/MobileSubstrate/DynamicLibraries/uYou.dylib .theos/obj/libcolorpicker.dylib .theos/obj/iSponsorBlock.dylib .theos/obj/YTUHD.dylib .theos/obj/YouPiP.dylib .theos/obj/YouTubeDislikesReturn.dylib .theos/obj/YTABConfig.dylib
 uYouPlus_FILES = uYouPlus.xm Settings.xm Settings2.xm
 uYouPlus_IPA = ./tmp/Payload/YouTube.app
 uYouPlus_FRAMEWORKS = UIKit Security

@@ -1,4 +1,5 @@
 #import "Tweaks/YouTubeHeader/YTSettingsViewController.h"
+#import "Tweaks/YouTubeHeader/YTSearchableSettingsViewController.h"
 #import "Tweaks/YouTubeHeader/YTSettingsSectionItem.h"
 #import "Tweaks/YouTubeHeader/YTSettingsSectionItemManager.h"
 #import "Header.h"
@@ -28,6 +29,26 @@ extern BOOL PinkUI();
         [mutableOrder insertObject:@(YTDHCUISection) atIndex:insertIndex + 1];
     return mutableOrder;
 }
+%end
+
+%hook YTSettingsViewController
+
+- (void)loadWithModel:(id)model fromView:(UIView *)view {
+    %orig;
+    if ([[self valueForKey:@"_detailsCategoryID"] integerValue] == uYouPlusSection)
+        MSHookIvar<BOOL>(self, "_shouldShowSearchBar") = YES;
+}
+
+- (void)setSectionControllers {
+    %orig;
+    if (MSHookIvar<BOOL>(self, "_shouldShowSearchBar")) {
+        YTSettingsSectionController *settingsSectionController = [self settingsSectionControllers][[self valueForKey:@"_detailsCategoryID"]];
+        YTSearchableSettingsViewController *searchableVC = [self valueForKey:@"_searchableSettingsViewController"];
+        if (settingsSectionController)
+            [searchableVC storeCollectionViewSections:@[settingsSectionController]];
+    }
+}
+
 %end
 
 %hook YTSettingsSectionItemManager

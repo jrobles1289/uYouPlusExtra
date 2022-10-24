@@ -35,7 +35,7 @@ extern BOOL PinkUI();
 
 - (void)loadWithModel:(id)model fromView:(UIView *)view {
     %orig;
-    if ([[self valueForKey:@"_detailsCategoryID"] integerValue] == uYouPlusSection)
+    if ([[self valueForKey:@"_detailsCategoryID"] integerValue] == YTDHCUISection)
         MSHookIvar<BOOL>(self, "_shouldShowSearchBar") = YES;
 }
 

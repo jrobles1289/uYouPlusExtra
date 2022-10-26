@@ -372,12 +372,12 @@ BOOL GreenUI () {
 - (BOOL)enableShortsVideoQualityPicker { return YES; } // YouTube Shorts Quality Picker (iPhones Only)
 %end
 
-// Rounded Thumbnails (Enabled by Default for uYouPlusExtra) only works with YouTube v17.40.5-present
+// Disable Rounded Thumbnails (Disabled by Default for uYouPlusExtra) only works with YouTube v17.42.6-present
 %hook YTGlobalConfig
-- (BOOL)uiSystemsClientGlobalConfigEnableRoundedThumbnailsForNative { return YES; }
+- (BOOL)uiSystemsClientGlobalConfigEnableRoundedThumbnailsForNative { return NO; }
 %end
 
-// Hide YouTube Heatwave in Video Player (YouTube v17.19.2 or newer) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
+// Hide YouTube Heatwave in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
 %group gNoHeatwaves
 %hook YTInlinePlayerBarContainerView
 - (BOOL)canShowHeatwave { return NO; }

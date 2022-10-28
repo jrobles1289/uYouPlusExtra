@@ -26,7 +26,6 @@ extern BOOL ytMiniPlayer();
 extern BOOL reExplore();
 extern BOOL dontEatMyContent();
 extern BOOL fixGoogleSignIn();
-extern BOOL LandscapePanel();
 extern BOOL NoHeatwaves();
 extern BOOL oled();
 extern BOOL oledKB();
@@ -102,15 +101,6 @@ extern BOOL oledKB();
     NoHeatwaves.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"NoHeatwaves_enabled"];
     NoHeatwaves.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"NoHeatwaves_enabled"];
-        return YES;
-    };
-
-    YTSettingsSectionItem *LandscapePanel = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"Hide Landscape Panel (LandscapePanel)") titleDescription:LOC(@"Should hide Landscape Panel while watching videos in full screen. App restart is required.")];
-    LandscapePanel.hasSwitch = YES;
-    LandscapePanel.switchVisible = YES;
-    LandscapePanel.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"LandscapePanel_enabled"];
-    LandscapePanel.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
-        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"LandscapePanel_enabled"];
         return YES;
     };
 
@@ -240,7 +230,7 @@ extern BOOL oledKB();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, oledDarkMode, oledKeyBoard, hideHUD, hideCC, hideHoverCard, hidePaidPromotionCard, hideAutoplaySwitch, hidePreviousAndNextButton, replacePreviousAndNextButton, NoHeatwaves, LandscapePanel, castConfirm, autoFull, bigYTMiniPlayer, ytMiniPlayer, reExplore, dontEatMyContent, fixGoogleSignIn]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, oledDarkMode, oledKeyBoard, hideHUD, hideCC, hideHoverCard, hidePaidPromotionCard, hideAutoplaySwitch, hidePreviousAndNextButton, replacePreviousAndNextButton, NoHeatwaves, castConfirm, autoFull, bigYTMiniPlayer, ytMiniPlayer, reExplore, dontEatMyContent, fixGoogleSignIn]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus Essential" titleDescription:nil headerHidden:NO];
 }
 

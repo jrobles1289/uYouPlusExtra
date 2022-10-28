@@ -284,13 +284,6 @@ BOOL GreenUI () {
 }
 %end
 
-// Workaround for qnblackcat/uYouPlus#542 - LandscapePanel (Toggleable Setting)
-%group gLandscapePanel
-%hook YTColdConfig
-- (BOOL)isLandscapeEngagementPanelEnabled { return NO;}
-%end
-%end
-
 // Workaround for qnblackcat/uYouPlus/#560
 %hook YTColdConfig
 - (BOOL)enableCinematicContainer { return NO;}
@@ -367,7 +360,7 @@ BOOL GreenUI () {
 - (BOOL)enableShortsVideoQualityPicker { return YES; } // YouTube Shorts Quality Picker (iPhones Only)
 %end
 
-// Disable Rounded Thumbnails (Disabled by Default for uYouPlusExtra) only works with YouTube v17.42.6-present
+// Disable Rounded Thumbnails (Disabled by Default for uYouPlusExtra) only works with YouTube v17.40.5-present
 %hook YTGlobalConfig
 - (BOOL)uiSystemsClientGlobalConfigEnableRoundedThumbnailsForNative { return NO; }
 %end
@@ -1385,9 +1378,6 @@ static BOOL didFinishLaunching;
     }
     if (!fixGoogleSignIn()) {
        %init(gFixGoogleSignIn);
-    }
-    if (LandscapePanel()) {
-       %init (gLandscapePanel);
     }
     if (NoHeatwaves()) {
        %init (gNoHeatwaves);

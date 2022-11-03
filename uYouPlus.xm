@@ -26,14 +26,14 @@ NSBundle *uYouPlusBundle() {
     static NSBundle *bundle = nil;
     static dispatch_once_t onceToken;
  	dispatch_once(&onceToken, ^{
-         NSString *tweakBundlePath = [[NSBundle mainBundle] pathForResource:@"uYouPlus" ofType:@"bundle"];
-         if (tweakBundlePath)
-             bundle = [NSBundle bundleWithPath:tweakBundlePath];
-	 else {
-             bundle = [NSBundle bundleWithPath:@"/Library/Application Support/uYouPlus.bundle"];
-             if (!bundle)
-                 bundle = [NSBundle bundleWithPath:@"/var/jb/Library/Application Support/uYouPlus.bundle"];
-         }
+        NSString *tweakBundlePath = [[NSBundle mainBundle] pathForResource:@"uYouPlus" ofType:@"bundle"];
+        if (tweakBundlePath)
+            bundle = [NSBundle bundleWithPath:tweakBundlePath];
+        else {
+            bundle = [NSBundle bundleWithPath:@"/Library/Application Support/uYouPlus.bundle"];
+            if (!bundle)
+                bundle = [NSBundle bundleWithPath:@"/var/jb/Library/Application Support/uYouPlus.bundle"];
+        }
     });
     return bundle;
 }
@@ -42,8 +42,8 @@ NSBundle *tweakBundle = uYouPlusBundle();
 // Keychain patching
 static NSString *accessGroupID() {
     NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,          
-	     	           @"bundleSeedID", kSecAttrAccount,
+                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,
+                           @"bundleSeedID", kSecAttrAccount,
                            @"", kSecAttrService,
                            (id)kCFBooleanTrue, kSecReturnAttributes,
                            nil];

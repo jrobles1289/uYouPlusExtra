@@ -1063,7 +1063,7 @@ NSString* deviceName() {
     return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
-BOOL isDeviceSupported() {
+BOOL deviceIsSupported() {
     NSString *identifier = deviceName();
     NSArray *unsupportedDevices = UNSUPPORTED_DEVICES;
     
@@ -1082,6 +1082,17 @@ BOOL isDeviceSupported() {
             return YES;
         } else return NO;
     } else return NO;
+}
+
+void aspectRatioChanged(CGFloat arg) {
+    aspectRatio = arg;
+    if (aspectRatio == 0.0) {
+        // App backgrounded or something went wrong
+    } else if (aspectRatio < THRESHOLD) {
+        deactivate();
+    } else {
+        activate();
+    }
 }
 
 void activate() {
@@ -1372,7 +1383,7 @@ static BOOL didFinishLaunching;
     if (replacePreviousAndNextButton()) {
        %init(gReplacePreviousAndNextButton);
     }
-    if (dontEatMyContent() && isDeviceSupported()) {
+    if (dontEatMyContent() && deviceIsSupported()) {
        %init(gDontEatMyContent);
     }
     if (@available(iOS 16, *)) {

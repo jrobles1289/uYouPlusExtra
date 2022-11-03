@@ -1015,6 +1015,15 @@ NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstraint, *cen
 }
 %end
 
+// Retrieve video aspect ratio (3)
+%hook YTPlayerView
+- (void)setAspectRatio:(CGFloat)arg1 {
+    %orig(arg1);
+    aspectRatioChanged(arg1);
+    // %log((CGFloat) aspectRatio);
+}
+%end
+
 // Detect pinch gesture (1) (no longer works but kept for backwards compatibility)
 %hook YTVideoZoomOverlayView
 - (void)didRecognizePinch:(UIPinchGestureRecognizer *)pinchGestureRecognizer {
@@ -1028,27 +1037,22 @@ NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstraint, *cen
     }
     %orig(pinchGestureRecognizer);
 }
-- (void)flashAndHideSnapIndicator {}
-// https://github.com/lgariv/UniZoom/blob/master/Tweak.xm
-- (void)setSnapIndicatorVisible:(bool)arg1 {
-    %orig(NO);
+%end
+
+// Detect pinch gesture (2)
+%hook YTVideoFreeZoomOverlayView
+- (void)didRecognizePinch:(UIPinchGestureRecognizer *)pinchGestureRecognizer {
+    if ([pinchGestureRecognizer velocity] <= 0.0) { // >>Zoom out<<
+        zoomedToFill = false;
+        activate();
+    } else if ([pinchGestureRecognizer velocity] > 0.0) { // <<Zoom in>>
+        zoomedToFill = true;
+        deactivate();
+    }
+    %orig(pinchGestureRecognizer);
 }
 %end
 
-%hook YTVideoZoomOverlayController
-// Get video aspect ratio; fallback for -(void)singleVideo:(id)aspectRatioDidChange:(CGFloat)
-- (void)resetForVideoWithAspectRatio:(double)arg1 {
-    aspectRatio = arg1;
-    %log;
-    if (aspectRatio == 0.0) {} 
-    else if (aspectRatio < THRESHOLD) {
-        deactivate();
-    } else {
-        activate();
-    }
-    %orig(arg1);
-}
-%end
 %end // gDontEatMyContent
 
 // DontEatMycontent - detecting device model

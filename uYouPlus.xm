@@ -26,14 +26,14 @@ NSBundle *uYouPlusBundle() {
     static NSBundle *bundle = nil;
     static dispatch_once_t onceToken;
  	dispatch_once(&onceToken, ^{
-        NSString *tweakBundlePath = [[NSBundle mainBundle] pathForResource:@"uYouPlus" ofType:@"bundle"];
-        if (tweakBundlePath)
-            bundle = [NSBundle bundleWithPath:tweakBundlePath];
-        else {
-            bundle = [NSBundle bundleWithPath:@"/Library/Application Support/uYouPlus.bundle"];
-            if (!bundle)
-                bundle = [NSBundle bundleWithPath:@"/var/jb/Library/Application Support/uYouPlus.bundle"];
-        }
+         NSString *tweakBundlePath = [[NSBundle mainBundle] pathForResource:@"uYouPlus" ofType:@"bundle"];
+         if (tweakBundlePath)
+             bundle = [NSBundle bundleWithPath:tweakBundlePath];
+	 else {
+             bundle = [NSBundle bundleWithPath:@"/Library/Application Support/uYouPlus.bundle"];
+             if (!bundle)
+                 bundle = [NSBundle bundleWithPath:@"/var/jb/Library/Application Support/uYouPlus.bundle"];
+         }
     });
     return bundle;
 }
@@ -42,8 +42,8 @@ NSBundle *tweakBundle = uYouPlusBundle();
 // Keychain patching
 static NSString *accessGroupID() {
     NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,
-                           @"bundleSeedID", kSecAttrAccount,
+                           (__bridge NSString *)kSecClassGenericPassword, (__bridge NSString *)kSecClass,          
+	     	           @"bundleSeedID", kSecAttrAccount,
                            @"", kSecAttrService,
                            (id)kCFBooleanTrue, kSecReturnAttributes,
                            nil];
@@ -110,6 +110,33 @@ BOOL replacePreviousAndNextButton() {
 BOOL dontEatMyContent() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
 }
+BOOL LandscapePanel () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"LandscapePanel_enabled"];
+}
+BOOL NoHeatwaves () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"NoHeatwaves_enabled"];
+}
+BOOL ytDisableHighContrastUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastUI_enabled"];
+}
+BOOL BlueUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueUI_enabled"];
+}
+BOOL RedUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"RedUI_enabled"];
+}
+BOOL OrangeUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"OrangeUI_enabled"];
+}
+BOOL PinkUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"PinkUI_enabled"];
+}
+BOOL PurpleUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"PurpleUI_enabled"];
+}
+BOOL GreenUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"GreenUI_enabled"];
+}
 
 # pragma mark - Tweaks
 // Skips content warning before playing *some videos - @PoomSmart
@@ -158,6 +185,11 @@ BOOL dontEatMyContent() {
 - (id)initWithMessage:(id)arg1 dismissHandler:(id)arg2 {
     return hideHUD() ? nil : %orig;
 }
+%end
+
+// Hide Update Dialog: https://github.com/PoomSmart/YouTubeHeader/blob/main/YTGlobalConfig.h
+%hook YTGlobalConfig
+- (BOOL)shouldBlockUpgradeDialog { return YES;}
 %end
 
 // YTAutoFullScreen: https://github.com/PoomSmart/YTAutoFullScreen/
@@ -252,6 +284,11 @@ BOOL dontEatMyContent() {
 }
 %end
 
+// Workaround for qnblackcat/uYouPlus/#560
+%hook YTColdConfig
+- (BOOL)enableCinematicContainer { return NO;}
+%end
+
 // YTClassicVideoQuality: https://github.com/PoomSmart/YTClassicVideoQuality
 %hook YTVideoQualitySwitchControllerFactory
 - (id)videoQualitySwitchControllerWithParentResponder:(id)responder {
@@ -320,6 +357,19 @@ BOOL dontEatMyContent() {
 
 %hook YTHotConfig
 - (BOOL)enablePlayerBarForVerticalVideoWhenControlsHiddenInFullscreen { return YES; }
+- (BOOL)enableShortsVideoQualityPicker { return YES; } // YouTube Shorts Quality Picker (iPhones Only)
+%end
+
+// Disable Rounded Thumbnails (Disabled by Default for uYouPlusExtra) only works with YouTube v17.40.5-present
+%hook YTGlobalConfig
+- (BOOL)uiSystemsClientGlobalConfigEnableRoundedThumbnailsForNative { return NO; }
+%end
+
+// Hide YouTube Heatwave in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
+%group gNoHeatwaves
+%hook YTInlinePlayerBarContainerView
+- (BOOL)canShowHeatwave { return NO; }
+%end
 %end
 
 // Workaround for issue #54
@@ -922,7 +972,7 @@ NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstraint, *cen
     heightConstraint = [renderingView.heightAnchor constraintEqualToAnchor:renderingViewContainer.safeAreaLayoutGuide.heightAnchor constant:constant];
     centerXConstraint = [renderingView.centerXAnchor constraintEqualToAnchor:renderingViewContainer.centerXAnchor];
     centerYConstraint = [renderingView.centerYAnchor constraintEqualToAnchor:renderingViewContainer.centerYAnchor];
-    
+
     // playerView.backgroundColor = [UIColor greenColor];
     // renderingViewContainer.backgroundColor = [UIColor redColor];
     // renderingView.backgroundColor = [UIColor blueColor];
@@ -944,7 +994,7 @@ NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstraint, *cen
         activate();
     else // Exiting fullscreen
         deactivate();
-    
+
     %orig;
 }
 - (void)didSwipeToEnterFullscreen { %orig; activate(); }
@@ -965,15 +1015,6 @@ NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstraint, *cen
 }
 %end
 
-// Retrieve video aspect ratio (3)
-%hook YTPlayerView
-- (void)setAspectRatio:(CGFloat)arg1 {
-    %orig(arg1);
-    aspectRatioChanged(arg1);
-    // %log((CGFloat) aspectRatio);
-}
-%end
-
 // Detect pinch gesture (1) (no longer works but kept for backwards compatibility)
 %hook YTVideoZoomOverlayView
 - (void)didRecognizePinch:(UIPinchGestureRecognizer *)pinchGestureRecognizer {
@@ -987,22 +1028,27 @@ NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstraint, *cen
     }
     %orig(pinchGestureRecognizer);
 }
-%end
-
-// Detect pinch gesture (2)
-%hook YTVideoFreeZoomOverlayView
-- (void)didRecognizePinch:(UIPinchGestureRecognizer *)pinchGestureRecognizer {
-    if ([pinchGestureRecognizer velocity] <= 0.0) { // >>Zoom out<<
-        zoomedToFill = false;
-        activate();
-    } else if ([pinchGestureRecognizer velocity] > 0.0) { // <<Zoom in>>
-        zoomedToFill = true;
-        deactivate();
-    }
-    %orig(pinchGestureRecognizer);
+- (void)flashAndHideSnapIndicator {}
+// https://github.com/lgariv/UniZoom/blob/master/Tweak.xm
+- (void)setSnapIndicatorVisible:(bool)arg1 {
+    %orig(NO);
 }
 %end
 
+%hook YTVideoZoomOverlayController
+// Get video aspect ratio; fallback for -(void)singleVideo:(id)aspectRatioDidChange:(CGFloat)
+- (void)resetForVideoWithAspectRatio:(double)arg1 {
+    aspectRatio = arg1;
+    %log;
+    if (aspectRatio == 0.0) {} 
+    else if (aspectRatio < THRESHOLD) {
+        deactivate();
+    } else {
+        activate();
+    }
+    %orig(arg1);
+}
+%end
 %end // gDontEatMyContent
 
 // DontEatMycontent - detecting device model
@@ -1013,7 +1059,7 @@ NSString* deviceName() {
     return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
-BOOL deviceIsSupported() {
+BOOL isDeviceSupported() {
     NSString *identifier = deviceName();
     NSArray *unsupportedDevices = UNSUPPORTED_DEVICES;
     
@@ -1032,17 +1078,6 @@ BOOL deviceIsSupported() {
             return YES;
         } else return NO;
     } else return NO;
-}
-
-void aspectRatioChanged(CGFloat arg) {
-    aspectRatio = arg;
-    if (aspectRatio == 0.0) {
-        // App backgrounded or something went wrong
-    } else if (aspectRatio < THRESHOLD) {
-        deactivate();
-    } else {
-        activate();
-    }
 }
 
 void activate() {
@@ -1067,50 +1102,211 @@ void center() {
     centerYConstraint.active = YES;
 }
 
+%group gYTDisableHighContrastUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+ }
+ %end
+
+ %hook UIColor
+ + (UIColor *)whiteColor {
+          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+ }
+ %end
+ %end
+
+%group gBlueUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+}
+%end
+%end
+
+%group gRedUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}
+%end
+%end
+
+%group gOrangeUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}
+%end
+%end
+
+%group gPinkUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}
+%end
+%end
+
+%group gPurpleUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+}
+%end
+%end
+
+%group gGreenUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}
+%end
+%end
+
 // YTSpeed - https://github.com/Lyvendia/YTSpeed
 %hook YTVarispeedSwitchController
 - (id)init {
-	id result = %orig;
+       id result = %orig;
 
-	const int size = 12;
-	float speeds[] = {0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0};
-	id varispeedSwitchControllerOptions[size];
+       const int size = 12;
+       float speeds[] = {0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0};
+       id varispeedSwitchControllerOptions[size];
 
-	for (int i = 0; i < size; ++i) {
-		id title = [NSString stringWithFormat:@"%.2fx", speeds[i]];
-		varispeedSwitchControllerOptions[i] = [[%c(YTVarispeedSwitchControllerOption) alloc] initWithTitle:title rate:speeds[i]];
-	}
+       for (int i = 0; i < size; ++i) {
+ 	       id title = [NSString stringWithFormat:@"%.2fx", speeds[i]];
+ 	       varispeedSwitchControllerOptions[i] = [[%c(YTVarispeedSwitchControllerOption) alloc] initWithTitle:title rate:speeds[i]];
+       }
 
-	NSUInteger count = sizeof(varispeedSwitchControllerOptions) / sizeof(id);
-	NSArray *varispeedArray = [NSArray arrayWithObjects:varispeedSwitchControllerOptions count:count];
-	MSHookIvar<NSArray *>(self, "_options") = varispeedArray;
+       NSUInteger count = sizeof(varispeedSwitchControllerOptions) / sizeof(id);
+       NSArray *varispeedArray = [NSArray arrayWithObjects:varispeedSwitchControllerOptions count:count];
+       MSHookIvar<NSArray *>(self, "_options") = varispeedArray;
 
-	return result;
+       return result;
 }
 %end
 
 %hook MLHAMQueuePlayer
 - (void)setRate:(float)rate {
-	MSHookIvar<float>(self, "_rate") = rate;
-	MSHookIvar<float>(self, "_preferredRate") = rate;
+       MSHookIvar<float>(self, "_rate") = rate;
+       MSHookIvar<float>(self, "_preferredRate") = rate;
 
-	id player = MSHookIvar<HAMPlayerInternal *>(self, "_player");
-	[player setRate: rate];
-	
-	id stickySettings = MSHookIvar<MLPlayerStickySettings *>(self, "_stickySettings");
-	[stickySettings setRate: rate];
+       id player = MSHookIvar<HAMPlayerInternal *>(self, "_player");
+       [player setRate: rate];
 
-	[self.playerEventCenter broadcastRateChange: rate];
+       id stickySettings = MSHookIvar<MLPlayerStickySettings *>(self, "_stickySettings");
+       [stickySettings setRate: rate];
 
-	YTSingleVideoController *singleVideoController = self.delegate;
-	[singleVideoController playerRateDidChange: rate];
+       [self.playerEventCenter broadcastRateChange: rate];
+
+       YTSingleVideoController *singleVideoController = self.delegate;
+       [singleVideoController playerRateDidChange: rate];
 }
 %end 
 
 %hook YTPlayerViewController
 %property float playbackRate;
 - (void)singleVideo:(id)video playbackRateDidChange:(float)rate {
-	%orig;
+        %orig;
 }
 %end
 
@@ -1172,7 +1368,7 @@ static BOOL didFinishLaunching;
     if (replacePreviousAndNextButton()) {
        %init(gReplacePreviousAndNextButton);
     }
-    if (dontEatMyContent() && deviceIsSupported()) {
+    if (dontEatMyContent() && isDeviceSupported()) {
        %init(gDontEatMyContent);
     }
     if (@available(iOS 16, *)) {
@@ -1181,11 +1377,36 @@ static BOOL didFinishLaunching;
     if (!fixGoogleSignIn()) {
        %init(gFixGoogleSignIn);
     }
-
+    if (NoHeatwaves()) {
+       %init (gNoHeatwaves);
+    }
+    if (ytDisableHighContrastUI()) {
+       %init(gYTDisableHighContrastUI);
+    }
+    if (BlueUI()) {
+       %init(gBlueUI);
+    }
+    if (RedUI()) {
+       %init(gRedUI);
+    }
+    if (OrangeUI()) {
+       %init(gOrangeUI);
+    }
+    if (PinkUI()) {
+       %init(gPinkUI);
+    }
+    if (PurpleUI()) {
+       %init(gPurpleUI);
+    }
+    if (GreenUI()) {
+       %init(gGreenUI);
+    }
+    
     // Disable broken options of uYou
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"removeYouTubeAds"]; 
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"disableAgeRestriction"]; 
-    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HideCreateTab"]; 
+
     // Change the default value of some uYou's options
     if (![[[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys] containsObject:@"relatedVideosAtTheEndOfYTVideos"]) { 
        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"relatedVideosAtTheEndOfYTVideos"]; 

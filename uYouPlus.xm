@@ -119,6 +119,9 @@ BOOL NoHeatwaves () {
 BOOL ytDisableHighContrastUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastUI_enabled"];
 }
+BOOL ytDisableHighContrastModernizedUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastModernizedUI_enabled"];
+}
 BOOL BlueUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueUI_enabled"];
 }
@@ -1139,6 +1142,29 @@ void center() {
  }
  %end
  %end
+ 
+ %group gYTDisableHighContrastModernizedUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+ }
+ %end
+
+ %hook UIColor
+ + (UIColor *)whiteColor {
+          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+ }
+ %end
+ %end
 
 %group gBlueUI
 %hook YTCommonColorPalette
@@ -1397,6 +1423,9 @@ static BOOL didFinishLaunching;
     }
     if (ytDisableHighContrastUI()) {
        %init(gYTDisableHighContrastUI);
+    }
+    if (ytDisableHighContrastModernizedUI()) {
+       %init(gYTDisableHighContrastModernizedUI);
     }
     if (BlueUI()) {
        %init(gBlueUI);

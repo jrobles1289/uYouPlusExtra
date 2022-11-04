@@ -1160,9 +1160,11 @@ void center() {
  %end
 
  %hook UIColor
- + (UIColor *)whiteColor {
+ + (UIColor *)uiSystemsClientGlobalConfigEnableModernButtonsForNative {
           return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
  }
+ + (UIColor *)uiSystemsClientGlobalConfigModernizeNativeTextColor {
+          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
  %end
  %end
 

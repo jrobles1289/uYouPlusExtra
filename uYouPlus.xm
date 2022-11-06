@@ -1145,8 +1145,8 @@ void center() {
  }
  %end
 
- %hook UIColor
- + (UIColor *)whiteColor {
+ %hook UIColor // Deprecated
+ + (UIColor *)whiteColor { // Deprecated
           return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
  }
  %end
@@ -1194,8 +1194,8 @@ void center() {
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor {
+%hook UIColor // Deprecated
++ (UIColor *)whiteColor { // Deprecated
         return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
 }
 %end
@@ -1217,8 +1217,8 @@ void center() {
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor {
+%hook UIColor // Deprecated
++ (UIColor *)whiteColor { // Deprecated
         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
 }
 %end
@@ -1240,8 +1240,8 @@ void center() {
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor {
+%hook UIColor // Deprecated
++ (UIColor *)whiteColor { // Deprecated
         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
 }
 %end
@@ -1263,8 +1263,8 @@ void center() {
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor {
+%hook UIColor // Deprecated
++ (UIColor *)whiteColor { // Deprecated
         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
 }
 %end
@@ -1286,8 +1286,8 @@ void center() {
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor {
+%hook UIColor // Deprecated
++ (UIColor *)whiteColor { // Deprecated
         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
 }
 %end
@@ -1309,8 +1309,8 @@ void center() {
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor {
+%hook UIColor // Deprecated
++ (UIColor *)whiteColor { // Deprecated
         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
 }
 %end

@@ -30,6 +30,7 @@ extern BOOL replacePreviousAndNextButton();
 extern BOOL NoHeatwaves();
 extern BOOL dontEatMyContent();
 extern BOOL ytDisableHighContrastUI();
+extern BOOL ytDisableHighContrastModernizedUI();
 extern BOOL RedUI();
 extern BOOL BlueUI();
 extern BOOL GreenUI();
@@ -147,7 +148,16 @@ extern BOOL PinkUI();
         return YES;
     };
     
-    YTSettingsSectionItem *ytDisableHighContrastUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Low Contrast Mode (YTDisableHighContrastUI)" titleDescription:@"this will Low Contrast texts and buttons just like how the old YouTube Interface did. App restart is required."];
+    YTSettingsSectionItem *ytDisableHighContrastModernizedUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Low Contrast Mode (Experimental)" titleDescription:@"this will Experimentally Low Contrast texts and buttons on the new YouTube UI from v17.40.5-newer. App restart is required."];
+    ytDisableHighContrastModernizedUI.hasSwitch = YES;
+    ytDisableHighContrastModernizedUI.switchVisible = YES;
+    ytDisableHighContrastModernizedUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastModernizedUI_enabled"];
+    ytDisableHighContrastModernizedUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytDisableHighContrastModernizedUI_enabled"];
+        return YES;
+    };
+    
+    YTSettingsSectionItem *ytDisableHighContrastUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Low Contrast Mode" titleDescription:@"this will Low Contrast texts and buttons just like how the old YouTube Interface did. App restart is required."];
     ytDisableHighContrastUI.hasSwitch = YES;
     ytDisableHighContrastUI.switchVisible = YES;
     ytDisableHighContrastUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastUI_enabled"];
@@ -300,7 +310,7 @@ extern BOOL PinkUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, dontEatMyContent, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, dontEatMyContent, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, ytDisableHighContrastModernizedUI, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

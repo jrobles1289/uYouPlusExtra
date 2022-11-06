@@ -1145,14 +1145,14 @@ void center() {
  }
  %end
 
- %hook UIColor // Deprecated
+ %hook UIColor
  + (UIColor *)whiteColor { // Deprecated
           return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
  }
  %end
  %end
  
-%group gYTDisableHighContrastModernizedUI
+%group gYTDisableHighContrastModernizedUI // Low Contrast Mode (Experimental Version)
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
     if (self.pageStyle == 1) {
@@ -1169,6 +1169,12 @@ void center() {
 %end
 
 %hook UIColor
++ (UIColor *)whiteColor { // Deprecated
+          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
++ (UIColor *)placeholderText {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
 + (UIColor *)uiSystemsClientGlobalConfigEnableModernButtonsForNative {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
@@ -1461,7 +1467,6 @@ static BOOL didFinishLaunching;
     // Disable broken options of uYou
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"removeYouTubeAds"]; 
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"disableAgeRestriction"]; 
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HideCreateTab"]; 
 
     // Change the default value of some uYou's options
     if (![[[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys] containsObject:@"relatedVideosAtTheEndOfYTVideos"]) { 

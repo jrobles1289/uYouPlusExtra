@@ -193,6 +193,7 @@ BOOL GreenUI () {
 // Hide Update Dialog: https://github.com/PoomSmart/YouTubeHeader/blob/main/YTGlobalConfig.h
 %hook YTGlobalConfig
 - (BOOL)shouldBlockUpgradeDialog { return YES;}
+- (BOOL)shouldShowUpgradeDialog { return NO;}
 %end
 
 // YTAutoFullScreen: https://github.com/PoomSmart/YTAutoFullScreen/
@@ -292,11 +293,10 @@ BOOL GreenUI () {
 - (BOOL)enableCinematicContainer { return NO;}
 %end
 
-// Disabled App Breaking YTABConfig Flags - @PoomSmart
+// Disabled App Breaking Dialog Flags - @PoomSmart
 %hook YTColdConfig
-- (BOOL)shouldUseNewFormattedLabel { return NO;}
-- (BOOL)shouldUseNewFormattedLabelPerformanceFixes { return NO;}
-- (BOOL)shouldUseNewLabel { return NO;}
+- (BOOL)commercePlatformClientEnablePopupWebviewInWebviewDialogController { return NO;}
+- (BOOL)isQuickPreviewDialogEnabled { return NO;}
 %end
 
 // YTClassicVideoQuality: https://github.com/PoomSmart/YTClassicVideoQuality

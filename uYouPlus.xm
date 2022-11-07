@@ -292,6 +292,13 @@ BOOL GreenUI () {
 - (BOOL)enableCinematicContainer { return NO;}
 %end
 
+// Disabled App Breaking YTABConfig Flags - @PoomSmart
+%hook YTColdConfig
+- (BOOL)shouldUseNewFormattedLabel { return NO;}
+- (BOOL)shouldUseNewFormattedLabelPerformanceFixes { return NO;}
+- (BOOL)shouldUseNewLabel { return NO;}
+%end
+
 // YTClassicVideoQuality: https://github.com/PoomSmart/YTClassicVideoQuality
 %hook YTVideoQualitySwitchControllerFactory
 - (id)videoQualitySwitchControllerWithParentResponder:(id)responder {

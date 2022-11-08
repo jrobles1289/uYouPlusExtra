@@ -109,7 +109,7 @@ BOOL replacePreviousAndNextButton() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"replacePreviousAndNextButton_enabled"];
 }
 BOOL hideHeatwaves () {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"NoHeatwaves_enabled"];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hideHeatwaves_enabled"];
 }
 BOOL dontEatMyContent() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];

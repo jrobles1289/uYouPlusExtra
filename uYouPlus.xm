@@ -108,14 +108,11 @@ BOOL fixGoogleSignIn() {
 BOOL replacePreviousAndNextButton() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"replacePreviousAndNextButton_enabled"];
 }
+BOOL hideHeatwaves () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"NoHeatwaves_enabled"];
+}
 BOOL dontEatMyContent() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
-}
-BOOL LandscapePanel () {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"LandscapePanel_enabled"];
-}
-BOOL NoHeatwaves () {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"NoHeatwaves_enabled"];
 }
 BOOL ytDisableHighContrastUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastUI_enabled"];
@@ -270,11 +267,6 @@ BOOL GreenUI () {
 }
 %end
 
-// Workaround for qnblackcat/uYouPlus/#560
-%hook YTColdConfig
-- (BOOL)enableCinematicContainer { return NO;}
-%end
-
 // Disabled App Breaking Dialog Flags - @PoomSmart
 %hook YTColdConfig
 - (BOOL)commercePlatformClientEnablePopupWebviewInWebviewDialogController { return NO;}
@@ -358,7 +350,7 @@ BOOL GreenUI () {
 %end
 
 // Hide YouTube Heatwave in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
-%group gNoHeatwaves
+%group gHideHeatwaves
 %hook YTInlinePlayerBarContainerView
 - (BOOL)canShowHeatwave { return NO; }
 %end
@@ -1425,8 +1417,8 @@ static BOOL didFinishLaunching;
     if (!fixGoogleSignIn()) {
        %init(gFixGoogleSignIn);
     }
-    if (NoHeatwaves()) {
-       %init (gNoHeatwaves);
+    if (hideHeatwaves()) {
+       %init (gHideHeatwaves);
     }
     if (ytDisableHighContrastUI()) {
        %init(gYTDisableHighContrastUI);

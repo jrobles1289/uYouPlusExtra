@@ -27,7 +27,7 @@ extern BOOL hidePreviousAndNextButton();
 extern BOOL hidePaidPromotionCard();
 extern BOOL fixGoogleSignIn();
 extern BOOL replacePreviousAndNextButton();
-extern BOOL NoHeatwaves();
+extern BOOL hideHeatwaves();
 extern BOOL dontEatMyContent();
 extern BOOL ytDisableHighContrastUI();
 extern BOOL ytDisableHighContrastModernizedUI();
@@ -85,12 +85,12 @@ extern BOOL PinkUI();
         return [%c(YTUIUtils) openURL:[NSURL URLWithString:@"https://github.com/qnblackcat/uYouPlus/releases/latest"]];
     }];
 
-    YTSettingsSectionItem *NoHeatwaves = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"Disable Heatwaves (YTNoHeatwaves)") titleDescription:LOC(@"Should disable the Heatwaves when watching a video in the Video Player. App restart is required.")];
-    NoHeatwaves.hasSwitch = YES;
-    NoHeatwaves.switchVisible = YES;
-    NoHeatwaves.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"NoHeatwaves_enabled"];
-    NoHeatwaves.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
-        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"NoHeatwaves_enabled"];
+    YTSettingsSectionItem *hideHeatwaves = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"Hide Heatwaves (HideHeatwaves)") titleDescription:LOC(@"Should hide the Heatwaves in the video player. App restart is required.")];
+    hideHeatwaves.hasSwitch = YES;
+    hideHeatwaves.switchVisible = YES;
+    hideHeatwaves.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"hideHeatwaves_enabled"];
+    hideHeatwaves.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideHeatwaves_enabled"];
         return YES;
     };
 
@@ -310,7 +310,7 @@ extern BOOL PinkUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, NoHeatwaves, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, dontEatMyContent, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, ytDisableHighContrastModernizedUI, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, ytDisableHighContrastUI, ytDisableHighContrastModernizedUI, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

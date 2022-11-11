@@ -114,11 +114,11 @@ BOOL hideHeatwaves () {
 BOOL dontEatMyContent() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
 }
-BOOL ytDisableHighContrastUI () {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastUI_enabled"];
+BOOL lowContrastMode () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"lowContrastMode_enabled"];
 }
-BOOL ytDisableHighContrastModernizedUI () {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytDisableHighContrastModernizedUI_enabled"];
+BOOL lowContrastModeExperimental () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"lowContrastModeExperimental_enabled"];
 }
 BOOL BlueUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueUI_enabled"];
@@ -1423,11 +1423,11 @@ static BOOL didFinishLaunching;
     if (hideHeatwaves()) {
        %init (gHideHeatwaves);
     }
-    if (ytDisableHighContrastUI()) {
-       %init(gYTDisableHighContrastUI);
+    if (lowContrastMode()) {
+       %init(gLowContrastMode);
     }
-    if (ytDisableHighContrastModernizedUI()) {
-       %init(gYTDisableHighContrastModernizedUI);
+    if (lowContrastModeExperimental()) {
+       %init(gLowContrastModeExperimental);
     }
     if (BlueUI()) {
        %init(gBlueUI);

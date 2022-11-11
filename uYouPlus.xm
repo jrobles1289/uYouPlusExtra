@@ -852,6 +852,202 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 %end
 
+%group gLowContrastMode // Low Contrast Mode (Deprecated Version - Compatible with v15.49.6-v17.39.5)
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+ }
+ %end
+
+ %hook UIColor
+ + (UIColor *)whiteColor { // Deprecated by YouTube
+          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+ }
+ %end
+ %end
+ 
+%group gLowContrastModeExperimental // Low Contrast Mode (Experimental Version - Compatible with v17.40.5-present)
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+    }
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+}
+- (UIColor *)textSecondary {
+   if (self.pageStyle == 1) {
+       return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+    }
+       return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+}
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor { // Deprecated by YouTube
+          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
++ (UIColor *)placeholderText {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
+%end
+
+%hook YTColdConfig
++ (UIColor *)uiSystemsClientGlobalConfigEnableModernButtonsForNative {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
++ (UIColor *)uiSystemsClientGlobalConfigModernizeNativeTextColor {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
+%end
+%end
+
+%group gBlueUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+%end
+
+%hook UIColor 
++ (UIColor *)whiteColor { // Deprecated by YouTube
+        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
+}
+%end
+%end
+
+%group gRedUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor { // Deprecated by YouTube
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}
+%end
+%end
+
+%group gOrangeUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor { // Deprecated by YouTube
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}
+%end
+%end
+
+%group gPinkUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor { // Deprecated by YouTube
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}
+%end
+%end
+
+%group gPurpleUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor { // Deprecated by YouTube
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+}
+%end
+%end
+
+%group gGreenUI
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+%end
+
+%hook UIColor
++ (UIColor *)whiteColor { // Deprecated by YouTube
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}
+%end
+%end
+
 # pragma mark - OLED keyboard by @ichitaso <3 - http://gist.github.com/ichitaso/935100fd53a26f18a9060f7195a1be0e
 %group gOLEDKB 
 %hook UIPredictionViewController
@@ -1109,199 +1305,6 @@ void center() {
     centerXConstraint.active = YES;
     centerYConstraint.active = YES;
 }
-
-%group gYTDisableHighContrastUI
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
- }
- %end
-
- %hook UIColor
- + (UIColor *)whiteColor { // Deprecated
-          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
- }
- %end
- %end
- 
-%group gYTDisableHighContrastModernizedUI // Low Contrast Mode (Experimental Version)
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-    }
-        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
-}
-- (UIColor *)textSecondary {
-   if (self.pageStyle == 1) {
-       return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-    }
-       return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
-}
-%end
-
-%hook UIColor
-+ (UIColor *)whiteColor { // Deprecated
-          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-+ (UIColor *)placeholderText {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-+ (UIColor *)uiSystemsClientGlobalConfigEnableModernButtonsForNative {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-+ (UIColor *)uiSystemsClientGlobalConfigModernizeNativeTextColor {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-%end
-%end
-
-%group gBlueUI
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
- }
-%end
-
-%hook UIColor // Deprecated
-+ (UIColor *)whiteColor { // Deprecated
-        return [UIColor colorWithRed: 0.26 green: 0.43 blue: 0.48 alpha: 1.00];
-}
-%end
-%end
-
-%group gRedUI
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
- }
-%end
-
-%hook UIColor // Deprecated
-+ (UIColor *)whiteColor { // Deprecated
-        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
-}
-%end
-%end
-
-%group gOrangeUI
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
- }
-%end
-
-%hook UIColor // Deprecated
-+ (UIColor *)whiteColor { // Deprecated
-        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
-}
-%end
-%end
-
-%group gPinkUI
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
- }
-%end
-
-%hook UIColor // Deprecated
-+ (UIColor *)whiteColor { // Deprecated
-        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
-}
-%end
-%end
-
-%group gPurpleUI
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
- }
-%end
-
-%hook UIColor // Deprecated
-+ (UIColor *)whiteColor { // Deprecated
-        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
-}
-%end
-%end
-
-%group gGreenUI
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
- }
-%end
-
-%hook UIColor // Deprecated
-+ (UIColor *)whiteColor { // Deprecated
-        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
-}
-%end
-%end
 
 // YTSpeed - https://github.com/Lyvendia/YTSpeed
 %hook YTVarispeedSwitchController

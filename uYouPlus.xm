@@ -228,7 +228,7 @@ BOOL GreenUI () {
         alertView.title = LOC(@"CASTING");
         alertView.subtitle = LOC(@"MSG_ARE_YOU_SURE");
         [alertView show];
- 	} else {
+	} else {
     return %orig;
     }
 }
@@ -1211,7 +1211,7 @@ static NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstrain
     heightConstraint = [renderingView.heightAnchor constraintEqualToAnchor:renderingViewContainer.safeAreaLayoutGuide.heightAnchor constant:constant];
     centerXConstraint = [renderingView.centerXAnchor constraintEqualToAnchor:renderingViewContainer.centerXAnchor];
     centerYConstraint = [renderingView.centerYAnchor constraintEqualToAnchor:renderingViewContainer.centerYAnchor];
-
+    
     // playerView.backgroundColor = [UIColor greenColor];
     // renderingViewContainer.backgroundColor = [UIColor redColor];
     // renderingView.backgroundColor = [UIColor blueColor];
@@ -1230,7 +1230,7 @@ static NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstrain
 
     %orig(animated);
 }
-- (void)didPressToggleFullscreen {  
+- (void)didPressToggleFullscreen {
     %orig;
     YTMainAppVideoPlayerOverlayViewController *activeVideoPlayerOverlay = [self activeVideoPlayerOverlay];
     if (![activeVideoPlayerOverlay isFullscreen]) { // Entering full screen
@@ -1238,17 +1238,16 @@ static NSLayoutConstraint *widthConstraint, *heightConstraint, *centerXConstrain
     } else { // Exiting full screen
         DEMC_deactivate();
     }
-
+    
     %orig;
 }
 - (void)didSwipeToEnterFullscreen {
     %orig; 
     if (!isZoomedToFill) DEMC_activate();
 }
-
 - (void)didSwipeToExitFullscreen { 
     %orig; 
-    DEMC_deactivate();
+    DEMC_deactivate(); 
 }
 %end
 
@@ -1337,7 +1336,7 @@ void DEMC_activate() {
 
 void DEMC_deactivate() {
     // NSLog(@"deactivate");
-    center();
+    DEMC_centerRenderingView();
     renderingView.translatesAutoresizingMaskIntoConstraints = YES;
     widthConstraint.active = NO;
     heightConstraint.active = NO;

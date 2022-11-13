@@ -1,3 +1,5 @@
+{ Filter = { Bundles = ( "com.google.ios.youtube" ); }; }
+
 <key>CFBundleIcons</key>
 <dict>
 	<key>CFBundleAlternateIcons</key>

@@ -892,15 +892,21 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 
 %hook UIColor
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
++ (UIColor *)whiteColor { // This Element has been Deprecated by YouTube on the new UI Interface
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
-+ (UIColor *)placeholderText {
++ (UIColor *)lightText { // experimental
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
++ (UIColor *)darkText { // experimental
+         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+}
++ (UIColor *)placeholderText { // experimental
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
 %end
 
-%hook YTColdConfig
+%hook YTColdConfig // experimental methods
 + (UIColor *)modernizeElementsTextColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }

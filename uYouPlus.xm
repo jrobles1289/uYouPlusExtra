@@ -188,12 +188,6 @@ BOOL GreenUI () {
 }
 %end
 
-// Hide Update Dialog: https://github.com/PoomSmart/YouTubeHeader/blob/main/YTGlobalConfig.h
-%hook YTGlobalConfig
-- (BOOL)shouldBlockUpgradeDialog { return YES;}
-- (BOOL)shouldShowUpgradeDialog { return NO;}
-%end
-
 // YTAutoFullScreen: https://github.com/PoomSmart/YTAutoFullScreen/
 %hook YTPlayerViewController
 - (void)loadWithPlayerTransition:(id)arg1 playbackConfig:(id)arg2 {
@@ -298,6 +292,14 @@ BOOL GreenUI () {
 - (BOOL)enableSwipeToRemoveInPlaylistWatchEp { return YES; } // Enable swipe right to remove video in Playlist. 
 %end
 
+// Hide Update Dialog: https://github.com/PoomSmart/YouTubeHeader/blob/main/YTGlobalConfig.h
+%hook YTGlobalConfig
+- (BOOL)shouldBlockUpgradeDialog { return YES;}
+- (BOOL)shouldForceUpgrade { return NO;}
+- (BOOL)shouldShowUpgrade { return NO;}
+- (BOOL)shouldShowUpgradeDialog { return NO;}
+%end
+
 // NOYTPremium - https://github.com/PoomSmart/NoYTPremium/
 %hook YTCommerceEventGroupHandler
 - (void)addEventHandlers {}
@@ -353,7 +355,7 @@ BOOL GreenUI () {
 - (BOOL)uiSystemsClientGlobalConfigEnableRoundedThumbnailsForNative { return NO; }
 %end
 
-// Hide YouTube Heatwave in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
+// Hide YouTube Heatwaves in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
 %group gHideHeatwaves
 %hook YTInlinePlayerBarContainerView
 - (BOOL)canShowHeatwave { return NO; }

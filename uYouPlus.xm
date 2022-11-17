@@ -273,6 +273,10 @@ BOOL GreenUI () {
 - (BOOL)isQuickPreviewDialogEnabled { return NO;}
 %end
 
+%hook YTHotConfig
+- (BOOL)iosEnableShortsPlayerSplitViewController { return NO;} // uYou Buttons in Shorts Fix
+%end
+
 // YTClassicVideoQuality: https://github.com/PoomSmart/YTClassicVideoQuality
 %hook YTVideoQualitySwitchControllerFactory
 - (id)videoQualitySwitchControllerWithParentResponder:(id)responder {

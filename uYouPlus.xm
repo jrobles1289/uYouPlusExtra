@@ -350,9 +350,16 @@ BOOL GreenUI () {
 - (BOOL)enableShortsVideoQualityPicker { return YES; } // YouTube Shorts Quality Picker (iPhones Only)
 %end
 
-// Disable Rounded Thumbnails (Disabled by Default for uYouPlusExtra) only works with YouTube v17.40.5-present
+// Disabled Rounded & Modernize Flags (Disabled by Default for uYouPlusExtra to fix Low Contrast Mode) only works with YouTube v17.40.5-present
 %hook YTGlobalConfig
 - (BOOL)uiSystemsClientGlobalConfigEnableRoundedThumbnailsForNative { return NO; }
+- (BOOL)uiSystemsClientGlobalConfigEnableRoundedThumbnailsForNativeLongTail { return NO; }
+- (BOOL)uiSystemsClientGlobalConfigEnableRoundedTimestampForNative { return NO; }
+- (BOOL)uiSystemsClientGlobalConfigEnableRoundedDialogForNative { return NO; }
+- (BOOL)uiSystemsClientGlobalConfigEnableModernButtonsForNative { return NO; }
+- (BOOL)uiSystemsClientGlobalConfigEnableModernButtonsForNativeLongTail { return NO; }
+- (BOOL)uiSystemsClientGlobalConfigEnableModernTabsForNative { return NO; }
+- (BOOL)modernizeElementsTextColor { return NO; }
 %end
 
 // Hide YouTube Heatwaves in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
@@ -858,7 +865,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 %end
 
-%group gLowContrastMode // Low Contrast Mode (Deprecated Version - Compatible with v15.49.6-v17.39.5)
+%group gLowContrastMode // Low Contrast Mode v1.0.4 (Deprecated Version - Compatible with only v15.49.6-v17.39.5)
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -874,14 +881,14 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
  %end
 
- %hook UIColor
- + (UIColor *)whiteColor { // Deprecated by YouTube
-          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
- }
- %end
- %end
+%hook UIColor
++ (UIColor *)whiteColor { // Deprecated by YouTube
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
+%end
+%end
  
-%group gLowContrastModeExperimental // Low Contrast Mode (Experimental Version - Compatible with v17.40.5-present)
+%group gLowContrastModeExperimental // Low Contrast Mode v1.0.5-2 (Compatible with v17.40.5-present)
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
     if (self.pageStyle == 1) {
@@ -890,39 +897,39 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
 }
 - (UIColor *)textSecondary {
-   if (self.pageStyle == 1) {
-       return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
     }
-       return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+}
+- (UIColor *)overlayTextPrimary { // v1.0.5-2
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+    }
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+}
+- (UIColor *)outline { // v1.0.5-2
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+    }
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
 }
 %end
 
 %hook UIColor
-+ (UIColor *)whiteColor { // This Element has been Deprecated by YouTube on the new UI Interface
++ (UIColor *)whiteColor { // v1.0.4 - This Element has been Deprecated by YouTube on the new UI Interface
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
-+ (UIColor *)lightText { // experimental
++ (UIColor *)lightText { // v1.0.5-2
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
-+ (UIColor *)darkText { // experimental
++ (UIColor *)darkText { // v1.0.5-2
          return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
-}
-+ (UIColor *)placeholderText { // experimental
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
 %end
 
-%hook YTColdConfig // experimental methods
+%hook YTColdConfig // v1.0.5-2 flags
 + (UIColor *)modernizeElementsTextColor {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-+ (UIColor *)uiSystemsClientGlobalConfigEnableModernButtonsForNative {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-+ (UIColor *)uiSystemsClientGlobalConfigEnableModernButtonsForNativeLongTail {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-+ (UIColor *)uiSystemsClientGlobalConfigIosEnableModernTabsForNative {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
 + (UIColor *)uiSystemsClientGlobalConfigModernizeNativeTextColor {

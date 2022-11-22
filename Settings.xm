@@ -30,7 +30,6 @@ extern BOOL replacePreviousAndNextButton();
 extern BOOL hideHeatwaves();
 extern BOOL dontEatMyContent();
 extern BOOL lowContrastMode();
-extern BOOL lowContrastModeExperimental();
 extern BOOL RedUI();
 extern BOOL BlueUI();
 extern BOOL GreenUI();
@@ -145,15 +144,6 @@ extern BOOL PinkUI();
     RedUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RedUI_enabled"];
     RedUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"RedUI_enabled"];
-        return YES;
-    };
-    
-    YTSettingsSectionItem *lowContrastModeExperimental = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Low Contrast Mode (Experimental)" titleDescription:@"this will Low Contrast texts and buttons only on the new YouTube UI from v17.40.5-newer just for a experiment to see if it works. App restart is required."];
-    lowContrastModeExperimental.hasSwitch = YES;
-    lowContrastModeExperimental.switchVisible = YES;
-    lowContrastModeExperimental.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"lowContrastModeExperimental_enabled"];
-    lowContrastModeExperimental.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
-        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"lowContrastModeExperimental_enabled"];
         return YES;
     };
     
@@ -310,7 +300,7 @@ extern BOOL PinkUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, lowContrastMode, lowContrastModeExperimental, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, lowContrastMode, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

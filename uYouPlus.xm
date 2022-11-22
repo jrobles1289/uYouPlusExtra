@@ -117,9 +117,6 @@ BOOL dontEatMyContent() {
 BOOL lowContrastMode () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"lowContrastMode_enabled"];
 }
-BOOL lowContrastModeExperimental () {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"lowContrastModeExperimental_enabled"];
-}
 BOOL BlueUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueUI_enabled"];
 }
@@ -865,30 +862,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 %end
 
-%group gLowContrastMode // Low Contrast Mode v1.0.4 (Deprecated Version - Compatible with only v15.49.6-v17.39.5)
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
- }
- %end
-
-%hook UIColor
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-%end
-%end
- 
-%group gLowContrastModeExperimental // Low Contrast Mode v1.0.5-2 (Compatible with v17.40.5-present)
+%group gLowContrastMode // Low Contrast Mode v1.0.5-2 (Compatible with only v15.49.6-v17.39.5)
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
     if (self.pageStyle == 1) {
@@ -902,13 +876,13 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
 }
-- (UIColor *)overlayTextPrimary { // v1.0.5-2
+- (UIColor *)overlayTextPrimary {
     if (self.pageStyle == 1) {
         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
     }
         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
 }
-- (UIColor *)outline { // v1.0.5-2
+- (UIColor *)outline {
     if (self.pageStyle == 1) {
         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
     }
@@ -917,18 +891,18 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 
 %hook UIColor
-+ (UIColor *)whiteColor { // v1.0.4 - This Element has been Deprecated by YouTube on the new UI Interface
++ (UIColor *)whiteColor { // whiteColor Not Compatible with New YouTube UI
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
-+ (UIColor *)lightText { // v1.0.5-2
++ (UIColor *)lightText {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
-+ (UIColor *)darkText { // v1.0.5-2
++ (UIColor *)darkText {
          return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
 }
 %end
 
-%hook YTColdConfig // v1.0.5-2 flags
+%hook YTColdConfig
 + (UIColor *)modernizeElementsTextColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
@@ -1521,9 +1495,6 @@ static BOOL didFinishLaunching;
     }
     if (lowContrastMode()) {
        %init(gLowContrastMode);
-    }
-    if (lowContrastModeExperimental()) {
-       %init(gLowContrastModeExperimental);
     }
     if (BlueUI()) {
        %init(gBlueUI);

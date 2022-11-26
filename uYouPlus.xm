@@ -864,7 +864,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 
 %group gLowContrastMode // Low Contrast Mode v1.0.6 (Compatible with only v15.49.6-v17.39.5)
-%hook YTColorPalette
+%hook YTColorPalette // Changes Texts & Icons in YouTube Bottom Bar + Text Icons under Video Player
 - (UIColor *)textPrimary {
     if (self.pageStyle == 1) {
         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
@@ -885,7 +885,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook YTCommonColorPalette
+%hook YTCommonColorPalette // Changes Texts & Icons in YouTube Bottom Bar (Doesn't change Texts & Icons under the video player)
 - (UIColor *)textPrimary {
     if (self.pageStyle == 1) {
         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
@@ -912,15 +912,24 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIColor
+%hook UIColor // Changes the Icons & Text under Videos, Comment Section & Shorts
 + (UIColor *)whiteColor { // Deprecated by YouTube as of v17.40.5-Newer
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
 %end
 
-%hook YTColor
+%hook YTColor // Changes the Icons & Text at the top and bottom in the Video Player
 + (UIColor *)white1 {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
+%end
+
+%hook ELMTextNode // Changes the Texts im the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].backgroundColor = [UIColor blackColor];
+    }
 }
 %end
 %end

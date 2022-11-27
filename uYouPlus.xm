@@ -918,10 +918,19 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook YTColor // Changes the Icons & Text at the top and bottom in the Video Player
-+ (UIColor *)white1 {
+%hook UIInterface
++ (UIColor *)labelColor { // For New YouTube UI v17.40.5-present
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
+}	 
++ (UIColor *)secondaryLabelColor { // For New YouTube UI v17.40.5-present
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}	 
++ (UIColor *)tertiaryLabelColor { // For New YouTube UI v17.40.5-present
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}	
++ (UIColor *)quaternaryLabelColor { // For New YouTube UI v17.40.5-present
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}	 
 %end
 
 %hook ELMView // Changes the Texts in the Sub Menu

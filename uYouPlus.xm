@@ -924,7 +924,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook ELMView // Changes the Texts im the Sub Menu
+%hook ELMView // Changes the Texts in the Sub Menu
 - (void)didMoveToWindow {
     %orig;
     if (isDarkMode()) {

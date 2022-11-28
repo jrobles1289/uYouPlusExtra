@@ -931,6 +931,11 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
 }
 %end
+
+%hook MBProgressHUD
++ (UIColor *)contentColor {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
 %end
 
 %group gBlueUI

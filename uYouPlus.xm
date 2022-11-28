@@ -879,12 +879,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
 }
-- (UIColor *)overlayTextPrimary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-    }
-        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
-}
 %end
 
 %hook YTCommonColorPalette // Changes Texts & Icons in YouTube Bottom Bar (Doesn't change Texts & Icons under the video player)
@@ -900,22 +894,10 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
 }
-- (UIColor *)overlayTextPrimary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-    }
-        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
-}
-- (UIColor *)outline {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-    }
-        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
-}
 %end
 
-%hook UIColor // Changes the Icons & Text under Videos, Comment Section & Shorts
-+ (UIColor *)whiteColor { // Deprecated by YouTube as of v17.40.5-Newer
+%hook UIColor // Changes the Icons & Text under Videos, Comment Section & Shorts (Deprecated by YouTube as of v17.40.5-Newer)
++ (UIColor *)whiteColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
 %end

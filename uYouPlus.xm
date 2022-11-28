@@ -920,17 +920,23 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIInterface
-+ (UIColor *)labelColor { // For New YouTube UI v17.40.5-present
+%hook UIView // changes some of the texts around the YouTube App.
++ (UIColor *)tintColor {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
+%end
+
+%hook UIInterface // this is only used if YouTube uses these methods in the future.
++ (UIColor *)labelColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }	 
-+ (UIColor *)secondaryLabelColor { // For New YouTube UI v17.40.5-present
++ (UIColor *)secondaryLabelColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }	 
-+ (UIColor *)tertiaryLabelColor { // For New YouTube UI v17.40.5-present
++ (UIColor *)tertiaryLabelColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }	
-+ (UIColor *)quaternaryLabelColor { // For New YouTube UI v17.40.5-present
++ (UIColor *)quaternaryLabelColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }	 
 %end

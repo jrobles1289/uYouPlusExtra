@@ -897,11 +897,8 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 
 %hook UIColor // Changes the Icons & Text under Videos, Comment Section & Shorts (Deprecated by YouTube as of v17.40.5-Newer)
-+ (UIColor *)whiteColor { // Deprecated by YouTube (Dark Mode)
++ (UIColor *)whiteColor { // Deprecated by YouTube
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-+ (UIColor *)blackColor { // Deprecated by YouTube (Light Mode)
-         return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
 }
 %end
 
@@ -959,11 +956,8 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 
 %hook UIColor 
-+ (UIColor *)whiteColor { // Deprecated by YouTube (Dark Mode)
++ (UIColor *)whiteColor { // Deprecated by YouTube
          return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
-}
-+ (UIColor *)blackColor { // Deprecated by YouTube (Light Mode)
-         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
 }
 %end
 %end

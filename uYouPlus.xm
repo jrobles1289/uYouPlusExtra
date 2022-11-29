@@ -165,8 +165,9 @@ BOOL GreenUI () {
     else { return %orig; }
 }
 - (void)didPressMute:(id)arg;
-if (UseMuteButton()) { return %orig(NO); } 
-else { return %orig; }
+    if (UseMuteButton()) { return %orig(NO); } 
+    else { return %orig; }
+}
 %end
 
 // Hide Next & Previous button

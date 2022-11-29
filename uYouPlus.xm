@@ -103,6 +103,9 @@ BOOL ytMiniPlayer() {
 BOOL hidePaidPromotionCard() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hidePaidPromotionCard_enabled"];
 }
+BOOL hideMuteButton() {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hideMuteButton_enabled"];
+}
 BOOL fixGoogleSignIn() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"fixGoogleSignIn_enabled"];
 }
@@ -151,7 +154,7 @@ BOOL GreenUI () {
 }
 %end
 
-// Hide CC / Autoplay switch
+// Hide CC / Autoplay switch / Mute button
 %hook YTMainAppControlsOverlayView
 - (void)setClosedCaptionsOrSubtitlesButtonAvailable:(BOOL)arg1 { // hide CC button
     if (hideCC()) { return %orig(NO); }   
@@ -160,6 +163,10 @@ BOOL GreenUI () {
 - (void)setAutoplaySwitchButtonRenderer:(id)arg1 { // hide Autoplay
     if (hideAutoplaySwitch()) {}
     else { return %orig; }
+}
+- (void)didPressMute:(id)arg;
+if (UseMuteButton()) { return %orig(NO); } 
+else { return %orig; }
 }
 %end
 

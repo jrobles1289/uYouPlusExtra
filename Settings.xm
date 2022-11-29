@@ -25,6 +25,7 @@ extern BOOL castConfirm();
 extern BOOL ytMiniPlayer();
 extern BOOL hidePreviousAndNextButton();
 extern BOOL hidePaidPromotionCard();
+extern BOOL hideMuteButton();
 extern BOOL fixGoogleSignIn();
 extern BOOL replacePreviousAndNextButton();
 extern BOOL hideHeatwaves();
@@ -183,6 +184,15 @@ extern BOOL PinkUI();
         return YES;
     };
 
+    YTSettingsSectionItem *hideMuteButton = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"HIDE_MUTE_BUTTON") titleDescription:LOC(@"HIDE_MUTE_BUTTON_DESC")];
+    hideMuteButton.hasSwitch = YES;
+    hideMuteButton.switchVisible = YES;
+    hideMuteButton.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"hideMuteButton_enabled"];
+    hideMuteButton.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideMuteButton_enabled"];
+        return YES;
+    };
+
     YTSettingsSectionItem *hidePaidPromotionCard = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"HIDE_PAID_PROMOTION_CARDS") titleDescription:LOC(@"HIDE_PAID_PROMOTION_CARDS_DESC")];
     hidePaidPromotionCard.hasSwitch = YES;
     hidePaidPromotionCard.switchVisible = YES;
@@ -300,7 +310,7 @@ extern BOOL PinkUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, lowContrastMode, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideMuteButton, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, lowContrastMode, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

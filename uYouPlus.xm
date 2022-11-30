@@ -154,18 +154,22 @@ BOOL GreenUI () {
 }
 %end
 
-// Hide CC / Mute button / Autoplay switch
+// Hide CC / Autoplay switch
 %hook YTMainAppControlsOverlayView
 - (void)setClosedCaptionsOrSubtitlesButtonAvailable:(BOOL)arg1 { // hide CC button
     if (hideCC()) { return %orig(NO); }   
     else { return %orig; }
 }
-- (void)didPressMute:(id)arg;
-    if (UseMuteButton()) {}  // hide Mute button (YouMute)
-    else { return %orig; }
-}
 - (void)setAutoplaySwitchButtonRenderer:(id)arg1 { // hide Autoplay
     if (hideAutoplaySwitch()) {}
+    else { return %orig; }
+}
+%end
+
+// Mute button
+%hook YTMainAppControlsOverlayView
+- (void)didPressMute:(id)arg;
+    if (UseMuteButton()) {}  // hide Mute button (PoomSmart/YouMute)
     else { return %orig; }
 }
 %end

@@ -168,9 +168,9 @@ BOOL GreenUI () {
 
 // Mute button
 %hook YTMainAppControlsOverlayView
-- (void)didPressMute:(id)arg;
-    if (UseMuteButton()) {}  // hide Mute button (PoomSmart/YouMute)
-    else { return %orig; }
+- (void)updateTopRightButtonAvailability // hide Mute button (PoomSmart/YouMute)
+    if (UseMuteButton()) {}
+    else { return %orig(NO); }
 }
 %end
 

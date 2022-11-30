@@ -169,7 +169,7 @@ BOOL GreenUI () {
 // Mute button
 %hook YTMainAppControlsOverlayView
 - (void)updateTopRightButtonAvailability // hide Mute button (PoomSmart/YouMute)
-    if (UseMuteButton()) {}
+    if (hideMuteButton()) {}
     else { return %orig(NO); }
 }
 %end

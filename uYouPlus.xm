@@ -154,14 +154,14 @@ BOOL GreenUI () {
 }
 %end
 
-// Hide CC / / Mute button / Autoplay switch
+// Hide CC / Mute button / Autoplay switch
 %hook YTMainAppControlsOverlayView
 - (void)setClosedCaptionsOrSubtitlesButtonAvailable:(BOOL)arg1 { // hide CC button
     if (hideCC()) { return %orig(NO); }   
     else { return %orig; }
 }
 - (void)didPressMute:(id)arg;
-    if (UseMuteButton()) { return %orig(NO); }  // hide Mute button (YouMute)
+    if (UseMuteButton()) {}  // hide Mute button (YouMute)
     else { return %orig; }
 }
 - (void)setAutoplaySwitchButtonRenderer:(id)arg1 { // hide Autoplay

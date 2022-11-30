@@ -174,7 +174,6 @@ BOOL GreenUI () {
     YTMainAppControlsOverlayView *c = [v valueForKey:@"_controlsOverlayView"];
     c.muteButton.hidden = !UseMuteButton();
     [c setNeedsLayout];  { return NO; }
-}
 %end
 
 // Hide Next & Previous button

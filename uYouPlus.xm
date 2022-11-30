@@ -167,10 +167,14 @@ BOOL GreenUI () {
 %end
 
 // Mute button
-%hook YTMainAppControlsOverlayView
-- (void)updateTopRightButtonAvailability // hide Mute button (PoomSmart/YouMute)
+%hook YTMainAppVideoPlayerOverlayViewController
+- (void)setTopOverlayVisible // hide Mute button (PoomSmart/YouMute)
     if (hideMuteButton()) {}
-    else { return %orig(NO); }
+    %orig;
+    YTMainAppVideoPlayerOverlayView *v = [self videoPlayerOverlayView];
+    YTMainAppControlsOverlayView *c = [v valueForKey:@"_controlsOverlayView"];
+    c.muteButton.hidden = !UseMuteButton();
+    [c setNeedsLayout];  { return NO; }
 }
 %end
 

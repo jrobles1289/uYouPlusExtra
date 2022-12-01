@@ -712,7 +712,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 - (void)didMoveToWindow {
     %orig;
     if (isDarkMode()) {
-        self.subviews[0].backgroundColor = [UIColor blackColor];
+        self.subviews[0].backgroundColor = [UIColor clearColor];
     }
 }
 %end
@@ -819,6 +819,16 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 
 %hook YTEmojiTextView
+- (void)setBackgroundColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor blackColor]);
+    }
+        return %orig;
+}
+%end
+
+//
+%hook YTBackstageCreateRepostDetailView
 - (void)setBackgroundColor:(UIColor *)color {
     if (isDarkMode()) {
         return %orig([UIColor blackColor]);

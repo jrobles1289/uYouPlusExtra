@@ -1,4 +1,4 @@
-#import "Tweaks/YouTubeHeader/YTAppDelegate.h"
+import "Tweaks/YouTubeHeader/YTAppDelegate.h"
 #import "Tweaks/YouTubeHeader/YTPlayerViewController.h"
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]

@@ -1,5 +1,7 @@
 #import "Tweaks/YouTubeHeader/YTAppDelegate.h"
 #import "Tweaks/YouTubeHeader/YTPlayerViewController.h"
+#import "YTInlinePlayerBarContainerView.h" // YouMute
+#import "YTGlassContainerView.h" // YouMute
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
 #define YT_BUNDLE_ID @"com.google.ios.youtube"
@@ -7,6 +9,11 @@
 #define DEMC_UNSUPPORTED_DEVICES @[@"iPhone14,3", @"iPhone14,6", @"iPhone14,8"] // DontEatMycontent
 #define DEMC_THRESHOLD 1.99 // DontEatMycontent
 #define DEFAULT_RATE 2.0f // YTSpeed
+
+// YouMute
+@interface UIView (YouTube)
+- (BOOL)yt_isVisible;
+@end
 
 // IAmYouTube
 @interface SSOConfiguration : NSObject

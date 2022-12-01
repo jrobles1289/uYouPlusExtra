@@ -167,7 +167,7 @@ BOOL GreenUI () {
 %end
 
 // Mute button
-*/
+/*
 %hook YTMainAppVideoPlayerOverlayViewController
 - (void)setTopOverlayVisible // hide Mute button (PoomSmart/YouMute)
     if (hideMuteButton()) {}
@@ -176,7 +176,7 @@ BOOL GreenUI () {
     c.muteButton.hidden = !UseMuteButton();
     [c setNeedsLayout];
 %end
-/*
+*/
 
 // Hide Next & Previous button
 %group gHidePreviousAndNextButton

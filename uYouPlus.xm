@@ -176,7 +176,7 @@ BOOL GreenUI () {
     c.muteButton.hidden = !UseMuteButton();
     [c setNeedsLayout];
 %end
-*/
+/*
 
 // Hide Next & Previous button
 %group gHidePreviousAndNextButton

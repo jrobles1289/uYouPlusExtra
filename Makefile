@@ -19,7 +19,7 @@ uYouPlus_CFLAGS = -fobjc-arc -DTWEAK_VERSION=$(PACKAGE_VERSION)
 
 include $(THEOS)/makefiles/common.mk
 include $(THEOS_MAKE_PATH)/tweak.mk
-SUBPROJECTS += Tweaks/Alderis Tweaks/iSponsorBlock Tweaks/YTUHD Tweaks/YouPiP Tweaks/Return-YouTube-Dislikes Tweaks/YTABConfig Tweaks/YouMute
+SUBPROJECTS += Tweaks/Alderis Tweaks/iSponsorBlock Tweaks/YTUHD Tweaks/YouPiP Tweaks/Return-YouTube-Dislikes Tweaks/YTABConfig
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 before-package::

@@ -25,7 +25,6 @@ extern BOOL castConfirm();
 extern BOOL ytMiniPlayer();
 extern BOOL hidePreviousAndNextButton();
 extern BOOL hidePaidPromotionCard();
-extern BOOL hideMuteButton();
 extern BOOL fixGoogleSignIn();
 extern BOOL replacePreviousAndNextButton();
 extern BOOL hideHeatwaves();
@@ -181,15 +180,6 @@ extern BOOL PinkUI();
     fixGoogleSignIn.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"fixGoogleSignIn_enabled"];
     fixGoogleSignIn.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"fixGoogleSignIn_enabled"];
-        return YES;
-    };
-
-    YTSettingsSectionItem *hideMuteButton = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"HIDE_MUTE_BUTTON") titleDescription:LOC(@"HIDE_MUTE_BUTTON_DESC")];
-    hideMuteButton.hasSwitch = YES;
-    hideMuteButton.switchVisible = YES;
-    hideMuteButton.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"hideMuteButton_enabled"];
-    hideMuteButton.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
-        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideMuteButton_enabled"];
         return YES;
     };
 

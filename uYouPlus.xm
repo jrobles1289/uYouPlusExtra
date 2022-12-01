@@ -374,9 +374,16 @@ BOOL GreenUI () {
 - (BOOL)uiSystemsClientGlobalConfigEnableModernButtonsForNative { return NO; }
 - (BOOL)uiSystemsClientGlobalConfigEnableModernButtonsForNativeLongTail { return NO; }
 - (BOOL)uiSystemsClientGlobalConfigEnableModernTabsForNative { return NO; }
+- (BOOL)uiSystemsClientGlobalConfigIosEnableSnackbarModernization { return NO; }
+- (BOOL)mainAppCoreClientIosEnableModernOssPage { return NO; }
 - (BOOL)modernizeElementsTextColor { return NO; }
 - (BOOL)modernizeElementsBgColor { return NO; }
 - (BOOL)modernizeCollectionLockups { return NO; }
+%end
+
+// 16.42.3 YouTube Channel Page Style
+%hook YTColdConfig
+- (BOOL)channelsClientConfigIosChannelNavRestructuring { return NO; }
 %end
 
 // Hide YouTube Heatwaves in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/

@@ -103,9 +103,6 @@ BOOL ytMiniPlayer() {
 BOOL hidePaidPromotionCard() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hidePaidPromotionCard_enabled"];
 }
-BOOL hideMuteButton() {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hideMuteButton_enabled"];
-}
 BOOL fixGoogleSignIn() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"fixGoogleSignIn_enabled"];
 }
@@ -165,18 +162,6 @@ BOOL GreenUI () {
     else { return %orig; }
 }
 %end
-
-// Mute button
-/*
-%hook YTMainAppVideoPlayerOverlayViewController
-- (void)setTopOverlayVisible // hide Mute button (PoomSmart/YouMute)
-    if (hideMuteButton()) {}
-    YTMainAppVideoPlayerOverlayView *v = [self videoPlayerOverlayView];
-    YTMainAppControlsOverlayView *c = [v valueForKey:@"_controlsOverlayView"];
-    c.muteButton.hidden = !UseMuteButton();
-    [c setNeedsLayout];
-%end
-*/
 
 // Hide Next & Previous button
 %group gHidePreviousAndNextButton

@@ -173,7 +173,7 @@ BOOL GreenUI () {
     YTMainAppVideoPlayerOverlayView *v = [self videoPlayerOverlayView];
     YTMainAppControlsOverlayView *c = [v valueForKey:@"_controlsOverlayView"];
     c.muteButton.hidden = !UseMuteButton();
-    [c setNeedsLayout];  { return NO; }
+    [c setNeedsLayout];
 %end
 
 // Hide Next & Previous button
@@ -963,6 +963,15 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     if (isDarkMode()) {
         self.subviews[0].tintColor = [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
     }
+}
+%end
+
+%hook YTBackstageCreateRepostDetailView
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00]);
+    }
+        return %orig;
 }
 %end
 

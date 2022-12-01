@@ -1,9 +1,11 @@
-import "Tweaks/YouTubeHeader/YTAppDelegate.h"
+#import "Tweaks/YouTubeHeader/YTAppDelegate.h"
 #import "Tweaks/YouTubeHeader/YTPlayerViewController.h"
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
 #define YT_BUNDLE_ID @"com.google.ios.youtube"
 #define YT_NAME @"YouTube"
+#define DEMC_UNSUPPORTED_DEVICES @[@"iPhone14,3", @"iPhone14,6", @"iPhone14,8"] // DontEatMycontent
+#define DEMC_THRESHOLD 1.99 // DontEatMycontent
 #define DEFAULT_RATE 2.0f // YTSpeed
 
 // IAmYouTube
@@ -38,6 +40,12 @@ import "Tweaks/YouTubeHeader/YTAppDelegate.h"
 @interface PlayerManager : NSObject
 - (float)progress;
 @end
+
+// DontEatMyContent
+BOOL DEMC_deviceIsSupported();
+void DEMC_activate();
+void DEMC_deactivate(); 
+void DEMC_centerRenderingView();
 
 @interface YTPlayerView : UIView
 - (id)renderingView;
@@ -119,6 +127,7 @@ import "Tweaks/YouTubeHeader/YTAppDelegate.h"
 // YTAutoFullScreen
 @interface YTPlayerViewController (YTAFS)
 - (void)autoFullscreen;
+// DontEatMycontent
 - (id)activeVideoPlayerOverlay; 
 - (id)playerView;
 // YTSpeed

@@ -16,6 +16,7 @@ uYouPlus_FILES = uYouPlus.xm Settings.xm
 uYouPlus_IPA = tmp/Payload/YouTube.app
 uYouPlus_FRAMEWORKS = UIKit Security
 uYouPlus_CFLAGS = -fobjc-arc -DTWEAK_VERSION=$(PACKAGE_VERSION)
+Tweaks/YouMute_FRAMRWORKS = UIKit
 
 include $(THEOS)/makefiles/common.mk
 include $(THEOS_MAKE_PATH)/tweak.mk

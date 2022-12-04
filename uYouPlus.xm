@@ -944,6 +944,15 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }	 
 %end
 
+%hook QTMIcon // Changes color on what the Icon Looks with custom tweaks. (for iSponsorBlock & YouMute)
+- (UIColor *)imageWithName {
+         return [UIColor whiteColor];
+}
+- (UIColor *)tintImage {
+         return [UIColor whiteColor];
+}
+%end
+
 %hook ELMView // Changes the Texts in the Sub Menu
 - (void)didMoveToWindow {
     %orig;

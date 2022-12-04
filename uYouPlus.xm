@@ -923,6 +923,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
+// Additional LowContrastMode Code
 %hook UIView // changes some of the texts around the YouTube App.
 - (UIColor *)tintColor {
          return [UIColor whiteColor];
@@ -944,20 +945,31 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }	 
 %end
 
-%hook QTMIcon // Changes color on what the Icon Looks with custom tweaks. (for iSponsorBlock & YouMute)
-- (UIColor *)imageWithName {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintImage {
-         return [UIColor whiteColor];
-}
-%end
-
 %hook ELMView // Changes the Texts in the Sub Menu
 - (void)didMoveToWindow {
     %orig;
     if (isDarkMode()) {
         self.subviews[0].tintColor = [UIColor whiteColor];
+    }
+}
+%end
+
+%hook ASWAppSwitchingSheetFooterView
+- (void)setBackgroundColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig(raisedColor);
+    }
+        return %orig;
+}
+%end
+
+%hook ASWAppSwitcherCollectionViewCell
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) { 
+        self.tintColor = whiteColor;
+        self.subviews[1].tintColor = whiteColor;
+        self.superview.tintColor = whiteColor;
     }
 }
 %end
@@ -971,8 +983,48 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
+%hook YTFormattedStringLabel
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook SponsorBlockViewController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.view.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
 %hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
 - (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.guidelines_text"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_bottom_sheet_container"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_entry_banner_container"]) { self.tintColor = [UIColor whiteColor]; }
+    }
+}
+%end
+
+// LowContrastMode uYouPlusExtra Exclusive Code (QTMIcon)
+%hook QTMIcon // Changes color on what the Icon Looks with custom tweaks. (for iSponsorBlock & YouMute)
+- (UIColor *)imageWithName {
+         return [UIColor whiteColor];
+}
+- (UIColor *)tintImage {
          return [UIColor whiteColor];
 }
 %end

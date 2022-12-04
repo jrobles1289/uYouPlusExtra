@@ -963,17 +963,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook ASWAppSwitcherCollectionViewCell
-- (void)didMoveToWindow {
-    %orig;
-    if (isDarkMode()) { 
-        self.tintColor = whiteColor;
-        self.subviews[1].tintColor = whiteColor;
-        self.superview.tintColor = whiteColor;
-    }
-}
-%end
-
 %hook YTBackstageCreateRepostDetailView
 - (void)setTintColor:(UIColor *)color {
     if (isDarkMode()) {

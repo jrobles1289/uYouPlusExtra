@@ -888,7 +888,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 
 %group gLowContrastMode // Low Contrast Mode v1.1.0 (Compatible with only v15.02.1-v17.39.5)
 %hook UIColor // Changes the whiteColor Method to be YouTube's old ui and also effects Icons & Text under Videos, Comment Section & Shorts caused by whiteColor (Deprecated by YouTube as of v17.40.5-Newer)
-+ (UIColor *)whiteColor { // Deprecated by YouTube
++ (UIColor *)whiteColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
 %end
@@ -954,12 +954,104 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook ASWAppSwitchingSheetFooterView
-- (void)setBackgroundColor:(UIColor *)color {
+%hook YTBackstageCreateRepostDetailView
+- (void)setTintColor:(UIColor *)color {
     if (isDarkMode()) {
-        return %orig(raisedColor);
+        return %orig([UIColor whiteColor]);
     }
         return %orig;
+}
+%end
+
+%hook YTFormattedStringLabel
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook SponsorBlockViewController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.view.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
+%hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
+- (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.guidelines_text"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_bottom_sheet_container"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_entry_banner_container"]) { self.tintColor = [UIColor whiteColor]; }
+    }
+}
+%end
+
+%hook QTMIcon // Changes color on what the Icon Looks with custom tweaks. (for iSponsorBlock & YouMute)
+- (UIColor *)imageWithName {
+         return [UIColor whiteColor];
+}
+- (UIColor *)tintImage {
+         return [UIColor whiteColor];
+}
+%end
+%end
+
+%group gBlueUI
+%hook UIColor 
++ (UIColor *)whiteColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}
+%end
+
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00]; // Dark Mode
+     }
+         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00]; // Light Mode
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+%end
+
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00]; // Dark Mode
+     }
+         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00]; // Light Mode
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+ }
+%end
+
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
+    }
 }
 %end
 
@@ -1007,42 +1099,15 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
 }
 %end
-
-// LowContrastMode uYouPlusExtra Exclusive Code (QTMIcon)
-%hook QTMIcon // Changes color on what the Icon Looks with custom tweaks. (for iSponsorBlock & YouMute)
-- (UIColor *)imageWithName {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintImage {
-         return [UIColor whiteColor];
-}
-%end
-%end
-
-%group gBlueUI
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00]; // Dark Mode
-     }
-         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00]; // Light Mode
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
- }
-%end
-
-%hook UIColor 
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
-}
-%end
 %end
 
 %group gRedUI
+%hook UIColor
++ (UIColor *)whiteColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}
+%end
+
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -1058,14 +1123,68 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
+    }
+}
+%end
+
+%hook YTBackstageCreateRepostDetailView
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook YTFormattedStringLabel
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook SponsorBlockViewController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.view.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
+%hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
+- (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.guidelines_text"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_bottom_sheet_container"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_entry_banner_container"]) { self.tintColor = [UIColor whiteColor]; }
+    }
 }
 %end
 %end
 
 %group gOrangeUI
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}
+%end
+
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -1081,14 +1200,68 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
+    }
+}
+%end
+
+%hook YTBackstageCreateRepostDetailView
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook YTFormattedStringLabel
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook SponsorBlockViewController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.view.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
+%hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
+- (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.guidelines_text"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_bottom_sheet_container"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_entry_banner_container"]) { self.tintColor = [UIColor whiteColor]; }
+    }
 }
 %end
 %end
 
 %group gPinkUI
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}
+%end
+
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -1104,14 +1277,68 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
+    }
+}
+%end
+
+%hook YTBackstageCreateRepostDetailView
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook YTFormattedStringLabel
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook SponsorBlockViewController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.view.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
+%hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
+- (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.guidelines_text"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_bottom_sheet_container"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_entry_banner_container"]) { self.tintColor = [UIColor whiteColor]; }
+    }
 }
 %end
 %end
 
 %group gPurpleUI
+%hook UIColor
++ (UIColor *)whiteColor { // Deprecated by YouTube
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+}
+%end
+
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -1127,14 +1354,68 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
+    }
+}
+%end
+
+%hook YTBackstageCreateRepostDetailView
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook YTFormattedStringLabel
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook SponsorBlockViewController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.view.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
+%hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
+- (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.guidelines_text"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_bottom_sheet_container"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_entry_banner_container"]) { self.tintColor = [UIColor whiteColor]; }
+    }
 }
 %end
 %end
 
 %group gGreenUI
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}
+%end
+
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -1150,9 +1431,57 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
 %end
 
-%hook UIColor
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
+    }
+}
+%end
+
+%hook YTBackstageCreateRepostDetailView
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook YTFormattedStringLabel
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook SponsorBlockViewController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.view.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
+%hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
+- (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.guidelines_text"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_bottom_sheet_container"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_entry_banner_container"]) { self.tintColor = [UIColor whiteColor]; }
+    }
 }
 %end
 %end

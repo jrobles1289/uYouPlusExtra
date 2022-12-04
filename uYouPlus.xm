@@ -931,17 +931,17 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 
 %hook UIInterface // this is only used if YouTube uses these methods in the future.
-- (UIColor *)labelColor {
-         return [UIColor whiteColor];
-}	 
+// - (UIColor *)labelColor {
+//          return [UIColor whiteColor];
+// }	 
 - (UIColor *)secondaryLabelColor {
          return [UIColor whiteColor];
 }	 
 - (UIColor *)tertiaryLabelColor {
          return [UIColor whiteColor];
-// }	
-// - (UIColor *)quaternaryLabelColor {
-//          return [UIColor whiteColor];
+}	
+- (UIColor *)quaternaryLabelColor {
+         return [UIColor whiteColor];
 }	 
 %end
 
@@ -992,6 +992,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 
 %hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
 - (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+- (UIColor *)tintColor {
          return [UIColor whiteColor];
 }
 %end
@@ -1153,6 +1156,21 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+%end
+
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -1243,6 +1261,21 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 + (UIColor *)whiteColor {
         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
 }
+%end
+
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
 %end
 
 %hook YTCommonColorPalette
@@ -1337,6 +1370,21 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+%end
+
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
@@ -1424,9 +1472,24 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 
 %group gPurpleUI
 %hook UIColor
-+ (UIColor *)whiteColor { // Deprecated by YouTube
++ (UIColor *)whiteColor {
         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
 }
+%end
+
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
 %end
 
 %hook YTCommonColorPalette
@@ -1519,6 +1582,21 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 + (UIColor *)whiteColor {
         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
 }
+%end
+
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+ }
 %end
 
 %hook YTCommonColorPalette

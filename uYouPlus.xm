@@ -886,7 +886,13 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 %end
 
-%group gLowContrastMode // Low Contrast Mode v1.0.6 (Compatible with only v15.49.6-v17.39.5)
+%group gLowContrastMode // Low Contrast Mode v1.1.0 (Compatible with only v15.02.1-v17.39.5)
+%hook UIColor // Changes the whiteColor Method to be YouTube's old ui and also effects Icons & Text under Videos, Comment Section & Shorts caused by whiteColor (Deprecated by YouTube as of v17.40.5-Newer)
++ (UIColor *)whiteColor { // Deprecated by YouTube
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
+%end
+
 %hook YTColorPalette // Changes Texts & Icons in YouTube Bottom Bar + Text Icons under Video Player
 - (UIColor *)textPrimary {
     if (self.pageStyle == 1) {
@@ -917,47 +923,32 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIColor // Changes the Icons & Text under Videos, Comment Section & Shorts (Deprecated by YouTube as of v17.40.5-Newer)
-+ (UIColor *)whiteColor { // Deprecated by YouTube
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-%end
-
 %hook UIView // changes some of the texts around the YouTube App.
-+ (UIColor *)tintColor {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
 }
 %end
 
 %hook UIInterface // this is only used if YouTube uses these methods in the future.
-+ (UIColor *)labelColor {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+- (UIColor *)labelColor {
+         return [UIColor whiteColor];
 }	 
-+ (UIColor *)secondaryLabelColor {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+- (UIColor *)secondaryLabelColor {
+         return [UIColor whiteColor];
 }	 
-+ (UIColor *)tertiaryLabelColor {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+- (UIColor *)tertiaryLabelColor {
+         return [UIColor whiteColor];
 }	
-+ (UIColor *)quaternaryLabelColor {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+- (UIColor *)quaternaryLabelColor {
+         return [UIColor whiteColor];
 }	 
-%end
-
-%hook QTMIcon // Changes color on what the Icon Looks with custom tweaks. (for iSponsorBlock & YouMute)
-+ (UIColor *)imageWithName {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
-+ (UIColor *)tintImage {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
-}
 %end
 
 %hook ELMView // Changes the Texts in the Sub Menu
 - (void)didMoveToWindow {
     %orig;
     if (isDarkMode()) {
-        self.subviews[0].tintColor = [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+        self.subviews[0].tintColor = [UIColor whiteColor];
     }
 }
 %end
@@ -965,15 +956,15 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook YTBackstageCreateRepostDetailView
 - (void)setTintColor:(UIColor *)color {
     if (isDarkMode()) {
-        return %orig([UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00]);
+        return %orig([UIColor whiteColor]);
     }
         return %orig;
 }
 %end
 
-%hook MBProgressHUD
-+ (UIColor *)contentColor {
-         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+%hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
+- (UIColor *)contentColor {
+         return [UIColor whiteColor];
 }
 %end
 %end

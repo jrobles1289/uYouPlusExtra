@@ -939,9 +939,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }	 
 - (UIColor *)tertiaryLabelColor {
          return [UIColor whiteColor];
-}	
-- (UIColor *)quaternaryLabelColor {
-         return [UIColor whiteColor];
+// }	
+// - (UIColor *)quaternaryLabelColor {
+//          return [UIColor whiteColor];
 }	 
 %end
 
@@ -969,6 +969,15 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
         return %orig([UIColor whiteColor]);
     }
         return %orig;
+}
+%end
+
+%hook SponsorBlockSettingsController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.tableView.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
 }
 %end
 

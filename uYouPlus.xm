@@ -1054,13 +1054,13 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
      if (self.pageStyle == 1) {
          return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00]; // Dark Mode
      }
-         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00]; // Light Mode
+         return [UIColor colorWithRed: 0.04 green: 0.41 blue: 0.62 alpha: 1.00]; // Light Mode
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
      }
-        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+        return [UIColor colorWithRed: 0.04 green: 0.41 blue: 0.62 alpha: 1.00];
  }
 %end
 
@@ -1069,13 +1069,13 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
      if (self.pageStyle == 1) {
          return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00]; // Dark Mode
      }
-         return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00]; // Light Mode
+         return [UIColor colorWithRed: 0.04 green: 0.41 blue: 0.62 alpha: 1.00]; // Light Mode
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
      }
-        return [UIColor colorWithRed: 0.36 green: 0.56 blue: 0.62 alpha: 1.00];
+        return [UIColor colorWithRed: 0.04 green: 0.41 blue: 0.62 alpha: 1.00];
  }
 %end
 

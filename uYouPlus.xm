@@ -169,6 +169,18 @@ BOOL GreenUI () {
 - (BOOL)removeNextPaddleForSingletonVideos { return YES; }
 - (BOOL)removePreviousPaddleForSingletonVideos { return YES; }
 %end
+
+%hook YTMainAppControlsOverlayView // Only used for v16.42.3
+- (void)layoutSubviews { // hide Next & Previous button
+    %orig;
+    if (hidePreviousAndNextButton()) { 
+  	       MSHookIvar<YTMainAppControlsOverlayView *>(self, "_nextButton").hidden = YES;
+        MSHookIvar<YTMainAppControlsOverlayView *>(self, "_previousButton").hidden = YES;
+       MSHookIvar<YTTransportControlsButtonView *>(self, "_nextButtonView").hidden = YES;
+   MSHookIvar<YTTransportControlsButtonView *>(self, "_previousButtonView").hidden = YES;
+    }
+}
+%end
 %end
 
 // Replace Next & Previous button with Fast forward & Rewind button

@@ -943,18 +943,21 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 
 %hook UIInterface // this is only used if YouTube uses these methods in the future.
-// - (UIColor *)labelColor {
-//          return [UIColor whiteColor];
-// }	 
+- (UIColor *)labelColor {
+            return [UIColor whiteColor];
+}
 - (UIColor *)secondaryLabelColor {
          return [UIColor whiteColor];
-}	 
+}
 - (UIColor *)tertiaryLabelColor {
          return [UIColor whiteColor];
-}	
+}
 - (UIColor *)quaternaryLabelColor {
          return [UIColor whiteColor];
-}	 
+}
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
+}
 %end
 
 %hook ELMView // Changes the Texts in the Sub Menu
@@ -1029,14 +1032,14 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook QTMIcon
-- (UIColor *)imageWithName {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintImage {
-         return [UIColor whiteColor];
-}
-%end
+// %hook QTMIcon
+// - (UIColor *)imageWithName {
+//          return [UIColor whiteColor];
+// }
+// - (UIColor *)tintImage {
+//          return [UIColor whiteColor];
+// }
+// %end
 
 %hook YTCreateCommentTextView
 - (void)setTintColor:(UIColor *)color { 

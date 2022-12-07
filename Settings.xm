@@ -33,6 +33,7 @@ extern BOOL lowContrastMode();
 extern BOOL RedUI();
 extern BOOL BlueUI();
 extern BOOL GreenUI();
+extern BOOL YellowUI();
 extern BOOL OrangeUI();
 extern BOOL PurpleUI();
 extern BOOL PinkUI();
@@ -117,6 +118,15 @@ extern BOOL PinkUI();
     OrangeUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"OrangeUI_enabled"];
     OrangeUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"OrangeUI_enabled"];
+        return YES;
+    };
+
+    YTSettingsSectionItem *YellowUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:@"Yellow UI" titleDescription:@"Yellow UI (have every other ui colors off) App restart is required."];
+    YellowUI.hasSwitch = YES;
+    YellowUI.switchVisible = YES;
+    YellowUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"YellowUI_enabled"];
+    YellowUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"YellowUI_enabled"];
         return YES;
     };
 
@@ -300,7 +310,7 @@ extern BOOL PinkUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, lowContrastMode, RedUI, BlueUI, GreenUI, OrangeUI, PurpleUI, PinkUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, lowContrastMode, RedUI, BlueUI, GreenUI, YellowUI, OrangeUI, PurpleUI, PinkUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

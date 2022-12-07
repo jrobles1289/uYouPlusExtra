@@ -118,11 +118,17 @@ BOOL dontEatMyContent() {
 BOOL lowContrastMode () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"lowContrastMode_enabled"];
 }
+BOOL RedUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"RedUI_enabled"];
+}
 BOOL BlueUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"BlueUI_enabled"];
 }
-BOOL RedUI () {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"RedUI_enabled"];
+BOOL GreenUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"GreenUI_enabled"];
+}
+BOOL YellowUI () {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"YellowUI_enabled"];
 }
 BOOL OrangeUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"OrangeUI_enabled"];
@@ -132,9 +138,6 @@ BOOL PinkUI () {
 }
 BOOL PurpleUI () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"PurpleUI_enabled"];
-}
-BOOL GreenUI () {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"GreenUI_enabled"];
 }
 
 # pragma mark - Tweaks
@@ -960,6 +963,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
+// LowContrastMode - Comment view
+%hook YTCommentView
+- (void)setTintColor:(UIColor *)color { 
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+// LowContrastMode - Open link with...
+%hook ASWAppSwitchingSheetHeaderView
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig(whiteColor);
+    }
+        return %orig;
+}
+%end
+
 %hook ELMView // Changes the Texts in the Sub Menu
 - (void)didMoveToWindow {
     %orig;
@@ -1010,6 +1033,12 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
          return [UIColor whiteColor];
 }
 - (UIColor *)tintColor {
+         return [UIColor whiteColor];
+}
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
+}
+- (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
 %end
@@ -1602,15 +1631,15 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook YTColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
      }
-         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
      }
-        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
  }
 %end
 
@@ -1626,6 +1655,113 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
      }
         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
+ }
+%end
+
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
+    }
+}
+%end
+
+%hook YTBackstageCreateRepostDetailView
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook YTFormattedStringLabel
+- (void)setTintColor:(UIColor *)color {
+    if (isDarkMode()) {
+        return %orig([UIColor whiteColor]);
+    }
+        return %orig;
+}
+%end
+
+%hook SponsorBlockSettingsController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.tableView.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
+%hook SponsorBlockViewController
+- (void)viewDidLoad {
+    if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+        %orig;
+        self.view.tintColor = [UIColor whiteColor];
+    } else { return %orig; }
+}
+%end
+
+%hook MBProgressHUD // changes texts and buttons exclusively on the iSponsorBlock Tweak.
+- (UIColor *)contentColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook _ASDisplayView
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        if ([self.nextResponder isKindOfClass:%c(ASScrollView)]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"eml.cvr"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"rich_header"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment_cell"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.ui.cancel.button"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.guidelines_text"]) { self.superview.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_bottom_sheet_container"]) { self.tintColor = [UIColor whiteColor]; }
+        if ([self.accessibilityIdentifier isEqualToString:@"id.comment.channel_guidelines_entry_banner_container"]) { self.tintColor = [UIColor whiteColor]; }
+    }
+}
+%end
+%end
+
+%group gYellowUI
+%hook UIColor
++ (UIColor *)whiteColor {
+        return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}
+%end
+
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+ }
+%end
+
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
  }
 %end
 
@@ -2145,11 +2281,17 @@ static BOOL didFinishLaunching;
     if (lowContrastMode()) {
        %init(gLowContrastMode);
     }
+    if (RedUI()) {
+       %init(gRedUI);
+    }
     if (BlueUI()) {
        %init(gBlueUI);
     }
-    if (RedUI()) {
-       %init(gRedUI);
+    if (GreenUI()) {
+       %init(gGreenUI);
+    }
+    if (YellowUI()) {
+       %init(gYellowUI);
     }
     if (OrangeUI()) {
        %init(gOrangeUI);
@@ -2159,9 +2301,6 @@ static BOOL didFinishLaunching;
     }
     if (PurpleUI()) {
        %init(gPurpleUI);
-    }
-    if (GreenUI()) {
-       %init(gGreenUI);
     }
     
     // Disable broken options of uYou

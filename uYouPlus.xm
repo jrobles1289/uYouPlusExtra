@@ -977,7 +977,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook ASWAppSwitchingSheetHeaderView
 - (void)setTintColor:(UIColor *)color {
     if (isDarkMode()) {
-        return %orig(whiteColor);
+        return %orig([UIColor whiteColor]);
     }
         return %orig;
 }

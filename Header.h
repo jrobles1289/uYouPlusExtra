@@ -1,5 +1,8 @@
 #import "Tweaks/YouTubeHeader/YTAppDelegate.h"
 #import "Tweaks/YouTubeHeader/YTPlayerViewController.h"
+#import "Tweaks/YouTubeHeader/YTInlinePlayerBarContainerView.h" // YouMute
+#import "Tweaks/YouTubeHeader/YTGlassContainerView.h" // YouMute
+#import "Tweaks/YouTubeHeader/UIView+YouTube.h" // YouMute
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
 #define YT_BUNDLE_ID @"com.google.ios.youtube"

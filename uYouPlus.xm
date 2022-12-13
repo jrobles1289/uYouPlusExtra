@@ -942,6 +942,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 + (UIColor *)violetColor {
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
 }
++ (UIColor *)sponsorBlockButton {
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}
 %end
 
 %hook YTColorPalette // Changes Texts & Icons in YouTube Bottom Bar + Text Icons under Video Player
@@ -962,9 +965,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook YTCommonColorPalette // Changes Texts & Icons in YouTube Bottom Bar (Doesn't change Texts & Icons under the video player)
 - (UIColor *)textPrimary {
     if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+        return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00]; // Dark Mode
     }
-        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00];
+        return [UIColor colorWithRed: 0.38 green: 0.38 blue: 0.38 alpha: 1.00]; // Light Mode
 }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
@@ -974,93 +977,31 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-// LowContrastMode - Keyboard
-%hook UIPredictionViewController
-- (void)loadView {
-    %orig;
-    [self.view setTintColor:[UIColor whiteColor]];
-}
-%end
-
-%hook UICandidateViewController
-- (void)loadView {
-    %orig;
-    [self.view setTintColor:[UIColor whiteColor]];
-}
-%end
-
-%hook UIKeyboardDockView
-- (void)didMoveToWindow {
-    %orig;
-    self.tintColor = [UIColor whiteColor];
-}
-%end
-
-%hook UIKeyboardLayoutStar 
-- (void)didMoveToWindow {
-    %orig;
-    self.tintColor = [UIColor whiteColor];
-}
-%end
-
-// LowContrastMode - Additonal UI Elements
-%hook UIView // changes some of the texts around the YouTube App.
-+ (UIColor *)tintColor {
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images
+- (UIColor *)sponsorBlockButton {
          return [UIColor whiteColor];
 }
 %end
 
-%hook UIInterface // this is only used if YouTube uses these methods in the future.
+%hook UIView // Changes some of the texts around the YouTube App.
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIInterface // Changes some of the texts that uses UIInterface in the YouTube App.
 + (UIColor *)labelColor {
-         return [UIColor whiteColor];
-}
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}	 
 + (UIColor *)secondaryLabelColor {
-         return [UIColor whiteColor];
-}
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}	 
 + (UIColor *)tertiaryLabelColor {
-         return [UIColor whiteColor];
-}
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}	
 + (UIColor *)quaternaryLabelColor {
-         return [UIColor whiteColor];
-}
-+ (UIColor *)textColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)labelColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)secondaryLabelColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tertiaryLabelColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)quaternaryLabelColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)textColor {
-         return [UIColor whiteColor];
-}
-%end
-
-// LowContrastMode - Comment view
-%hook YTCommentView
-- (void)setTintColor:(UIColor *)color { 
-    if (isDarkMode()) {
-        return %orig([UIColor whiteColor]);
-    }
-        return %orig;
-}
-%end
-
-// LowContrastMode - Open link with...
-%hook ASWAppSwitchingSheetHeaderView
-- (void)setTintColor:(UIColor *)color {
-    if (isDarkMode()) {
-        return %orig([UIColor whiteColor]);
-    }
-        return %orig;
-}
+         return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
+}	 
 %end
 
 %hook ELMView // Changes the Texts in the Sub Menu
@@ -1071,51 +1012,115 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
 }
 %end
+%end
 
-%hook YTBackstageCreateRepostDetailView
-- (void)setTintColor:(UIColor *)color {
-    if (isDarkMode()) {
-        return %orig([UIColor whiteColor]);
-    }
-        return %orig;
+%group gRedUI
+%hook UIColor
++ (UIColor *)whiteColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}
++ (UIColor *)tintColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}
++ (UIColor *)blueColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}
++ (UIColor *)pinkColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}
++ (UIColor *)violetColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}
++ (UIColor *)sponsorBlockButton {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
 }
 %end
 
-%hook YTFormattedStringLabel
-- (void)setTintColor:(UIColor *)color {
-    if (isDarkMode()) {
-        return %orig([UIColor whiteColor]);
-    }
-        return %orig;
-}
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
 %end
 
-// LowContrastMode - iSponsorBlock
-%hook YTQTMButton
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+ }
+%end
+
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images
 - (UIColor *)sponsorBlockButton {
          return [UIColor whiteColor];
 }
 %end
 
-%hook YTCreateCommentTextView
-- (void)setTintColor:(UIColor *)color { 
-    if (isDarkMode()) {
-        return %orig([UIColor whiteColor]);
-    }
-        return %orig;
+%hook UIView // Changes some of the texts around the YouTube App.
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
 }
-- (void)setTextColor:(UIColor *)color {
-    if (isDarkMode()) { 
-        return %orig([UIColor whiteColor]); 
+%end
+
+%hook UIInterface // Changes some of the texts that uses UIInterface in the YouTube App.
++ (UIColor *)labelColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}	 
++ (UIColor *)secondaryLabelColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}	 
++ (UIColor *)tertiaryLabelColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}	
++ (UIColor *)quaternaryLabelColor {
+         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+}	 
+%end
+
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
     }
-        return %orig;
 }
 %end
 %end
 
 %group gBlueUI
-%hook UIColor 
+%hook UIColor
 + (UIColor *)whiteColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}
++ (UIColor *)tintColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}
++ (UIColor *)blueColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}
++ (UIColor *)pinkColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}
++ (UIColor *)violetColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}
++ (UIColor *)sponsorBlockButton {
          return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
 }
 %end
@@ -1150,6 +1155,33 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
 %end
 
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIView // Changes some of the texts around the YouTube App.
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIInterface // Changes some of the texts that uses UIInterface in the YouTube App.
++ (UIColor *)labelColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}	 
++ (UIColor *)secondaryLabelColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}	 
++ (UIColor *)tertiaryLabelColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}	
++ (UIColor *)quaternaryLabelColor {
+         return [UIColor colorWithRed: 0.04 green: 0.47 blue: 0.72 alpha: 1.00];
+}	 
+%end
+
 %hook ELMView // Changes the Texts in the Sub Menu
 - (void)didMoveToWindow {
     %orig;
@@ -1160,41 +1192,172 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 %end
 
-%group gRedUI
+%group gGreenUI
 %hook UIColor
 + (UIColor *)whiteColor {
-         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}
++ (UIColor *)tintColor {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}
++ (UIColor *)blueColor {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}
++ (UIColor *)pinkColor {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}
++ (UIColor *)violetColor {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}
++ (UIColor *)sponsorBlockButton {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
 }
 %end
 
 %hook YTColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
      }
-         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
      }
-        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
  }
 %end
 
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
      }
-         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
      }
-        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00];
+        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
  }
+%end
+
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIView // Changes some of the texts around the YouTube App.
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIInterface // Changes some of the texts that uses UIInterface in the YouTube App.
++ (UIColor *)labelColor {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}	 
++ (UIColor *)secondaryLabelColor {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}	 
++ (UIColor *)tertiaryLabelColor {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}	
++ (UIColor *)quaternaryLabelColor {
+         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+}	 
+%end
+
+%hook ELMView // Changes the Texts in the Sub Menu
+- (void)didMoveToWindow {
+    %orig;
+    if (isDarkMode()) {
+        self.subviews[0].tintColor = [UIColor whiteColor];
+    }
+}
+%end
+%end
+
+%group gYellowUI
+%hook UIColor
++ (UIColor *)whiteColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}
++ (UIColor *)tintColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}
++ (UIColor *)blueColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}
++ (UIColor *)pinkColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}
++ (UIColor *)violetColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}
++ (UIColor *)sponsorBlockButton {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}
+%end
+
+%hook YTColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+ }
+%end
+
+%hook YTCommonColorPalette
+- (UIColor *)textPrimary {
+     if (self.pageStyle == 1) {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+     }
+         return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+ }
+- (UIColor *)textSecondary {
+    if (self.pageStyle == 1) {
+        return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+     }
+        return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+ }
+%end
+
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIView // Changes some of the texts around the YouTube App.
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIInterface // Changes some of the texts that uses UIInterface in the YouTube App.
++ (UIColor *)labelColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}	 
++ (UIColor *)secondaryLabelColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}	 
++ (UIColor *)tertiaryLabelColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}	
++ (UIColor *)quaternaryLabelColor {
+         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+}	 
 %end
 
 %hook ELMView // Changes the Texts in the Sub Menu
@@ -1210,7 +1373,22 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %group gOrangeUI
 %hook UIColor
 + (UIColor *)whiteColor {
-        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}
++ (UIColor *)tintColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}
++ (UIColor *)blueColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}
++ (UIColor *)pinkColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}
++ (UIColor *)violetColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}
++ (UIColor *)sponsorBlockButton {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
 }
 %end
 
@@ -1244,51 +1422,31 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
 %end
 
-%hook ELMView // Changes the Texts in the Sub Menu
-- (void)didMoveToWindow {
-    %orig;
-    if (isDarkMode()) {
-        self.subviews[0].tintColor = [UIColor whiteColor];
-    }
-}
-%end
-%end
-
-%group gPinkUI
-%hook UIColor
-+ (UIColor *)whiteColor {
-        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
 }
 %end
 
-%hook YTColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
+%hook UIView // Changes some of the texts around the YouTube App.
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIInterface // Changes some of the texts that uses UIInterface in the YouTube App.
++ (UIColor *)labelColor {
          return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
- }
-%end
-
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
- }
+}	 
++ (UIColor *)secondaryLabelColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}	 
++ (UIColor *)tertiaryLabelColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}	
++ (UIColor *)quaternaryLabelColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}	 
 %end
 
 %hook ELMView // Changes the Texts in the Sub Menu
@@ -1304,22 +1462,37 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %group gPurpleUI
 %hook UIColor
 + (UIColor *)whiteColor {
-        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+}
++ (UIColor *)tintColor {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+}
++ (UIColor *)blueColor {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+}
++ (UIColor *)pinkColor {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+}
++ (UIColor *)violetColor {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
+}
++ (UIColor *)sponsorBlockButton {
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
 }
 %end
 
 %hook YTColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+         return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
      }
-         return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+         return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+        return [UIColor colorWithRed: 0.62 green: 0.01 blue: 0.73 alpha: 1.00];
      }
-        return [UIColor colorWithRed: 0.80 green: 0.49 blue: 0.05 alpha: 1.00];
+        return [UIColor colorWithRed: 0.44 green: 0.00 blue: 0.52 alpha: 1.00];
  }
 %end
 
@@ -1338,51 +1511,31 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
  }
 %end
 
-%hook ELMView // Changes the Texts in the Sub Menu
-- (void)didMoveToWindow {
-    %orig;
-    if (isDarkMode()) {
-        self.subviews[0].tintColor = [UIColor whiteColor];
-    }
-}
-%end
-%end
-
-%group gGreenUI
-%hook UIColor
-+ (UIColor *)whiteColor {
-        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
 }
 %end
 
-%hook YTColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
- }
+%hook UIView // Changes some of the texts around the YouTube App.
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
+}
 %end
 
-%hook YTCommonColorPalette
-- (UIColor *)textPrimary {
-     if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
-     }
-         return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
- }
-- (UIColor *)textSecondary {
-    if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.01 green: 0.66 blue: 0.18 alpha: 1.00];
-     }
-        return [UIColor colorWithRed: 0.00 green: 0.50 blue: 0.13 alpha: 1.00];
- }
+%hook UIInterface // Changes some of the texts that uses UIInterface in the YouTube App.
++ (UIColor *)labelColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}	 
++ (UIColor *)secondaryLabelColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}	 
++ (UIColor *)tertiaryLabelColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}	
++ (UIColor *)quaternaryLabelColor {
+         return [UIColor colorWithRed: 0.73 green: 0.45 blue: 0.05 alpha: 1.00];
+}	 
 %end
 
 %hook ELMView // Changes the Texts in the Sub Menu
@@ -1395,41 +1548,83 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 %end
 
-%group gYellowUI
+%group gPinkUI
 %hook UIColor
 + (UIColor *)whiteColor {
-        return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}
++ (UIColor *)tintColor {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}
++ (UIColor *)blueColor {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}
++ (UIColor *)pinkColor {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}
++ (UIColor *)violetColor {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}
++ (UIColor *)sponsorBlockButton {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
 }
 %end
 
 %hook YTColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
      }
-         return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
      }
-        return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
  }
 %end
 
 %hook YTCommonColorPalette
 - (UIColor *)textPrimary {
      if (self.pageStyle == 1) {
-         return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
      }
-         return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
-        return [UIColor colorWithRed: 0.89 green: 0.82 blue: 0.20 alpha: 1.00];
+        return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
      }
-        return [UIColor colorWithRed: 0.77 green: 0.71 blue: 0.14 alpha: 1.00];
+        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00];
  }
+%end
+
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIView // Changes some of the texts around the YouTube App.
+- (UIColor *)tintColor {
+         return [UIColor whiteColor];
+}
+%end
+
+%hook UIInterface // Changes some of the texts that uses UIInterface in the YouTube App.
++ (UIColor *)labelColor {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}	 
++ (UIColor *)secondaryLabelColor {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}	 
++ (UIColor *)tertiaryLabelColor {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}	
++ (UIColor *)quaternaryLabelColor {
+         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+}	 
 %end
 
 %hook ELMView // Changes the Texts in the Sub Menu

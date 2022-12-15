@@ -2106,8 +2106,9 @@ static BOOL didFinishLaunching;
     }
     
     // Disable broken options of uYou
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"removeYouTubeAds"]; 
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"disableAgeRestriction"]; 
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"removeYouTubeAds"]; // Remove YouTube Ads Disabled - Reason was due because it stopped working.
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"disableAgeRestriction"]; // Disable Age Restriction Disabled - Reason is the same as above.
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"removeShortsSectioninYTHome"]; // Remove Shorts Section Disabled - reason was due to not being consistent enough.
     
     // Change the default value of some uYou's options
     if (![[[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys] containsObject:@"relatedVideosAtTheEndOfYTVideos"]) { 

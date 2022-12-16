@@ -1,3 +1,4 @@
+#import "Tweaks/YouTubeHeader/YTSettingsPickerViewController.h"
 #import "Tweaks/YouTubeHeader/YTSettingsViewController.h"
 #import "Tweaks/YouTubeHeader/YTSearchableSettingsViewController.h"
 #import "Tweaks/YouTubeHeader/YTSettingsSectionItem.h"

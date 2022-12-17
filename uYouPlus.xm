@@ -387,7 +387,7 @@ BOOL didLateHook = NO;
 - (BOOL)enableShortsVideoQualityPicker { return YES; } // YouTube Shorts Quality Picker (iPhones Only)
 %end
 
-// Disabled Rounded & Modernize Flags (Disabled by Default for uYouPlusExtra to fix Low Contrast Mode) only works with YouTube v17.40.5-present
+// YTNoModernUI - arichorn
 %hook YTColdConfig
 - (BOOL)creatorClientConfigEnableStudioModernizedMdeThumbnailPickerForClient { return NO; }
 - (BOOL)cxClientEnableModernizedActionSheet { return NO; }
@@ -405,10 +405,7 @@ BOOL didLateHook = NO;
 - (BOOL)modernizeElementsTextColor { return NO; }
 - (BOOL)modernizeElementsBgColor { return NO; }
 - (BOOL)modernizeCollectionLockups { return NO; }
-%end
-
-// 16.42.3 YouTube Channel Page Interface
-%hook YTColdConfig
+// 16.42.3 YouTube Channel Page Interface (YTNoModernUI)
 - (BOOL)channelsClientConfigIosChannelNavRestructuring { return NO; }
 %end
 

@@ -393,6 +393,7 @@ BOOL didLateHook = NO;
 // YTNoModernUI - arichorn
 %group gYTNoModernUI
 %hook YTColdConfig
+// Disable Modern Content - YTNoModernUI
 - (BOOL)creatorClientConfigEnableStudioModernizedMdeThumbnailPickerForClient { return NO; }
 - (BOOL)cxClientEnableModernizedActionSheet { return NO; }
 - (BOOL)enableClientShortsSheetsModernization { return NO; }
@@ -406,10 +407,13 @@ BOOL didLateHook = NO;
 - (BOOL)uiSystemsClientGlobalConfigEnableModernTabsForNative { return NO; }
 - (BOOL)uiSystemsClientGlobalConfigIosEnableSnackbarModernization { return NO; }
 - (BOOL)mainAppCoreClientIosEnableModernOssPage { return NO; }
+// Disable Darker Dark Mode - YTNoModernUI
+- (BOOL)enableDarkerDarkMode { return NO; }
 - (BOOL)modernizeElementsTextColor { return NO; }
 - (BOOL)modernizeElementsBgColor { return NO; }
 - (BOOL)modernizeCollectionLockups { return NO; }
-// 16.42.3 YouTube Channel Page Interface (YTNoModernUI)
+- (BOOL)uiSystemsClientGlobalConfigUseDarkerPaletteTextColorForNative { return NO; }
+// 16.42.3 Styled YouTube Channel Page Interface - YTNoModernUI
 - (BOOL)channelsClientConfigIosChannelNavRestructuring { return NO; }
 %end
 %end

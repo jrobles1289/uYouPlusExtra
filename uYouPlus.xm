@@ -2088,7 +2088,7 @@ static BOOL didFinishLaunching;
     }
     if (ytNoModernUI()) {
        %init (gYTNoModernUI);
-    ytNoModernUI
+    }
     if (lowContrastMode()) {
        %init(gLowContrastMode);
     }

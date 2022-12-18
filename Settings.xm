@@ -29,6 +29,7 @@ extern BOOL hidePaidPromotionCard();
 extern BOOL fixGoogleSignIn();
 extern BOOL replacePreviousAndNextButton();
 extern BOOL hideHeatwaves();
+extern BOOL ytNoModernUI();
 extern BOOL dontEatMyContent();
 extern BOOL lowContrastMode();
 extern BOOL RedUI();
@@ -85,6 +86,15 @@ extern BOOL PinkUI();
     selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
         return [%c(YTUIUtils) openURL:[NSURL URLWithString:@"https://github.com/qnblackcat/uYouPlus/releases/latest"]];
     }];
+
+    YTSettingsSectionItem *ytNoModernUI = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"Remove Modern Interface (YTNoModernUI)") titleDescription:LOC(@"Enable this to remove any Modern Element added to YouTube. Removes Ambient Mode, Rounded Design & More. App restart is required.")];
+    ytNoModernUI.hasSwitch = YES;
+    ytNoModernUI.switchVisible = YES;
+    ytNoModernUI.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"ytNoModernUI_enabled"];
+    ytNoModernUI.switchBlock = ^BOOL (YTSettingsCell *cell, BOOL enabled) {
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytNoModernUI_enabled"];
+        return YES;
+    };
 
     YTSettingsSectionItem *hideHeatwaves = [[%c(YTSettingsSectionItem) alloc] initWithTitle:LOC(@"Hide Heatwaves (HideHeatwaves)") titleDescription:LOC(@"Should hide the Heatwaves in the video player. App restart is required.")];
     hideHeatwaves.hasSwitch = YES;
@@ -311,7 +321,7 @@ extern BOOL PinkUI();
         return YES;
     };
 
-    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, lowContrastMode, RedUI, BlueUI, GreenUI, YellowUI, OrangeUI, PurpleUI, PinkUI]];
+    NSMutableArray <YTSettingsSectionItem *> *sectionItems = [NSMutableArray arrayWithArray:@[version, ytNoModernUI, autoFull, castConfirm, ytMiniPlayer, fixGoogleSignIn, hideAutoplaySwitch, hideCC, hideHUD, hidePaidPromotionCard, hidePreviousAndNextButton, hideHoverCard, bigYTMiniPlayer, oledDarkMode, oledKeyBoard, hideHeatwaves, dontEatMyContent, replacePreviousAndNextButton, reExplore, lowContrastMode, RedUI, BlueUI, GreenUI, YellowUI, OrangeUI, PurpleUI, PinkUI]];
     [delegate setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouPlus" titleDescription:nil headerHidden:NO];
 }
 

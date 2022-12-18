@@ -113,6 +113,9 @@ BOOL replacePreviousAndNextButton() {
 BOOL hideHeatwaves () {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hideHeatwaves_enabled"];
 }
+BOOL ytNoModernUI() {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"ytNoModernUI_enabled"];
+}
 BOOL dontEatMyContent() {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"dontEatMyContent_enabled"];
 }
@@ -388,6 +391,7 @@ BOOL didLateHook = NO;
 %end
 
 // YTNoModernUI - arichorn
+%group gYTNoModernUI
 %hook YTColdConfig
 - (BOOL)creatorClientConfigEnableStudioModernizedMdeThumbnailPickerForClient { return NO; }
 - (BOOL)cxClientEnableModernizedActionSheet { return NO; }
@@ -407,6 +411,7 @@ BOOL didLateHook = NO;
 - (BOOL)modernizeCollectionLockups { return NO; }
 // 16.42.3 YouTube Channel Page Interface (YTNoModernUI)
 - (BOOL)channelsClientConfigIosChannelNavRestructuring { return NO; }
+%end
 %end
 
 // Hide YouTube Heatwaves in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
@@ -2077,6 +2082,9 @@ static BOOL didFinishLaunching;
     if (hideHeatwaves()) {
        %init (gHideHeatwaves);
     }
+    if (ytNoModernUI()) {
+       %init (gYTNoModernUI);
+    ytNoModernUI
     if (lowContrastMode()) {
        %init(gLowContrastMode);
     }

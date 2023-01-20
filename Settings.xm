@@ -46,7 +46,7 @@ extern NSBundle *uYouPlusBundle();
     accessibilityIdentifier:nil
     detailTextBlock:nil
     selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
-        return [%c(YTUIUtils) openURL:[NSURL URLWithString:@"https://github.com/qnblackcat/uYouPlus/releases/latest"]];
+        return [%c(YTUIUtils) openURL:[NSURL URLWithString:@"https://github.com/arichorn/uYouPlusExtra/releases/latest"]];
     }];
     [sectionItems addObject:version];
 
@@ -212,6 +212,15 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Heatwaves (HideHeatwaves)")
+                titleDescription:LOC(@"Should hide the Heatwaves in the video player. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideHeatwaves_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideHeatwaves_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
         ];        
         YTSettingsPickerViewController *picker = [[%c(YTSettingsPickerViewController) alloc] initWithNavTitle:LOC(@"VIDEO_CONTROLS_OVERLAY_OPTIONS") pickerSectionTitle:nil rows:rows selectedItemIndex:NSNotFound parentResponder:[self parentResponder]];
         [settingsViewController pushViewController:picker];
@@ -228,6 +237,16 @@ extern NSBundle *uYouPlusBundle();
                 switchOn:IsEnabled(@"hideShortsChannelAvatar_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideShortsChannelAvatar_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Shorts like button")
+                titleDescription:LOC(@"HIDE_SHORTS_LIKE_BUTTON_DESC")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideShortsLikeButton_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideShortsLikeButton_enabled"];
                     return YES;
                 }
                 settingItemId:0],
@@ -346,6 +365,105 @@ extern NSBundle *uYouPlusBundle();
         }];
     [sectionItems addObject:themeGroup];
 
+# pragma mark - Customization Options
+    YTSettingsSectionItem *CustomizationGroup = [YTSettingsSectionItemClass itemWithTitle:@"Customization Options" accessibilityIdentifier:nil detailTextBlock:nil selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
+            NSArray <YTSettingsSectionItem *> *rows = @[
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Labels in the Tab Bar")
+                titleDescription:LOC(@"this will Hide all of the labels in the Tab Bar. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideTabBarLabels_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideTabBarLabels_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Low Contrast Mode")
+                titleDescription:LOC(@"this will Low Contrast texts and buttons just like how the old YouTube Interface did. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"lowContrastMode_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"lowContrastMode_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+                
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Red UI")
+                titleDescription:LOC(@"(turn other UI Options off) App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"RedUI_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"RedUI_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Blue UI")
+                titleDescription:LOC(@"(turn other UI Options off) App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"BlueUI_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"BlueUI_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Green UI")
+                titleDescription:LOC(@"(turn other UI Options off) App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"GreenUI_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"GreenUI_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Yellow UI")
+                titleDescription:LOC(@"(turn other UI Options off) App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"YellowUI_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"YellowUI_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Orange UI")
+                titleDescription:LOC(@"(turn other UI Options off) App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"OrangeUI_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"OrangeUI_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Purple UI")
+                titleDescription:LOC(@"(turn other UI Options off) App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"PurpleUI_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"PurpleUI_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+                [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Pink UI")
+                titleDescription:LOC(@"(turn other UI Options off) App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"PinkUI_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"PinkUI_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+            ];
+            YTSettingsPickerViewController *picker = [[%c(YTSettingsPickerViewController) alloc] initWithNavTitle:@"Customization Options" pickerSectionTitle:nil rows:rows selectedItemIndex:GetSelection(@"UITheme") parentResponder:[self parentResponder]];
+            [settingsViewController pushViewController:picker];
+            return YES;
+        }];
+    [sectionItems addObject:CustomizationGroup];
+
 # pragma mark - Miscellaneous
     YTSettingsSectionItem *miscellaneousGroup = [YTSettingsSectionItemClass itemWithTitle:LOC(@"MISCELLANEOUS") accessibilityIdentifier:nil detailTextBlock:nil selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
         NSArray <YTSettingsSectionItem *> *rows = @[
@@ -399,6 +517,16 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide uYou Tab")
+                titleDescription:LOC(@"Toggle this on to remove the uYou Tab added by MiRO's YouTube Tweak. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideuYouTab_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideuYouTab_enabled"];
+                    return YES;
+                }
+                settingItemId:0],  
+
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"NEW_MINIPLAYER_STYLE")
                 titleDescription:LOC(@"NEW_MINIPLAYER_STYLE_DESC")
                 accessibilityIdentifier:nil
@@ -417,7 +545,17 @@ extern NSBundle *uYouPlusBundle();
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"reExplore_enabled"];
                     return YES;
                 }
-                settingItemId:0],
+                settingItemId:0], 
+
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Remove Modern Interface (YTNoModernUI)")
+                titleDescription:LOC(@"Toggle this on to remove any Modern Element added to YouTube. Removes Ambient Mode, Rounded Design & More. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"ytNoModernUI_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytNoModernUI_enabled"];
+                    return YES;
+                }
+                settingItemId:0],  
         ];        
         YTSettingsPickerViewController *picker = [[%c(YTSettingsPickerViewController) alloc] initWithNavTitle:LOC(@"MISCELLANEOUS") pickerSectionTitle:nil rows:rows selectedItemIndex:NSNotFound parentResponder:[self parentResponder]];
         [settingsViewController pushViewController:picker];

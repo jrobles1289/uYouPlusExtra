@@ -13,6 +13,10 @@
 @end
 
 // uYouPlus
+@interface YTPivotBarItemView : UIView
+// @property(readonly, nonatomic) YTQTMButton *navigationButton;
+@end
+
 @interface YTChipCloudCell : UIView
 @end
 
@@ -148,9 +152,6 @@ void DEMC_centerRenderingView();
 @end
 
 // App Theme
-@interface YCHLiveChatView : UIView
-@end
-
 @interface YTFullscreenEngagementOverlayView : UIView
 @end
 

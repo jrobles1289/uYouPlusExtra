@@ -24,7 +24,7 @@
 #import "Tweaks/YouTubeHeader/YTReelPlayerViewController.h"
 #import "Tweaks/YouTubeHeader/YTAlertView.h"
 #import "Tweaks/YouTubeHeader/YTISectionListRenderer.h"
-#import "Tweaks/YouTubeHeader/YTQTMButton.h"
+#import "Tweaks/YouTubeHeader/YTPivotBarItemView.h"
 
 // Tweak's bundle for Localizations support - @PoomSmart - https://github.com/PoomSmart/YouPiP/commit/aea2473f64c75d73cab713e1e2d5d0a77675024f
 NSBundle *uYouPlusBundle() {

@@ -871,8 +871,8 @@ void DEMC_centerRenderingView() {
 - (id)init {
 	id result = %orig;
 
-	const int size = 15;
-	float speeds[] = {0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.5, 4.0, 5.0};
+	const int size = 16;
+	float speeds[] = {0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0};
 	id varispeedSwitchControllerOptions[size];
 
 	for (int i = 0; i < size; ++i) {

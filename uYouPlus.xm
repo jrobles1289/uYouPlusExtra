@@ -564,6 +564,39 @@ static BOOL didFinishLaunching;
 %end
 %end
 
+// Better Version of the iPad Layout
+%group giPadLayout // https://github.com/LillieH001/YouTube-Reborn
+%hook UIDevice
+- (long long)userInterfaceIdiom {
+    return YES;
+} 
+%end
+%hook UIStatusBarStyleAttributes
+- (long long)idiom {
+    return NO;
+} 
+%end
+%hook UIKBTree
+- (long long)nativeIdiom {
+    return NO;
+} 
+%end
+%hook UIKBRenderer
+- (long long)assetIdiom {
+    return NO;
+} 
+%end
+%end
+
+// Hide YouTube Logo
+%group gHideYouTubeLogo
+%hook YTHeaderLogoController
+- (YTHeaderLogoController *)init {
+    return NULL;
+}
+%end
+%end
+
 // Hide YouTube Heatwaves in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
 %group gHideHeatwaves
 %hook YTInlinePlayerBarContainerView
@@ -2035,6 +2068,12 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
     if (IsEnabled(@"hideTabBarLabels")) {
        %init(gHideTabBarLabels);
+    }
+    if (IsEnabled(@"iPadLayout_enabled")) {
+       %init(giPadLayout);
+    }
+    if (IsEnabled(@"hideYouTubeLogo_enabled")) {
+       %init(gHideYouTubeLogo);
     }
 
     // Disable updates

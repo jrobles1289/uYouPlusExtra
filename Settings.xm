@@ -212,7 +212,7 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 
-            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Heatwaves (HideHeatwaves)")
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Heatwaves")
                 titleDescription:LOC(@"Should hide the Heatwaves in the video player. App restart is required.")
                 accessibilityIdentifier:nil
                 switchOn:IsEnabled(@"hideHeatwaves_enabled")
@@ -242,7 +242,7 @@ extern NSBundle *uYouPlusBundle();
                 settingItemId:0],
 
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Shorts like button")
-                titleDescription:LOC(@"HIDE_SHORTS_LIKE_BUTTON_DESC")
+                titleDescription:LOC(@"")
                 accessibilityIdentifier:nil
                 switchOn:IsEnabled(@"hideShortsLikeButton_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
@@ -526,6 +526,26 @@ extern NSBundle *uYouPlusBundle();
                     return YES;
                 }
                 settingItemId:0],  
+
+	        [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide YouTube Logo")
+                titleDescription:LOC(@"Toggle this to hide the YouTube Logo in the YouTube App.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideYouTubeLogo_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideYouTubeLogo_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"iPad Layout")
+                titleDescription:LOC(@"Toggle this to use the iPad Layout. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"iPadLayout_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"iPadLayout_enabled"];
+                    return YES;
+                }
+                settingItemId:0], 
 
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"NEW_MINIPLAYER_STYLE")
                 titleDescription:LOC(@"NEW_MINIPLAYER_STYLE_DESC")

@@ -52,6 +52,12 @@
 @property UIButton *downloadsButton;
 @end
 
+// Navigation Buttons
+@interface YTRightNavigationButtons : UIView
+@property YTQTMButton *notificationButton;
+@property YTQTMButton *sponsorBlockButton;
+@end
+
 // DontEatMyContent
 BOOL DEMC_deviceIsSupported();
 void DEMC_activate();

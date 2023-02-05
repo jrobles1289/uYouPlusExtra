@@ -504,7 +504,7 @@ static BOOL didFinishLaunching;
 - (BOOL)shouldShowUpgradeDialog { return NO;}
 %end
 
-// Disable Autoplay Settings Section by @qnblackcat
+// Disable Autoplay Settings Section - @qnblackcat
 %hook YTSettingsSectionItemManager
 - (void)updateAutoplaySectionWithEntry:(id)arg1 {}
 %end
@@ -618,13 +618,26 @@ static BOOL didFinishLaunching;
     NSMutableArray <YTIPivotBarSupportedRenderers *> *items = [renderer itemsArray];
 
     NSUInteger index = [items indexOfObjectPassingTest:^BOOL(YTIPivotBarSupportedRenderers *renderers, NSUInteger idx, BOOL *stop) {
-        return [[[renderers pivotBarItemRenderer] pivotIdentifier] isEqualToString:@"FEuyou"];
+        return [[[renderers pivotBarItemRenderer] pivotIdentifier] isEqualToString:@"uyou"];
     }];
     if (index != NSNotFound) [items removeObjectAtIndex:index];
 
     %orig;
 }
 %end
+%end
+
+# pragma mark - Hide Notification Button && SponsorBlock Button
+%hook YTRightNavigationButtons
+- (void)layoutSubviews {
+    %orig;
+    if (IsEnabled(@"hideNotificationButton_enabled")) {
+        self.notificationButton.hidden = YES;
+    }
+    if (IsEnabled(@"hideSponsorBlockButton_enabled")) { 
+        self.sponsorBlockButton.hidden = YES;
+    }
+}
 %end
 
 // YTNoPaidPromo: https://github.com/PoomSmart/YTNoPaidPromo

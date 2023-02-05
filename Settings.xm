@@ -449,16 +449,6 @@ extern NSBundle *uYouPlusBundle();
 # pragma mark - Customization Options
     YTSettingsSectionItem *CustomizationGroup = [YTSettingsSectionItemClass itemWithTitle:@"Customization Options" accessibilityIdentifier:nil detailTextBlock:nil selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
         NSArray <YTSettingsSectionItem *> *rows = @[
-            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Low Contrast Mode")
-                titleDescription:LOC(@"this will Low Contrast texts and buttons just like how the old YouTube Interface did. App restart is required.")
-                accessibilityIdentifier:nil
-                switchOn:IsEnabled(@"lowContrastMode_enabled")
-                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
-                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"lowContrastMode_enabled"];
-                    return YES;
-                }
-                settingItemId:0] lowContrastModeSection],
-
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Remove Modern Interface (YTNoModernUI)")
                 titleDescription:LOC(@"Toggle this on to remove any Modern Element added to YouTube. Removes Ambient Mode, Rounded Design & More. App restart is required.")
                 accessibilityIdentifier:nil
@@ -487,8 +477,17 @@ extern NSBundle *uYouPlusBundle();
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideTabBarLabels_enabled"];
                     return YES;
                 }
-                settingItemId:0]
-            ];
+                settingItemId:0],
+		
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Low Contrast Mode")
+                titleDescription:LOC(@"this will Low Contrast texts and buttons just like how the old YouTube Interface did. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"lowContrastMode_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"lowContrastMode_enabled"];
+                    return YES;
+                }
+                settingItemId:0], lowContrastModeSection];
             YTSettingsPickerViewController *picker = [[%c(YTSettingsPickerViewController) alloc] initWithNavTitle:@"Customization Options" pickerSectionTitle:nil rows:rows selectedItemIndex:GetSelection(@"UITheme") parentResponder:[self parentResponder]];
             [settingsViewController pushViewController:picker];
             return YES;

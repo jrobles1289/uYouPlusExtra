@@ -1468,6 +1468,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 - (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
 %end
 
 %hook UIView // Changes some of the texts around the YouTube App.
@@ -1498,13 +1501,13 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %group gRedContrastMode  // Red Contrast Mode
 %hook UIColor
 + (UIColor *)whiteColor {
-         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+         return [UIColor colorWithRed: 0.97 green: 0.15 blue: 0.15 alpha: 1.00];
 }
 + (UIColor *)textColor {
-         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+         return [UIColor colorWithRed: 0.97 green: 0.15 blue: 0.15 alpha: 1.00];
 }
 + (UIColor *)dynamicLabelColor {
-         return [UIColor colorWithRed: 1.00 green: 0.31 blue: 0.27 alpha: 1.00];
+         return [UIColor colorWithRed: 0.97 green: 0.15 blue: 0.15 alpha: 1.00];
 }
 %end
 
@@ -1513,13 +1516,13 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
      if (self.pageStyle == 1) {
          return [UIColor whiteColor]; // Dark Theme
      }
-         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00]; // Light Theme
+         return [UIColor colorWithRed: 0.97 green: 0.15 blue: 0.15 alpha: 1.00]; // Light Theme
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
         return [UIColor whiteColor]; // Dark Theme
      }
-        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00]; // Light Theme
+        return [UIColor colorWithRed: 0.97 green: 0.15 blue: 0.15 alpha: 1.00]; // Light Theme
  }
 %end
 
@@ -1528,18 +1531,21 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
      if (self.pageStyle == 1) {
          return [UIColor whiteColor]; // Dark Theme
      }
-         return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00]; // Light Theme
+         return [UIColor colorWithRed: 0.97 green: 0.15 blue: 0.15 alpha: 1.00]; // Light Theme
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
         return [UIColor whiteColor]; // Dark Theme
      }
-        return [UIColor colorWithRed: 0.84 green: 0.25 blue: 0.23 alpha: 1.00]; // Light Theme
+        return [UIColor colorWithRed: 0.97 green: 0.15 blue: 0.15 alpha: 1.00]; // Light Theme
  }
 %end
 
 %hook YTQTMButton // Changes Tweak Icons/Texts/Images
 - (UIColor *)whiteColor {
+         return [UIColor whiteColor];
+}
+- (UIColor *)sponsorBlockButton {
          return [UIColor whiteColor];
 }
 %end
@@ -1561,6 +1567,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1612,6 +1619,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 - (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
 %end
 
 %hook UIView // Changes some of the texts around the YouTube App.
@@ -1631,6 +1641,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1682,6 +1693,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 - (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
 %end
 
 %hook UIView // Changes some of the texts around the YouTube App.
@@ -1701,6 +1715,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1752,6 +1767,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 - (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
 %end
 
 %hook UIView // Changes some of the texts around the YouTube App.
@@ -1771,6 +1789,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1822,6 +1841,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 - (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
 %end
 
 %hook UIView // Changes some of the texts around the YouTube App.
@@ -1841,6 +1863,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1892,6 +1915,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 - (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
+- (UIColor *)sponsorBlockButton {
+         return [UIColor whiteColor];
+}
 %end
 
 %hook UIView // Changes some of the texts around the YouTube App.
@@ -1918,13 +1944,13 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %group gPinkContrastMode // Pink Contrast Mode
 %hook UIColor
 + (UIColor *)whiteColor {
-         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+         return [UIColor colorWithRed: 1.00 green: 0.57 blue: 0.94 alpha: 1.00];
 }
 + (UIColor *)textColor {
-         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+         return [UIColor colorWithRed: 1.00 green: 0.57 blue: 0.94 alpha: 1.00];
 }
 + (UIColor *)dynamicLabelColor {
-         return [UIColor colorWithRed: 0.74 green: 0.02 blue: 0.46 alpha: 1.00];
+         return [UIColor colorWithRed: 1.00 green: 0.57 blue: 0.94 alpha: 1.00];
 }
 %end
 
@@ -1933,13 +1959,13 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
      if (self.pageStyle == 1) {
          return [UIColor whiteColor]; // Dark Theme
      }
-         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00]; // Light Theme
+         return [UIColor colorWithRed: 0.75 green: 0.42 blue: 0.71 alpha: 1.00]; // Light Theme
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
         return [UIColor whiteColor]; // Dark Theme
      }
-        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00]; // Light Theme
+        return [UIColor colorWithRed: 0.75 green: 0.42 blue: 0.71 alpha: 1.00]; // Light Theme
  }
 %end
 
@@ -1948,18 +1974,21 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
      if (self.pageStyle == 1) {
          return [UIColor whiteColor]; // Dark Theme
      }
-         return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00]; // Light Theme
+         return [UIColor colorWithRed: 0.75 green: 0.42 blue: 0.71 alpha: 1.00]; // Light Theme
  }
 - (UIColor *)textSecondary {
     if (self.pageStyle == 1) {
         return [UIColor whiteColor]; // Dark Theme
      }
-        return [UIColor colorWithRed: 0.81 green: 0.56 blue: 0.71 alpha: 1.00]; // Light Theme
+        return [UIColor colorWithRed: 0.75 green: 0.42 blue: 0.71 alpha: 1.00]; // Light Theme
  }
 %end
 
 %hook YTQTMButton // Changes Tweak Icons/Texts/Images
 - (UIColor *)whiteColor {
+         return [UIColor whiteColor];
+}
+- (UIColor *)sponsorBlockButton {
          return [UIColor whiteColor];
 }
 %end
@@ -1981,6 +2010,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end

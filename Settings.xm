@@ -557,16 +557,6 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 
-            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"HIDE_CAST_BUTTON")
-                titleDescription:LOC(@"HIDE_CAST_BUTTON_DESC")
-                accessibilityIdentifier:nil
-                switchOn:IsEnabled(@"hideCastButton_enabled")
-                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
-                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideCastButton_enabled"];
-                    return YES;
-                }
-                settingItemId:0],
-
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Notifcation button in the Navigation bar")
                 titleDescription:LOC(@"")
                 accessibilityIdentifier:nil

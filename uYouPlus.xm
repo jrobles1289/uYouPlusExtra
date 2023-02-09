@@ -1492,12 +1492,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIView // Changes some of the texts around the YouTube App.
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-%end
-
 %hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
 - (UIColor *)_ASDisplayView {
          return [UIColor whiteColor];
@@ -1513,6 +1507,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1569,12 +1564,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIView // Changes some of the texts around the YouTube App.
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-%end
-
 %hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
 - (UIColor *)_ASDisplayView {
          return [UIColor whiteColor];
@@ -1587,6 +1576,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1639,12 +1629,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
          return [UIColor whiteColor];
 }
 - (UIColor *)sponsorBlockButton {
-         return [UIColor whiteColor];
-}
-%end
-
-%hook UIView // Changes some of the texts around the YouTube App.
-- (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
 %end
@@ -1717,12 +1701,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIView // Changes some of the texts around the YouTube App.
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-%end
-
 %hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
 - (UIColor *)_ASDisplayView {
          return [UIColor whiteColor];
@@ -1735,6 +1713,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1791,12 +1770,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIView // Changes some of the texts around the YouTube App.
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-%end
-
 %hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
 - (UIColor *)_ASDisplayView {
          return [UIColor whiteColor];
@@ -1809,6 +1782,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1865,12 +1839,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIView // Changes some of the texts around the YouTube App.
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-%end
-
 %hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
 - (UIColor *)_ASDisplayView {
          return [UIColor whiteColor];
@@ -1883,6 +1851,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -1939,12 +1908,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIView // Changes some of the texts around the YouTube App.
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-%end
-
 %hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
 - (UIColor *)_ASDisplayView {
          return [UIColor whiteColor];
@@ -1956,6 +1919,8 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end
@@ -2012,12 +1977,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 %end
 
-%hook UIView // Changes some of the texts around the YouTube App.
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-%end
-
 %hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
 - (UIColor *)_ASDisplayView {
          return [UIColor whiteColor];
@@ -2030,6 +1989,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
     if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) { self.tintColor = [UIColor whiteColor]; }
 }
 %end
 %end

@@ -347,7 +347,7 @@ extern NSBundle *uYouPlusBundle();
     [sectionItems addObject:shortsControlOverlayGroup];
     
     # pragma mark - LowContrastMode
-    YTSettingsSectionItem *lowContrastModeSection = [YTSettingsSectionItemClass itemWithTitle:LOC(@"LCM_CHOOSE_COLOR")
+    YTSettingsSectionItem *lowContrastModeSection = [YTSettingsSectionItemClass itemWithTitle:LOC(@"Low contrast text color")
         accessibilityIdentifier:nil
         detailTextBlock:^NSString *() {
             switch (colorContrastMode()) {

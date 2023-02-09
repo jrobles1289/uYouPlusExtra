@@ -41,6 +41,9 @@
 @interface boolSettingsVC : UIViewController
 @end
 
+@interface YTPlaybackButton : UIControl
+@end
+
 @interface PlayerManager : NSObject
 - (float)progress;
 @end

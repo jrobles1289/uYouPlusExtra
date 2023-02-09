@@ -160,6 +160,16 @@ extern NSBundle *uYouPlusBundle();
                     return YES;
                 }
                 settingItemId:0],
+		
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Shadow Overlay Button")
+                titleDescription:LOC(@"Hide the Shadow Overlay on the Play/Pause, Previous & Next Buttons")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideVideoPlayerShadowOverlayButtons_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideVideoPlayerShadowOverlayButtons_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
 
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"HIDE_PREVIOUS_AND_NEXT_BUTTON")
                 titleDescription:LOC(@"HIDE_PREVIOUS_AND_NEXT_BUTTON_DESC")
@@ -227,6 +237,16 @@ extern NSBundle *uYouPlusBundle();
                 switchOn:IsEnabled(@"hideHeatwaves_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideHeatwaves_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+		
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Dark Overlay Background")
+                titleDescription:LOC(@"Hide video player's dark overlay background.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideOverlayDarkBackground_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideOverlayDarkBackground_enabled"];
                     return YES;
                 }
                 settingItemId:0]

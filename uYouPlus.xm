@@ -1046,6 +1046,25 @@ void DEMC_centerRenderingView() {
 %end
 %end
 
+%group gHideOverlayDarkBackground
+%hook YTMainAppVideoPlayerOverlayView
+- (void)setBackgroundVisible:(BOOL)arg1 {
+    %orig(NO);
+}
+%end
+%end
+
+%group gHideVideoPlayerShadowOverlayButtons
+%hook YTMainAppControlsOverlayView
+- (void)layoutSubviews {
+	%orig();
+    MSHookIvar<YTTransportControlsButtonView *>(self, "_previousButtonView").backgroundColor = nil;
+    MSHookIvar<YTTransportControlsButtonView *>(self, "_nextButtonView").backgroundColor = nil;
+    	MSHookIvar<YTPlaybackButton *>(self, "_playPauseButton").backgroundColor = nil;
+}
+%end
+%end
+
 // Bring back the red progress bar
 %hook YTColdConfig
 - (BOOL)segmentablePlayerBarUpdateColors {
@@ -2159,6 +2178,12 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
     if (IsEnabled(@"replacePreviousAndNextButton_enabled")) {
        %init(gReplacePreviousAndNextButton);
+    }
+    if (IsEnabled(@"hideOverlayDarkBackground_enabled")) {
+       %init(gHideOverlayDarkBackground);
+    }
+    if (IsEnabled(@"hideVideoPlayerShadowOverlayButtons_enabled")) {
+       %init(gHideVideoPlayerShadowOverlayButtons);
     }
     if (oldDarkTheme()) {
        %init(gOldDarkTheme)

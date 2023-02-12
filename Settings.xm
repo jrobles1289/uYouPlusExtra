@@ -161,7 +161,7 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 		
-            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Shadow Overlay Button")
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Shadow Overlay Buttons")
                 titleDescription:LOC(@"Hide the Shadow Overlay on the Play/Pause, Previous & Next Buttons")
                 accessibilityIdentifier:nil
                 switchOn:IsEnabled(@"hideVideoPlayerShadowOverlayButtons_enabled")

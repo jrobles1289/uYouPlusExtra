@@ -618,7 +618,7 @@ static BOOL didFinishLaunching;
     NSMutableArray <YTIPivotBarSupportedRenderers *> *items = [renderer itemsArray];
 
     NSUInteger index = [items indexOfObjectPassingTest:^BOOL(YTIPivotBarSupportedRenderers *renderers, NSUInteger idx, BOOL *stop) {
-        return [[[renderers pivotBarItemRenderer] pivotIdentifier] isEqualToString:@"uyou"];
+        return [[[renderers pivotBarItemRenderer] pivotIdentifier] isEqualToString:@"com.miro.uyou"];
     }];
     if (index != NSNotFound) [items removeObjectAtIndex:index];
 

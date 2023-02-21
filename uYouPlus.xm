@@ -160,6 +160,9 @@ static BOOL pinkContrastMode() {
 - (void)didTapOverflowButton:(id)sender {}
 %end
 
+%subclass YTReelPlayerBottomButton : YTReelPlayerButton
+%end
+
 %hook NSLayoutConstraint
 + (instancetype)constraintWithItem:(UIView *)view1
                          attribute:(NSLayoutAttribute)attr1
@@ -170,10 +173,10 @@ static BOOL pinkContrastMode() {
                           constant:(CGFloat)c {
     if (![view1 isKindOfClass:%c(YTReelPlayerBottomButton)] &&
         ![view1.accessibilityIdentifier isEqualToString:@"com.miro.uyou"])
-    return %orig;
+        return %orig;
     if (!view2) {
         view1.hidden = YES;
-    return [NSLayoutConstraint alloc];
+        return [NSLayoutConstraint alloc];
     }
     YTReelPlayerBottomButton *uYouButton = (YTReelPlayerBottomButton *)view1;
     YTReelPlayerBottomButton *topButton = (YTReelPlayerBottomButton *)view2;
@@ -232,8 +235,8 @@ static BOOL didFinishLaunching;
 }
 - (void)appWillResignActive:(id)arg1 {
     %orig;
-        if (IsEnabled(@"flex_enabled")) {
-        [[FLEXManager sharedManager] showExplorer];
+         if (IsEnabled(@"flex_enabled")) {
+         [[FLEXManager sharedManager] showExplorer];
     }
 }
 %end

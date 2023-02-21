@@ -1060,6 +1060,8 @@ void DEMC_centerRenderingView() {
 	%orig();
     MSHookIvar<YTTransportControlsButtonView *>(self, "_previousButtonView").backgroundColor = nil;
     MSHookIvar<YTTransportControlsButtonView *>(self, "_nextButtonView").backgroundColor = nil;
+    MSHookIvar<YTTransportControlsButtonView *>(self, "_rewindButtonView").backgroundColor = nil;
+    MSHookIvar<YTTransportControlsButtonView *>(self, "_forwardButtonView").backgroundColor = nil;
     	MSHookIvar<YTPlaybackButton *>(self, "_playPauseButton").backgroundColor = nil;
 }
 %end
@@ -1504,22 +1506,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook _ASDisplayView
 - (void)didMoveToWindow {
     %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Button Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Icon & Text Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.textColor = [UIColor whiteColor];
 }
 %end
 %end
@@ -1585,22 +1591,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook _ASDisplayView
 - (void)didMoveToWindow {
     %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Button Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Icon & Text Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.textColor = [UIColor whiteColor];
 }
 %end
 %end
@@ -1666,22 +1676,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook _ASDisplayView
 - (void)didMoveToWindow {
     %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Button Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Icon & Text Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.textColor = [UIColor whiteColor];
 }
 %end
 %end
@@ -1747,22 +1761,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook _ASDisplayView
 - (void)didMoveToWindow {
     %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Button Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Icon & Text Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.textColor = [UIColor whiteColor];
 }
 %end
 %end
@@ -1828,22 +1846,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook _ASDisplayView
 - (void)didMoveToWindow {
     %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Button Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Icon & Text Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.textColor = [UIColor whiteColor];
 }
 %end
 %end
@@ -1909,22 +1931,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook _ASDisplayView
 - (void)didMoveToWindow {
     %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Button Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Icon & Text Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.textColor = [UIColor whiteColor];
 }
 %end
 %end
@@ -1990,22 +2016,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook _ASDisplayView
 - (void)didMoveToWindow {
     %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Button Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Icon & Text Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.textColor = [UIColor whiteColor];
 }
 %end
 %end
@@ -2071,22 +2101,26 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %hook _ASDisplayView
 - (void)didMoveToWindow {
     %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Button Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
+    // LCM Icon & Text Elements
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.share.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.video.add_to.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.author_container"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.comment.content.label"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.add_to.offline.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comments_entry_point_teaser"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.like.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.dislike.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.comment.reply.button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.dislike_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.backstage.comment_button"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.metadata"]) self.textColor = [UIColor whiteColor];
+    if ([self.accessibilityIdentifier isEqualToString:@"eml.overflow_button"]) self.textColor = [UIColor whiteColor];
 }
 %end
 %end

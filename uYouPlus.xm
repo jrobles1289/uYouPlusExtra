@@ -1511,7 +1511,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     // LCM Button Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.chip.cloud.view"]) self.backgroundColor = [UIColor whiteColor];
     if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
     // LCM Icon & Text Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.tintColor = [UIColor whiteColor];
@@ -1597,7 +1596,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     // LCM Button Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.chip.cloud.view"]) self.backgroundColor = [UIColor whiteColor];
     if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
     // LCM Icon & Text Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.tintColor = [UIColor whiteColor];
@@ -1683,7 +1681,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     // LCM Button Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.chip.cloud.view"]) self.backgroundColor = [UIColor whiteColor];
     if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
     // LCM Icon & Text Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.tintColor = [UIColor whiteColor];
@@ -1769,7 +1766,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     // LCM Button Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.chip.cloud.view"]) self.backgroundColor = [UIColor whiteColor];
     if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
     // LCM Icon & Text Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.tintColor = [UIColor whiteColor];
@@ -1855,7 +1851,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     // LCM Button Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.chip.cloud.view"]) self.backgroundColor = [UIColor whiteColor];
     if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
     // LCM Icon & Text Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.tintColor = [UIColor whiteColor];
@@ -1941,7 +1936,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     // LCM Button Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.chip.cloud.view"]) self.backgroundColor = [UIColor whiteColor];
     if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
     // LCM Icon & Text Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.tintColor = [UIColor whiteColor];
@@ -2027,7 +2021,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     // LCM Button Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.chip.cloud.view"]) self.backgroundColor = [UIColor whiteColor];
     if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
     // LCM Icon & Text Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.tintColor = [UIColor whiteColor];
@@ -2113,7 +2106,6 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     %orig;
     // LCM Button Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.chip.primary_tap_container"]) self.backgroundColor = [UIColor whiteColor];
-    if ([self.accessibilityIdentifier isEqualToString:@"id.ui.chip.cloud.view"]) self.backgroundColor = [UIColor whiteColor];
     if ([self.accessibilityIdentifier isEqualToString:@"eml.compact_subscribe_button"]) self.backgroundColor = [UIColor whiteColor];
     // LCM Icon & Text Elements
     if ([self.accessibilityIdentifier isEqualToString:@"id.video.like.button"]) self.tintColor = [UIColor whiteColor];

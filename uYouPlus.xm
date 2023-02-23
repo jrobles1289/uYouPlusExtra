@@ -1063,8 +1063,6 @@ void DEMC_centerRenderingView() {
 	%orig();
     MSHookIvar<YTTransportControlsButtonView *>(self, "_previousButtonView").backgroundColor = nil;
     MSHookIvar<YTTransportControlsButtonView *>(self, "_nextButtonView").backgroundColor = nil;
-    MSHookIvar<YTTransportControlsButtonView *>(self, "_rewindButtonView").backgroundColor = nil;
-    MSHookIvar<YTTransportControlsButtonView *>(self, "_forwardButtonView").backgroundColor = nil;
     	MSHookIvar<YTPlaybackButton *>(self, "_playPauseButton").backgroundColor = nil;
 }
 %end

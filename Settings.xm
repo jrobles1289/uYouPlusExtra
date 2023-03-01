@@ -468,7 +468,7 @@ extern NSBundle *uYouPlusBundle();
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"oledKeyBoard_enabled"];
                     return YES;
                 }
-                settingItemId:0]
+                settingItemId:0],
 
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Low Contrast Mode")
                 titleDescription:LOC(@"this will Low Contrast texts and buttons just like how the old YouTube Interface did. App restart is required.")

@@ -498,6 +498,7 @@ static BOOL didFinishLaunching;
 - (void)updatePrivacySectionWithEntry:(id)arg1 {} // Privacy
 - (void)updateLivechatSectionWithEntry:(id)arg1 {} // Live chat
 %end
+%end
 
 // NOYTPremium - https://github.com/PoomSmart/NoYTPremium/
 %hook YTCommerceEventGroupHandler

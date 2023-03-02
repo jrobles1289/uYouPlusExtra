@@ -588,22 +588,22 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 
-            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Notifcation button in the Navigation bar")
-                titleDescription:LOC(@"")
-                accessibilityIdentifier:nil
-                switchOn:IsEnabled(@"hideNotificationButton_enabled")
-                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
-                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideNotificationButton_enabled"];
-                    return YES;
-                }
-                settingItemId:0],
-
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide iSponsorBlock button in the Navigation bar")
                 titleDescription:LOC(@"")
                 accessibilityIdentifier:nil
                 switchOn:IsEnabled(@"hideSponsorBlockButton_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideSponsorBlockButton_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+		
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Disable Wifi Related Settings ")
+                titleDescription:LOC(@"This will disable the following sections which will be Purchases and memberships, Notifications, Connected apps, Manage all history, Privacy & Live chat.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"disableWifiRelatedSettings_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"disableWifiRelatedSettings_enabled"];
                     return YES;
                 }
                 settingItemId:0],

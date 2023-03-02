@@ -489,6 +489,16 @@ static BOOL didFinishLaunching;
 - (void)updateAutoplaySectionWithEntry:(id)arg1 {}
 %end
 
+%group gDisableWifiRelatedSettings
+%hook YTSettingsSectionItemManager
+- (void)updatePurchasesandmembershipsSectionWithEntry:(id)arg1 {} // Purchases and memberships
+- (void)updateNotificationsSectionWithEntry:(id)arg1 {} // Notifications
+- (void)updateConnectedappsSectionWithEntry:(id)arg1 {} // Connected apps
+- (void)updateManageallhistorySectionWithEntry:(id)arg1 {} // Manage all history
+- (void)updatePrivacySectionWithEntry:(id)arg1 {} // Privacy
+- (void)updateLivechatSectionWithEntry:(id)arg1 {} // Live chat
+%end
+
 // NOYTPremium - https://github.com/PoomSmart/NoYTPremium/
 %hook YTCommerceEventGroupHandler
 - (void)addEventHandlers {}
@@ -2255,6 +2265,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
     if (IsEnabled(@"hideVideoPlayerShadowOverlayButtons_enabled")) {
        %init(gHideVideoPlayerShadowOverlayButtons);
+    }
+    if (IsEnabled(@"disableWifiRelatedSettings_enabled")) {
+       %init(gDisableWifiRelatedSettings);
     }
     if (oldDarkTheme()) {
        %init(gOldDarkTheme)

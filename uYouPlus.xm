@@ -975,6 +975,13 @@ void DEMC_centerRenderingView() {
 }
 %end
 
+// Disable tap to skip
+%hook YTDoubleTapToSeekController
+- (void)enableDoubleTapToSeek:(bool) {
+    return IsEnabled(@"tapToSkip_enabled") ? NO : %orig;
+}
+%end
+
 // Disable Pinch to zoom
 %hook YTColdConfig
 - (BOOL)videoZoomFreeZoomEnabledGlobalConfig {

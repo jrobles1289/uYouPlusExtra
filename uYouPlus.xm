@@ -596,6 +596,15 @@ static BOOL didFinishLaunching;
 %end
 %end
 
+// Hide YouTube Slim Status Bar
+%group gHideYouTubeSlimStatusBar
+%hook YTSlimStatusBarView
+- (YTSlimStatusBarView *)init {
+    return NULL;
+}
+%end
+%end
+
 // Hide YouTube Heatwaves in Video Player (YouTube v17.19.2-present) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
 %group gHideHeatwaves
 %hook YTInlinePlayerBarContainerView
@@ -2295,8 +2304,8 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     if (IsEnabled(@"iPhoneLayout_enabled") && (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)) {
        %init(giPhoneLayout);
     }
-    if (IsEnabled(@"hideTabBarLabels")) {
-       %init(gHideTabBarLabels);
+    if (IsEnabled(@"hideYouTubeSlimStatusBar_enabled")) {
+       %init(gHideYouTubeSlimStatusBar);
     }
     if (IsEnabled(@"hideYouTubeLogo_enabled")) {
        %init(gHideYouTubeLogo);

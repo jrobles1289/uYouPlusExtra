@@ -588,16 +588,6 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 		
-            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Labels in the Tab Bar")
-                titleDescription:LOC(@"this will Hide all of the labels in the Tab Bar. App restart is required.")
-                accessibilityIdentifier:nil
-                switchOn:IsEnabled(@"hideTabBarLabels_enabled")
-                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
-                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideTabBarLabels_enabled"];
-                    return YES;
-                }
-                settingItemId:0],
-
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"NEW_MINIPLAYER_STYLE")
                 titleDescription:LOC(@"NEW_MINIPLAYER_STYLE_DESC")
                 accessibilityIdentifier:nil

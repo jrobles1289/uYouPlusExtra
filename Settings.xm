@@ -548,6 +548,16 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 
+	    [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide YouTube Status Bar")
+                titleDescription:LOC(@"Toggle this to hide the YouTube Status Bar at the bottom of the App.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideYouTubeSlimStatusBar_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideYouTubeSlimStatusBar_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"HIDE_CHIP_BAR")
                 titleDescription:LOC(@"HIDE_CHIP_BAR_DESC")
                 accessibilityIdentifier:nil

@@ -46,12 +46,6 @@
 </a>
 <h4 align='center'><a href='https://twitter.com/miro92'>MiRO92</a></h4>
 </td>
-<td id='poomsmart'>
-<a href='https://github.com/PoomSmart'>
-<img src='https://github.com/PoomSmart.png' width='140px;'>
-</a>
-<h4 align='center'><a href='https://twitter.com/poomsmart'>PoomSmart</a></h4>
-</td>
 <td id='level3tjg'>
 <a href='https://github.com/level3tjg'>
 <img src='https://github.com/level3tjg.png' width='140px;'>
@@ -69,6 +63,12 @@
 <img src='https://github.com/Galactic-Dev.png' width='140px;'>
 </a>
 <h4 align='center'><a href='https://twitter.com/dev_galactic'>galactic</a></h4>
+</td>
+<td id='ichitaso'>
+<a href='https://github.com/ichitaso'>
+<img src='https://github.com/ichitaso.png' width='140px;'>
+</a>
+<h4 align='center'><a href='https://twitter.com/ichitaso'>ichitaso</a></h4>
 </td>
 </tr>
   
@@ -97,21 +97,15 @@
 </a>
 <h4 align='center'><a href='https://twitter.com/therealFoxster'>Foxster</a></h4>
 </td>
-<td id='ichitaso'>
-<a href='https://github.com/ichitaso'>
-<img src='https://github.com/ichitaso.png' width='140px;'>
-</a>
-<h4 align='center'><a href='https://twitter.com/ichitaso'>ichitaso</a></h4>
-</td>
-</tr>
-  
-<tr>
 <td id='ahmed-bafkir'>
 <a href='https://github.com/AhmedBafkir'>
 <img src='https://github.com/AhmedBafkir.png' width='140px;'>
 </a>
 <h4 align='center'><a href='https://twitter.com/Peaceful_0'>Ahmed Bafkir</a></h4>
 </td>
+</tr>
+  
+<tr>
 <td id='cokepokes'>
 <a href='https://github.com/CokePokes'>
 <img src='https://github.com/CokePokes.png' width='140px;'>
@@ -221,7 +215,6 @@ See [Installation - Wiki](https://github.com/qnblackcat/uYouPlus/wiki/Installati
 
 # Support the developers
 - [**MiRO92**](https://twitter.com/miro92): https://github.com/MiRO92/uYou-for-YouTube#support
-- [**Poomsmart**](https://twitter.com/poomsmart): https://poomsmart.github.io
 - [**level3tjg**](https://twitter.com/level3tjg): https://ko-fi.com/level3tjg
 - [**BandarHL**](https://twitter.com/bandarhl): https://www.paypal.com/paypalme/BandarHL
 - [**julioverne**](https://twitter.com/ijulioverne): https://www.patreon.com/julioverne

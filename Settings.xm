@@ -72,15 +72,15 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 
-//            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Disable tap to skip")
-//                titleDescription:LOC(@"Disable tap to skip functions in the video player. App restart is required.")
-//                accessibilityIdentifier:nil
-//                switchOn:IsEnabled(@"tapToSkip_enabled")
-//                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
-//                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"tapToSkip_enabled"];
-//                    return YES;
-//                }
-//                settingItemId:0],
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Disable tap to skip")
+                titleDescription:LOC(@"Disable tap to skip functions in the video player. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"tapToSkip_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"tapToSkip_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
 
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"SNAP_TO_CHAPTER")
                 titleDescription:LOC(@"SNAP_TO_CHAPTER_DESC")
@@ -108,6 +108,16 @@ extern NSBundle *uYouPlusBundle();
                 switchOn:IsEnabled(@"ytMiniPlayer_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytMiniPlayer_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"STOCK_VOLUME_HUD")
+                titleDescription:LOC(@"STOCK_VOLUME_HUD_DESC")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"stockVolumeHUD_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"stockVolumeHUD_enabled"];
                     return YES;
                 }
                 settingItemId:0],
@@ -336,6 +346,17 @@ extern NSBundle *uYouPlusBundle();
                 switchOn:IsEnabled(@"hideBuySuperThanks_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideBuySuperThanks_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
+
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"HIDE_SUBCRIPTIONS")
+                titleDescription:LOC(@"HIDE_SUBCRIPTIONS_DESC")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"hideSubcriptions_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideSubcriptions_enabled"];
                     return YES;
                 }
                 settingItemId:0],

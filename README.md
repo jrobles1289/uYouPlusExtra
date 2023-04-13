@@ -11,17 +11,17 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/qnblackcat/uYouPlus/releases/latest"><img src="https://custom-icon-badges.demolab.com/github/v/release/qnblackcat/uYouPlus?color=brightgreen&label=Latest%20release" alt="Badge"></img></a>
-    <a href="https://github.com/qnblackcat/uYouPlus/releases/latest"><img src="https://img.shields.io/github/downloads/qnblackcat/uYouPlus/total?label=Download" alt="Badge"></img></a>
-    <a href="https://github.com/qnblackcat/uYouPlus/commit"><img src="https://custom-icon-badges.demolab.com/github/last-commit/qnblackcat/uYouPlus?logo=history&logoColor=white&label=Last commit" alt="Badge"></img></a>
-    <a href="https://github.com/qnblackcat/uYouPlus/issues"><img src="https://custom-icon-badges.demolab.com/github/issues-raw/qnblackcat/uYouPlus?logo=issue-opened&label=Issues" alt="Badge"></img></a>
+    <a href="https://github.com/arichorn/uYouPlus/releases/latest"><img src="https://custom-icon-badges.demolab.com/github/v/release/arichorn/uYouPlus?color=brightgreen&label=Latest%20release" alt="Badge"></img></a>
+    <a href="https://github.com/arichorn/uYouPlus/releases/latest"><img src="https://img.shields.io/github/downloads/arichorn/uYouPlus/total?label=Download" alt="Badge"></img></a>
+    <a href="https://github.com/arichorn/uYouPlus/commit"><img src="https://custom-icon-badges.demolab.com/github/last-commit/arichorn/uYouPlus?logo=history&logoColor=white&label=Last commit" alt="Badge"></img></a>
+    <a href="https://github.com/arichorn/uYouPlus/issues"><img src="https://custom-icon-badges.demolab.com/github/issues-raw/arichorn/uYouPlus?logo=issue-opened&label=Issues" alt="Badge"></img></a>
 
 </p>
 
 <p align="center">
-   <img src="https://img.shields.io/github/stars/qnblackcat/uYouPlus?style=social" alt="Badge"/>
-   <img src="https://img.shields.io/github/forks/qnblackcat/uYouPlus?style=social" alt="Badge"/>
-   <a href="https://github.com/qnblackcat/uYouPlus#support-the-developers"><img src="https://img.shields.io/badge/-Support-lightgrey?style=social&logo=paypal" alt="Badge"></img></a>
+   <img src="https://img.shields.io/github/stars/arichorn/uYouPlus?style=social" alt="Badge"/>
+   <img src="https://img.shields.io/github/forks/arichorn/uYouPlus?style=social" alt="Badge"/>
+   <a href="https://github.com/arichorn/uYouPlus#support-the-developers"><img src="https://img.shields.io/badge/-Support-lightgrey?style=social&logo=paypal" alt="Badge"></img></a>
 </p>
 
 # Table of Contents
@@ -46,12 +46,6 @@
 </a>
 <h4 align='center'><a href='https://twitter.com/miro92'>MiRO92</a></h4>
 </td>
-<td id='poomsmart'>
-<a href='https://github.com/PoomSmart'>
-<img src='https://github.com/PoomSmart.png' width='140px;'>
-</a>
-<h4 align='center'><a href='https://twitter.com/poomsmart'>PoomSmart</a></h4>
-</td>
 <td id='level3tjg'>
 <a href='https://github.com/level3tjg'>
 <img src='https://github.com/level3tjg.png' width='140px;'>
@@ -69,6 +63,12 @@
 <img src='https://github.com/Galactic-Dev.png' width='140px;'>
 </a>
 <h4 align='center'><a href='https://twitter.com/dev_galactic'>galactic</a></h4>
+</td>
+<td id='ahmed-bafkir'>
+<a href='https://github.com/AhmedBafkir'>
+<img src='https://github.com/AhmedBafkir.png' width='140px;'>
+</a>
+<h4 align='center'><a href='https://twitter.com/Peaceful_0'>Ahmed Bafkir</a></h4>
 </td>
 </tr>
   
@@ -106,12 +106,6 @@
 </tr>
   
 <tr>
-<td id='ahmed-bafkir'>
-<a href='https://github.com/AhmedBafkir'>
-<img src='https://github.com/AhmedBafkir.png' width='140px;'>
-</a>
-<h4 align='center'><a href='https://twitter.com/Peaceful_0'>Ahmed Bafkir</a></h4>
-</td>
 <td id='cokepokes'>
 <a href='https://github.com/CokePokes'>
 <img src='https://github.com/CokePokes.png' width='140px;'>
@@ -182,16 +176,16 @@
 
   - My official AltStore repo: https://qnblackcat.github.io/AltStore/
 
-  - [Open in AltStore (v18.08.1-2.3~1)](https://tinyurl.com/2p8jnjsh) - It will take a while to install because AltStore needs to download the IPA first.
+  - [Open in AltStore (v18.11.2-2.3~1)](https://tinyurl.com/3txask4b) - It will take a while to install because AltStore needs to download the IPA first.
 
-- Version info: _(last update: Feb 28)_
+- Version info: _(last update: April 13)_
 
 <details>
   <summary>Expand ℹ️</summary>
 
 | **Tweaks/App** | **Developer** | **Version** | **Open source** |
 | - | - | :-: | :-:  |
-| **YouTube** | Google Inc | 18.08.1 | ✖︎ |
+| **YouTube** | Google Inc | 18.11.2 | ✖︎ |
 | [uYou](https://github.com/MiRO92/uYou-for-YouTube) | [MiRO92](https://twitter.com/miro92) | 2.3~1 | ✖︎ |
 | **Open in YouTube** | [CokePokes](https://github.com/CokePokes) | 1.2 | [✔︎](https://github.com/CokePokes/YoutubeExtensions) |
 | **iSponsorBlock** | [Galactic-Dev](https://github.com/Galactic-Dev) | 1.0-15 | [✔︎](https://github.com/Galactic-Dev/iSponsorBlock) |

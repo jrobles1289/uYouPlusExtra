@@ -182,7 +182,7 @@ extern NSBundle *uYouPlusBundle();
                 settingItemId:0],
 		
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide Shadow Overlay Buttons")
-                titleDescription:LOC(@"Hide the Shadow Overlay on the Play/Pause, Previous & Next Buttons")
+                titleDescription:LOC(@"Hide the Shadow Overlay on the Play/Pause, Previous, Next, Forward & Rewind Buttons.")
                 accessibilityIdentifier:nil
                 switchOn:IsEnabled(@"hideVideoPlayerShadowOverlayButtons_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
@@ -405,6 +405,8 @@ extern NSBundle *uYouPlusBundle();
                 case 6:
                     return LOC(@"Purple UI");
                 case 7:
+                    return LOC(@"Violet UI");
+                case 8:
                     return LOC(@"Pink UI");
                 case 0:
                 default:
@@ -448,8 +450,13 @@ extern NSBundle *uYouPlusBundle();
                     [settingsViewController reloadData];
                     return YES;
                 }],
-                [YTSettingsSectionItemClass checkmarkItemWithTitle:LOC(@"Pink UI") titleDescription:nil selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
+                [YTSettingsSectionItemClass checkmarkItemWithTitle:LOC(@"Violet UI") titleDescription:nil selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
                     [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"lcmColor"];
+                    [settingsViewController reloadData];
+                    return YES;
+                }],
+                [YTSettingsSectionItemClass checkmarkItemWithTitle:LOC(@"Pink UI") titleDescription:nil selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
+                    [[NSUserDefaults standardUserDefaults] setInteger:8 forKey:@"lcmColor"];
                     [settingsViewController reloadData];
                     return YES;
                 }]
@@ -630,7 +637,7 @@ extern NSBundle *uYouPlusBundle();
                 settingItemId:0],
 		
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Disable Wifi Related Settings ")
-                titleDescription:LOC(@"This will disable the following sections which will be Purchases and memberships, Notifications, Connected apps, Manage all history, Privacy & Live chat.")
+                titleDescription:LOC(@"This will disable the following sections which will be Autoplay, Purchases and memberships, Notifications, Connected apps, Manage all history, Privacy & Live chat.")
                 accessibilityIdentifier:nil
                 switchOn:IsEnabled(@"disableWifiRelatedSettings_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
@@ -647,7 +654,17 @@ extern NSBundle *uYouPlusBundle();
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"reExplore_enabled"];
                     return YES;
                 }
-                settingItemId:0], 
+                settingItemId:0],
+
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Enable YTSpeed")
+                titleDescription:LOC(@"Enable YTSpeed to have more Playback Speed Options. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"ytSpeed_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"ytSpeed_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
 		
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"ENABLE_FLEX")
                 titleDescription:LOC(@"ENABLE_FLEX_DESC")

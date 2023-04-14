@@ -1920,7 +1920,7 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 %end
 %end
 
-group gVioletContrastMode // Violet Contrast Mode
+%group gVioletContrastMode // Violet Contrast Mode
 %hook UIColor
 + (UIColor *)whiteColor {
          return [UIColor colorWithRed: 0.50 green: 0.00 blue: 1.00 alpha: 1.00];

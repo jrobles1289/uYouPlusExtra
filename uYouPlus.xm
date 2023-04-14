@@ -2225,6 +2225,9 @@ group gVioletContrastMode // Violet Contrast Mode
     if (IsEnabled(@"hideChipBar_enabled")) {
         %init(gHideChipBar);
     }
+    if (IsEnabled(@"ytSpeed_enabled")) {
+        %init(gYTSpeed);
+    }
     if (IsEnabled(@"iPhoneLayout_enabled") && (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)) {
         %init(giPhoneLayout);
     }  

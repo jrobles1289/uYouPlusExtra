@@ -449,30 +449,6 @@ static BOOL didFinishLaunching;
 }
 %end
 
-// Hide search ads by @PoomSmart - https://github.com/PoomSmart/YouTube-X
-%hook YTIElementRenderer
-- (NSData *)elementData {
-    if (self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData)
-        return nil;
-    return %orig;
-}
-%end
-
-%hook YTSectionListViewController
-
-- (void)loadWithModel:(YTISectionListRenderer *)model {
-    NSMutableArray <YTISectionListSupportedRenderers *> *contentsArray = model.contentsArray;
-    NSIndexSet *removeIndexes = [contentsArray indexesOfObjectsPassingTest:^BOOL(YTISectionListSupportedRenderers *renderers, NSUInteger idx, BOOL *stop) {
-        YTIItemSectionRenderer *sectionRenderer = renderers.itemSectionRenderer;
-        YTIItemSectionSupportedRenderers *firstObject = [sectionRenderer.contentsArray firstObject];
-        return firstObject.hasPromotedVideoRenderer || firstObject.hasCompactPromotedVideoRenderer || firstObject.hasPromotedVideoInlineMutedRenderer;
-    }];
-    [contentsArray removeObjectsAtIndexes:removeIndexes];
-    %orig;
-}
-
-%end
-
 // YTClassicVideoQuality: https://github.com/PoomSmart/YTClassicVideoQuality
 %hook YTVideoQualitySwitchControllerFactory
 - (id)videoQualitySwitchControllerWithParentResponder:(id)responder {
@@ -486,14 +462,6 @@ static BOOL didFinishLaunching;
 - (BOOL)respectDeviceCaptionSetting { return NO; } // YouRememberCaption: https://poomsmart.github.io/repo/depictions/youremembercaption.html
 - (BOOL)isLandscapeEngagementPanelSwipeRightToDismissEnabled { return YES; } // Swipe right to dismiss the right panel in fullscreen mode
 - (BOOL)mainAppCoreClientIosTransientVisualGlitchInPivotBarFix { return NO; } // Fix uYou's label glitching - qnblackcat/uYouPlus#552
-%end
-
-// Hide Upgrade Dialog - @arichorn
-%hook YTGlobalConfig
-- (BOOL)shouldBlockUpgradeDialog { return YES;}
-- (BOOL)shouldForceUpgrade { return NO;}
-- (BOOL)shouldShowUpgrade { return NO;}
-- (BOOL)shouldShowUpgradeDialog { return NO;}
 %end
 
 // Disable Autoplay Settings Section - @qnblackcat
@@ -1120,34 +1088,6 @@ void DEMC_centerRenderingView() {
 %hook YTColdConfig
 - (BOOL)isLandscapeEngagementPanelEnabled {
     return IsEnabled(@"hideRightPanel_enabled") ? NO : %orig;
-}
-%end
-
-// Shorts Controls Overlay Options
-%hook YTReelWatchPlaybackOverlayView
-- (void)setNativePivotButton:(id)arg1 {
-    if (IsEnabled(@"hideShortsChannelAvatar_enabled")) {}
-    else { return %orig; }
-}
-- (void)setReelLikeButton:(id)arg1 {
-    if (IsEnabled(@"hideShortsLikeButton_enabled")) {}
-    else { return %orig; }
-}
-- (void)setReelDislikeButton:(id)arg1 {
-    if (IsEnabled(@"hideShortsDislikeButton_enabled")) {}
-    else { return %orig; }
-}
-- (void)setViewCommentButton:(id)arg1 {
-    if (IsEnabled(@"hideShortsCommentButton_enabled")) {}
-    else { return %orig; }
-}
-- (void)setRemixButton:(id)arg1 {
-    if (IsEnabled(@"hideShortsRemixButton_enabled")) {}
-    else { return %orig; }
-}
-- (void)setShareButton:(id)arg1 {
-    if (IsEnabled(@"hideShortsShareButton_enabled")) {}
-    else { return %orig; }
 }
 %end
 

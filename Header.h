@@ -1,5 +1,6 @@
 #import "Tweaks/YouTubeHeader/YTAppDelegate.h"
 #import "Tweaks/YouTubeHeader/YTPlayerViewController.h"
+#import "Tweaks/YouTubeHeader/YTQTMButton.h"
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
@@ -15,6 +16,7 @@
 #import "Tweaks/YouTubeHeader/YTIPivotBarSupportedRenderers.h"
 #import "Tweaks/YouTubeHeader/YTIPivotBarRenderer.h"
 #import "Tweaks/YouTubeHeader/YTIBrowseRequest.h"
+#import "Tweaks/YouTubeHeader/YTColorPalette.h"
 #import "Tweaks/YouTubeHeader/YTCommonColorPalette.h"
 #import "Tweaks/YouTubeHeader/ASCollectionView.h"
 #import "Tweaks/YouTubeHeader/YTPlayerOverlay.h"
@@ -24,6 +26,7 @@
 #import "Tweaks/YouTubeHeader/YTReelPlayerViewController.h"
 #import "Tweaks/YouTubeHeader/YTAlertView.h"
 #import "Tweaks/YouTubeHeader/YTISectionListRenderer.h"
+#import "Tweaks/YouTubeHeader/YTPivotBarItemView.h"
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
 #define YT_BUNDLE_ID @"com.google.ios.youtube"
@@ -64,6 +67,9 @@
 @interface boolSettingsVC : UIViewController
 @end
 
+@interface YTPlaybackButton : UIControl
+@end
+
 @interface PlayerManager : NSObject
 - (float)progress;
 @end
@@ -74,6 +80,12 @@
 
 @interface YTPlaylistHeaderViewController: UIViewController
 @property UIButton *downloadsButton;
+@end
+
+// Buttons
+@interface YTRightNavigationButtons : UIView
+@property YTQTMButton *notificationButton;
+@property YTQTMButton *sponsorBlockButton;
 @end
 
 // DontEatMyContent

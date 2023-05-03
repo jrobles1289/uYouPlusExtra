@@ -41,4 +41,4 @@
 	url = https://github.com/Muirey03/RemoteLog
 [submodule "Tweaks/YouMute"]
 	path = Tweaks/YouMute
-	url = https://github.com/PoomSmart/YouMute
+	url = https://github.com/PoomSmart/YouMute.git

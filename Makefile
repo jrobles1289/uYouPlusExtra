@@ -1,8 +1,8 @@
 export TARGET = iphone:clang:15.5:14.0
 export ARCHS = arm64
 
-export libcolorpicker_ARCHS = arm64
-export libFLEX_ARCHS = arm64
+export libcolorpicker_ARCHS = arm64 arm64e
+export libFLEX_ARCHS = arm64 arm64e
 export Alderis_XCODEOPTS = LD_DYLIB_INSTALL_NAME=@rpath/Alderis.framework/Alderis
 export Alderis_XCODEFLAGS = DYLIB_INSTALL_NAME_BASE=/Library/Frameworks BUILD_LIBRARY_FOR_DISTRIBUTION=YES ARCHS="$(ARCHS)" -quiet
 export libcolorpicker_LDFLAGS = -F$(TARGET_PRIVATE_FRAMEWORK_PATH) -install_name @rpath/libcolorpicker.dylib

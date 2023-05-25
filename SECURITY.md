@@ -1,4 +1,9 @@
-# Security Policy
+# Policy
+If I verify a reported security vulnerability, my policy is:
+
+- I will patch the current release branch, as well as the immediate prior minor release branch.
+
+- After patching the release branches, I will immediately issue new security fix releases for each patched release branch along with LTS release branches.
 
 ## Supported Versions
 

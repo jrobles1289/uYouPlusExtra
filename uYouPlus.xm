@@ -281,7 +281,7 @@ static BOOL oldDarkTheme() {
 
 // New YouTube Version
 %hook YTVersionUtils
-+ (NSString *)appVersion { return @"18.20.3"; }
++ (NSString *)appVersion { return @"18.21.3"; }
 %end
 
 // A/B flags

@@ -66,13 +66,13 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTCollectionView  // Changes Live Chat Texts
+%hook YTCollectionView  // Changes Live Chat Texts Color
  - (void)setTintColor:(UIColor *)color { 
      return isDarkMode() ? %orig([UIColor whiteColor]) : %orig;
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
+%hook YTQTMButton // Changes Tweak Icons/Texts/Images Color
 - (UIColor *)whiteColor {
          return [UIColor whiteColor];
 }
@@ -84,11 +84,15 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
-- (UIColor *)ELMAnimatedVectorView {
+%end
+
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
          return [UIColor whiteColor];
 }
 %end

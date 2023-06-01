@@ -72,15 +72,11 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images Color
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
@@ -132,30 +128,24 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView
-- (void)didMoveToWindow {
-    %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
-	if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
 }
 %end
 %end
@@ -194,30 +184,24 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView
-- (void)didMoveToWindow {
-    %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
 }
 %end
 %end
@@ -256,30 +240,24 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView
-- (void)didMoveToWindow {
-    %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
 }
 %end
 %end
@@ -318,30 +296,24 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView
-- (void)didMoveToWindow {
-    %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
 }
 %end
 %end
@@ -380,30 +352,24 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView
-- (void)didMoveToWindow {
-    %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
 }
 %end
 %end
@@ -442,30 +408,24 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView
-- (void)didMoveToWindow {
-    %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
 }
 %end
 %end
@@ -504,30 +464,24 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView
-- (void)didMoveToWindow {
-    %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
 }
 %end
 %end
@@ -566,30 +520,24 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook YTQTMButton // Changes Tweak Icons/Texts/Images
-- (UIColor *)whiteColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)tintColor {
-         return [UIColor whiteColor];
-}
-- (UIColor *)overflowButton {
-         return [UIColor whiteColor];
+%hook UILabel // Changes App Labels Color
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor]; //change color to desired value
+    %orig(textColor);
 }
 %end
 
-%hook ELMAnimatedVectorView // Changes the Like Button Animation Color. 
-- (UIColor *)_ASDisplayView {
-         return [UIColor whiteColor];
+%hook VideoTitleLabel // Changes Video Title Color
+- (void)setTextColor:(UIColor *)textColor {
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView
-- (void)didMoveToWindow {
-    %orig;
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.comment_composer"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"id.elements.components.video_list_entry"]) { self.tintColor = [UIColor whiteColor]; }
-    if ([self.accessibilityIdentifier isEqualToString:@"eml.live_chat_text_message"]) { self.tintColor = [UIColor whiteColor]; }
+%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+- (UIColor *)textColor {
+         return [UIColor whiteColor];
 }
 %end
 %end

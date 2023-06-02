@@ -72,6 +72,17 @@ static BOOL pinkContrastMode() {
 }
 %end
 
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
+}
+%end
+
 %hook UIButton 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
     %log;
@@ -149,6 +160,17 @@ static BOOL pinkContrastMode() {
 %hook YTCollectionView
  - (void)setTintColor:(UIColor *)color { 
      return isDarkMode() ? %orig([UIColor whiteColor]) : %orig;
+}
+%end
+
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
 }
 %end
 
@@ -232,6 +254,17 @@ static BOOL pinkContrastMode() {
 }
 %end
 
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
+}
+%end
+
 %hook UIButton 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
     %log;
@@ -306,28 +339,63 @@ static BOOL pinkContrastMode() {
  }
 %end
 
-%hook YTCollectionView  // Changes Live Chat Texts
-- (void)setTintColor:(UIColor *)color { 
-    return isDarkMode() ? %orig([UIColor whiteColor]) : %orig;
+%hook YTCollectionView
+ - (void)setTintColor:(UIColor *)color { 
+     return isDarkMode() ? %orig([UIColor whiteColor]) : %orig;
 }
 %end
 
-%hook UILabel // Changes App Labels Color
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
+}
+%end
+
+%hook UIButton 
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
+    %log;
+    color = [UIColor whiteColor];
+    %orig(color, state);
+}
+%end
+
+%hook UILabel
 - (void)setTextColor:(UIColor *)textColor {
     %log;
-    textColor = [UIColor whiteColor]; //change color to desired value
+    textColor = [UIColor whiteColor];
     %orig(textColor);
 }
 %end
 
-%hook VideoTitleLabel // Changes Video Title Color
+%hook UITextField
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
+}
+%end
+
+%hook UITextView
+- (void)setTextColor:(UIColor *)textColor {
+    %log;
+    textColor = [UIColor whiteColor];
+    %orig(textColor);
+}
+%end
+
+%hook VideoTitleLabel
 - (void)setTextColor:(UIColor *)textColor {
     textColor = [UIColor whiteColor];
     %orig(textColor);
 }
 %end
 
-%hook _ASDisplayView // Changes the Text Labels Color (YouTube v17.xx.x-present)
+%hook _ASDisplayView
 - (UIColor *)textColor {
          return [UIColor whiteColor];
 }
@@ -365,6 +433,17 @@ static BOOL pinkContrastMode() {
 %hook YTCollectionView
  - (void)setTintColor:(UIColor *)color { 
      return isDarkMode() ? %orig([UIColor whiteColor]) : %orig;
+}
+%end
+
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
 }
 %end
 
@@ -448,6 +527,17 @@ static BOOL pinkContrastMode() {
 }
 %end
 
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
+}
+%end
+
 %hook UIButton 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
     %log;
@@ -525,6 +615,17 @@ static BOOL pinkContrastMode() {
 %hook YTCollectionView
  - (void)setTintColor:(UIColor *)color { 
      return isDarkMode() ? %orig([UIColor whiteColor]) : %orig;
+}
+%end
+
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
 }
 %end
 
@@ -608,7 +709,18 @@ static BOOL pinkContrastMode() {
 }
 %end
 
-%hook UIButton 
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
+}
+%end
+
+%hook UIButton
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
     %log;
     color = [UIColor whiteColor];
@@ -685,6 +797,17 @@ static BOOL pinkContrastMode() {
 %hook YTCollectionView
  - (void)setTintColor:(UIColor *)color { 
      return isDarkMode() ? %orig([UIColor whiteColor]) : %orig;
+}
+%end
+
+%hook ASTextNode
+- (NSAttributedString *)attributedString {
+    NSAttributedString *originalAttributedString = %orig;
+
+    NSMutableAttributedString *newAttributedString = [originalAttributedString mutableCopy];
+    [newAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, newAttributedString.length)];
+
+    return newAttributedString;
 }
 %end
 

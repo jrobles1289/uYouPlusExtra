@@ -279,11 +279,6 @@ static BOOL oldDarkTheme() {
 }
 %end
 
-// New YouTube Version
-%hook YTVersionUtils
-+ (NSString *)appVersion { return @"18.21.3"; }
-%end
-
 // A/B flags
 %hook YTColdConfig 
 - (BOOL)respectDeviceCaptionSetting { return NO; } // YouRememberCaption: https://poomsmart.github.io/repo/depictions/youremembercaption.html
@@ -345,6 +340,12 @@ static BOOL oldDarkTheme() {
 - (void)updatePrivacySectionWithEntry:(id)arg1 {} // Privacy
 - (void)updateHistoryAndPrivacySectionWithEntry:(id)arg1 {} // History & Privacy
 - (void)updateLiveChatSectionWithEntry:(id)arg1 {} // Live chat
+%end
+%end
+
+%group gFixDarkMode
+%hook YTVersionUtils
++ (NSString *)appVersion { return @"18.14.1"; }
 %end
 %end
 
@@ -1424,6 +1425,9 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
     }
     if (IsEnabled(@"hideHeatwaves_enabled")) {
         %init(gHideHeatwaves);
+    }
+    if (IsEnabled(@"fixDarkMode_enabled")) {
+        %init(gFixDarkMode);
     }
     if (IsEnabled(@"ytNoModernUI_enabled")) {
         %init(gYTNoModernUI);

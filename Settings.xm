@@ -475,6 +475,16 @@ extern NSBundle *uYouPlusBundle();
                 }
                 settingItemId:0],
 
+            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Fix OLED/OLD Dark Theme ")
+                titleDescription:LOC(@"Fix OLED/OLD Dark Mode not working on YouTube Versions 18.15.1+. App restart is required.")
+                accessibilityIdentifier:nil
+                switchOn:IsEnabled(@"fixDarkMode_enabled")
+                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
+                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"fixDarkMode_enabled"];
+                    return YES;
+                }
+                settingItemId:0],
+
             [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Remove Modern Interface (YTNoModernUI)")
                 titleDescription:LOC(@"Toggle this on to remove any Modern Element added to YouTube. Removes Ambient Mode, Rounded Design & More. App restart is required.")
                 accessibilityIdentifier:nil
@@ -521,16 +531,6 @@ extern NSBundle *uYouPlusBundle();
                 switchOn:IsEnabled(@"iPhoneLayout_enabled")
                 switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
                     [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"iPhoneLayout_enabled"];
-                    return YES;
-                }
-                settingItemId:0],
-		
-            [YTSettingsSectionItemClass switchItemWithTitle:LOC(@"Hide uYou Tab")
-                titleDescription:LOC(@"Toggle this on to remove the uYou Tab added by MiRO's YouTube Tweak. App restart is required.")
-                accessibilityIdentifier:nil
-                switchOn:IsEnabled(@"hideuYouTab_enabled")
-                switchBlock:^BOOL (YTSettingsCell *cell, BOOL enabled) {
-                    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"hideuYouTab_enabled"];
                     return YES;
                 }
                 settingItemId:0],

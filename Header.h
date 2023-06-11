@@ -31,8 +31,6 @@
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
 #define YT_BUNDLE_ID @"com.google.ios.youtube"
 #define YT_NAME @"YouTube"
-#define DEMC_UNSUPPORTED_DEVICES @[@"iPhone14,3", @"iPhone14,6", @"iPhone14,8"] // DontEatMycontent
-#define DEMC_THRESHOLD 1.99 // DontEatMycontent
 #define DEFAULT_RATE 2.0f // YTSpeed
 
 // IAmYouTube
@@ -67,9 +65,6 @@
 @interface boolSettingsVC : UIViewController
 @end
 
-@interface YTPlaybackButton : UIControl
-@end
-
 @interface PlayerManager : NSObject
 - (float)progress;
 @end
@@ -86,36 +81,6 @@
 @interface YTRightNavigationButtons : UIView
 @property YTQTMButton *notificationButton;
 @property YTQTMButton *sponsorBlockButton;
-@end
-
-// DontEatMyContent
-BOOL DEMC_deviceIsSupported();
-void DEMC_activate();
-void DEMC_deactivate(); 
-void DEMC_centerRenderingView();
-
-@interface YTPlayerView : UIView
-- (id)renderingView;
-@end
-
-@interface YTMainAppVideoPlayerOverlayViewController : UIViewController
-- (BOOL)isFullscreen;
-@end
-
-@interface HAMSBDLSampleBufferRenderingView : UIView
-@end
-
-@interface MLHAMSBDLSampleBufferRenderingView : HAMSBDLSampleBufferRenderingView
-@end
-
-@interface YTMainAppEngagementPanelViewController : UIViewController
-- (BOOL)isLandscapeEngagementPanel;
-- (BOOL)isPeekingSupported;
-@end
-
-@interface YTEngagementPanelContainerViewController : UIViewController
-- (BOOL)isLandscapeEngagementPanel;
-- (BOOL)isPeekingSupported;
 @end
 
 // YTSpeed
@@ -162,7 +127,6 @@ void DEMC_centerRenderingView();
 @property(nonatomic, strong) id downloadsVC;
 @end
 
-
 // BigYTMiniPlayer
 @interface YTMainAppVideoPlayerOverlayView : UIView
 - (UIViewController *)_viewControllerForAncestor;
@@ -174,9 +138,6 @@ void DEMC_centerRenderingView();
 // YTAutoFullScreen
 @interface YTPlayerViewController (YTAFS)
 - (void)autoFullscreen;
-// DontEatMycontent
-- (id)activeVideoPlayerOverlay; 
-- (id)playerView;
 // YTSpeed
 @property id activeVideo;
 @property float playbackRate;

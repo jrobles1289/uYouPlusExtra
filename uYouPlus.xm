@@ -929,17 +929,8 @@ BOOL areColorsEqual(UIColor *color1, UIColor *color2, CGFloat tolerance) {
 }
 %end
 
-%hook YTELMView
-- (UIColor *)backgroundColor {
-         return [UIColor blackColor];
-}
-%end
-
 %hook YTHeaderViewController
 - (UIColor *)backgroundColor:(NSInteger)pageStyle {
-    return pageStyle == 1 ? [UIColor blackColor] : %orig;
-}
-- (UIColor *)barTintColor:(NSInteger)pageStyle {
     return pageStyle == 1 ? [UIColor blackColor] : %orig;
 }
 %end

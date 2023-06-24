@@ -1337,7 +1337,10 @@ BOOL areColorsEqual(UIColor *color1, UIColor *color2, CGFloat tolerance) {
 
     // Disable updates
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"automaticallyCheckForUpdates"];
- 
+
+    // Don't show uYou's welcome screen cuz it's currently broken (fix #1147)
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showedWelcomeVC"];
+
     // Disable broken options of uYou
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"disableAgeRestriction"]; // Disable Age Restriction Disabled - Reason is the same as above.
     

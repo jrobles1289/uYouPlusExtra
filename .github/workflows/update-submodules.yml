@@ -11,6 +11,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Git
+        env:
+          GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
+          GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
+        run: |
+          git config --global user.email "${GIT_USER_EMAIL}"
+          git config --global user.name "${GIT_USER_NAME}"
+
       - name: Update submodules
         run: |
           git submodule update --remote

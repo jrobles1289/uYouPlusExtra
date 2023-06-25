@@ -689,6 +689,7 @@ static BOOL version125() {
 %hook YTVersionUtils // 50
 + (NSString *)appVersion { return @"17.25.1"; }
 %end
+%end
 
 %group gVersion51
 %hook YTVersionUtils // 51

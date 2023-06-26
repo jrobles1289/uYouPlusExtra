@@ -315,6 +315,13 @@ static BOOL oldDarkTheme() {
 - (void)showSurveyWithRenderer:(id)arg1 surveyParentResponder:(id)arg2 {}
 %end
 
+%hook YTIOfflineabilityFormat
+%new
+- (int)availabilityType { return 1; }
+%new
+- (BOOL)savedSettingShouldExpire { return NO; }
+%end
+
 // YTNoPaidPromo: https://github.com/PoomSmart/YTNoPaidPromo
 %hook YTMainAppVideoPlayerOverlayViewController
 - (void)setPaidContentWithPlayerData:(id)data {
@@ -337,18 +344,13 @@ static BOOL oldDarkTheme() {
 // Disable Wifi Related Settings - @arichorn
 %group gDisableWifiRelatedSettings
 %hook YTSettingsSectionItemManager
+- (void)updatePremiumEarlyAccessSectionWithEntry:(id)arg1 {} // Try New Features
 - (void)updateAutoplaySectionWithEntry:(id)arg1 {} // Autoplay
 - (void)updateNotificationSectionWithEntry:(id)arg1 {} // Notifications
 - (void)updateHistorySectionWithEntry:(id)arg1 {} // History
 - (void)updatePrivacySectionWithEntry:(id)arg1 {} // Privacy
 - (void)updateHistoryAndPrivacySectionWithEntry:(id)arg1 {} // History & Privacy
 - (void)updateLiveChatSectionWithEntry:(id)arg1 {} // Live chat
-%end
-%end
-
-%group gFixDarkMode
-%hook YTVersionUtils
-+ (NSString *)appVersion { return @"18.14.1"; }
 %end
 %end
 
@@ -459,21 +461,6 @@ static BOOL oldDarkTheme() {
 %group gHideHeatwaves
 %hook YTInlinePlayerBarContainerView
 - (BOOL)canShowHeatwave { return NO; }
-%end
-%end
-
-%group gHideuYouTab
-%hook YTPivotBarView
-- (void)setRenderer:(YTIPivotBarRenderer *)renderer {
-    NSMutableArray <YTIPivotBarSupportedRenderers *> *items = [renderer itemsArray];
-
-    NSUInteger index = [items indexOfObjectPassingTest:^BOOL(YTIPivotBarSupportedRenderers *renderers, NSUInteger idx, BOOL *stop) {
-        return [[[renderers pivotBarItemRenderer] pivotIdentifier] isEqualToString:@"com.miro.uyou"];
-    }];
-    if (index != NSNotFound) [items removeObjectAtIndex:index];
-
-    %orig;
-}
 %end
 %end
 
@@ -678,7 +665,7 @@ static void replaceTab(YTIGuideResponse *response) {
 - (BOOL)removePreviousPaddleForSingletonVideos { return YES; }
 %end
 
-// %hook YTMainAppControlsOverlayView // this is only used for v16.42.3 (incompatible with YouTube v17.22.3-newer)
+// %hook YTMainAppControlsOverlayView // this is only used for v16.42.3 (incompatible with YouTube v17.xx.x-newer)
 // - (void)layoutSubviews { // hide Next & Previous legacy buttons
 //     %orig;
 //     if (IsEnabled(@"hidePreviousAndNextButton_enabled")) { 
@@ -907,17 +894,15 @@ BOOL areColorsEqual(UIColor *color1, UIColor *color2, CGFloat tolerance) {
 }
 
 %hook UIView
-
 - (void)setBackgroundColor:(UIColor *)color {
     UIColor *targetColor = [UIColor colorWithRed:0.0588235 green:0.0588235 blue:0.0588235 alpha:1];
-    CGFloat tolerance = 0.01; // Adjust this value as needed
+    CGFloat tolerance = 0.01;
 
     if (areColorsEqual(color, targetColor, tolerance)) {
         color = [UIColor blackColor];
     }
     %orig(color);
 }
-
 %end
 
 %hook YTCollectionViewController
@@ -1322,14 +1307,8 @@ BOOL areColorsEqual(UIColor *color1, UIColor *color2, CGFloat tolerance) {
     if (IsEnabled(@"hideYouTubeLogo_enabled")) {
         %init(gHideYouTubeLogo);
     }
-    if (IsEnabled(@"hideuYouTab_enabled")) {
-        %init(gHideuYouTab);
-    }
     if (IsEnabled(@"hideHeatwaves_enabled")) {
         %init(gHideHeatwaves);
-    }
-    if (IsEnabled(@"fixDarkMode_enabled")) {
-        %init(gFixDarkMode);
     }
     if (IsEnabled(@"ytNoModernUI_enabled")) {
         %init(gYTNoModernUI);

@@ -700,16 +700,18 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 
 // Bring back the Red Progress Bar and Gray Buffer Progress
+%group gRedProgressBar
 %hook YTInlinePlayerBarContainerView
 - (id)quietProgressBarColor {
-    return IsEnabled(@"redProgressBar_enabled") ? [UIColor redColor] : %orig;
+    [UIColor redColor];
 }
 %end
 
 %hook YTSegmentableInlinePlayerBarView
 - (void)setBufferedProgressBarColor:(id)arg1 {
-    return IsEnabled(@"redProgressBar_enabled") ? [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:0.90] : %orig;
+    [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:0.90];
 }
+%end
 %end
 
 // Disable the right panel in fullscreen mode
@@ -1293,6 +1295,9 @@ BOOL areColorsEqual(UIColor *color1, UIColor *color2, CGFloat tolerance) {
     }
     if (IsEnabled(@"disableHints_enabled")) {
         %init(gDisableHints);
+    }
+    if (IsEnabled(@"redProgressBar_enabled")) {
+        %init(gRedProgressBar);
     }
     if (IsEnabled(@"stickNavigationBar_enabled")) {
         %init(gStickNavigationBar);

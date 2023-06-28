@@ -448,15 +448,6 @@ static BOOL oldDarkTheme() {
 %end
 %end
 
-// Hide YouTube Slim Status Bar
-%group gHideYouTubeSlimStatusBar
-%hook YTSlimStatusBarView
-- (YTSlimStatusBarView *)init {
-    return NULL;
-}
-%end
-%end
-
 // Hide YouTube Heatwaves in Video Player (YouTube v17.19.2-latest) - @level3tjg - https://www.reddit.com/r/jailbreak/comments/v29yvk/
 %group gHideHeatwaves
 %hook YTInlinePlayerBarContainerView
@@ -708,10 +699,16 @@ static void replaceTab(YTIGuideResponse *response) {
 %end
 %end
 
-// Bring back the red progress bar
+// Bring back the Red Progress Bar and Gray Buffer Progress
 %hook YTInlinePlayerBarContainerView
 - (id)quietProgressBarColor {
     return IsEnabled(@"redProgressBar_enabled") ? [UIColor redColor] : %orig;
+}
+%end
+
+%hook YTSegmentableInlinePlayerBarView
+- (void)setBufferedProgressBarColor:(id)arg1 {
+    return IsEnabled(@"redProgressBar_enabled") ? [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:0.90] : %orig;
 }
 %end
 
@@ -1311,9 +1308,6 @@ BOOL areColorsEqual(UIColor *color1, UIColor *color2, CGFloat tolerance) {
     }  
     if (IsEnabled(@"stockVolumeHUD_enabled")) {
         %init(gStockVolumeHUD);
-    }
-    if (IsEnabled(@"hideYouTubeSlimStatusBar_enabled")) {
-        %init(gHideYouTubeSlimStatusBar);
     }
     if (IsEnabled(@"hideYouTubeLogo_enabled")) {
         %init(gHideYouTubeLogo);

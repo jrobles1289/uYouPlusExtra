@@ -703,13 +703,13 @@ static void replaceTab(YTIGuideResponse *response) {
 %group gRedProgressBar
 %hook YTInlinePlayerBarContainerView
 - (id)quietProgressBarColor {
-    [UIColor redColor];
+    return [UIColor redColor];
 }
 %end
 
 %hook YTSegmentableInlinePlayerBarView
 - (void)setBufferedProgressBarColor:(id)arg1 {
-    return [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:0.90];
+     [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:0.90];
 }
 %end
 %end

@@ -678,19 +678,20 @@ static void replaceTab(YTIGuideResponse *response) {
 // %end
 %end
 
-// Replace Next & Previous button with Fast forward & Rewind button
-%group gReplacePreviousAndNextButton
-%hook YTColdConfig
-- (BOOL)replaceNextPaddleWithFastForwardButtonForSingletonVods { return YES; }
-- (BOOL)replacePreviousPaddleWithRewindButtonForSingletonVods { return YES; }
-%end
-%end
-
+// Hide Overlay Dark Background
 %group gHideOverlayDarkBackground
 %hook YTMainAppVideoPlayerOverlayView
 - (void)setBackgroundVisible:(BOOL)arg1 {
     %orig(NO);
 }
+%end
+%end
+
+// Replace Next & Previous button with Fast forward & Rewind button
+%group gReplacePreviousAndNextButton
+%hook YTColdConfig
+- (BOOL)replaceNextPaddleWithFastForwardButtonForSingletonVods { return YES; }
+- (BOOL)replacePreviousPaddleWithRewindButtonForSingletonVods { return YES; }
 %end
 %end
 
@@ -1194,6 +1195,13 @@ BOOL areColorsEqual(UIColor *color1, UIColor *color2, CGFloat tolerance) {
 %end
 %end
 
+// Stick Navigation bar
+%group gStickNavigationBar
+%hook YTHeaderView
+- (BOOL)stickyNavHeaderEnabled { return YES; } 
+%end
+%end
+
 // Hide the Chip Bar (Upper Bar) in Home feed
 %group gHideChipBar
 %hook YTMySubsFilterHeaderView 
@@ -1288,6 +1296,9 @@ BOOL areColorsEqual(UIColor *color1, UIColor *color2, CGFloat tolerance) {
     }
     if (IsEnabled(@"disableHints_enabled")) {
         %init(gDisableHints);
+    }
+    if (IsEnabled(@"stickNavigationBar_enabled")) {
+        %init(gStickNavigationBar);
     }
     if (IsEnabled(@"hideChipBar_enabled")) {
         %init(gHideChipBar);

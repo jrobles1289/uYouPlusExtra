@@ -147,6 +147,13 @@ static BOOL oldDarkTheme() {
 }
 %end
 
+// Remove “Play next in queue” from the menu (@PoomSmart) - qnblackcat/uYouPlus#1138
+%hook YTMenuItemVisibilityHandler
+- (BOOL)shouldShowServiceItemRenderer:(YTIMenuConditionalServiceItemRenderer *)renderer {
+    return renderer.icon.iconType == 251 ? NO : %orig;
+}
+%end
+
 # pragma mark - Tweaks
 // IAmYouTube - https://github.com/PoomSmart/IAmYouTube/
 %hook YTVersionUtils

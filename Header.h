@@ -28,6 +28,11 @@
 #import "Tweaks/YouTubeHeader/YTISectionListRenderer.h"
 #import "Tweaks/YouTubeHeader/YTIMenuConditionalServiceItemRenderer.h"
 #import "Tweaks/YouTubeHeader/YTPivotBarItemView.h"
+#import "Tweaks/YouTubeHeader/_ASCollectionViewCell.h" // YouTube-X
+#import "Tweaks/YouTubeHeader/YTAsyncCollectionView.h" // YouTube-X
+#import "Tweaks/YouTubeHeader/YTVideoWithContextNode.h" // YouTube-X
+#import "Tweaks/YouTubeHeader/ELMCellNode.h" // YouTube-X
+#import "Tweaks/YouTubeHeader/ELMNodeController.h" // YouTube-X
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
 #define YT_BUNDLE_ID @"com.google.ios.youtube"

@@ -259,14 +259,26 @@ static BOOL oldDarkTheme() {
 }
 %end
 
-// Hide search ads by @PoomSmart - https://github.com/PoomSmart/YouTube-X
-// %hook YTIElementRenderer
-// - (NSData *)elementData {
-//     if (self.hasCompatibilityOptions && self.compatibilityOptions.hasAdLoggingData)
-//         return nil;
-//     return %orig;
-// }
-// %end
+// Hide app advertisments by @PoomSmart - https://github.com/PoomSmart/YouTube-X
+BOOL isAd(id node) {
+    if ([node isKindOfClass:NSClassFromString(@"YTVideoWithContextNode")]
+        && [node respondsToSelector:@selector(parentResponder)]
+        && [[(YTVideoWithContextNode *)node parentResponder] isKindOfClass:NSClassFromString(@"YTAdVideoElementsCellController")])
+        return YES;
+    if ([node isKindOfClass:NSClassFromString(@"ELMCellNode")]) {
+        NSString *description = [[[node controller] owningComponent] description];
+        if ([description containsString:@"brand_promo"]
+            || [description containsString:@"statement_banner"]
+            || [description containsString:@"product_carousel"]
+            || [description containsString:@"product_engagement_panel"]
+            || [description containsString:@"product_item"]
+            || [description containsString:@"text_search_ad"]
+            || [description containsString:@"square_image_layout"] // install app ad
+            || [description containsString:@"feed_ad_metadata"])
+            return YES;
+    }
+    return NO;
+}
 
 // %hook YTSectionListViewController
 // - (void)loadWithModel:(YTISectionListRenderer *)model {

@@ -133,7 +133,7 @@ static BOOL oldDarkTheme() {
 }
 %new
 - (void)removeShortsAndFeaturesAdsAtIndexPath:(NSIndexPath *)indexPath {
-        [self deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+    [self deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
 }
 %end
 
@@ -149,6 +149,13 @@ static BOOL oldDarkTheme() {
         [artworkImageView.rightAnchor constraintEqualToAnchor:artworkImageView.superview.rightAnchor constant:-16].active = YES;
     }
     return imageView;
+}
+%end
+
+// Remove “Play next in queue” from the menu (@PoomSmart) - qnblackcat/uYouPlus#1138
+%hook YTMenuItemVisibilityHandler
+- (BOOL)shouldShowServiceItemRenderer:(YTIMenuConditionalServiceItemRenderer *)renderer {
+    return renderer.icon.iconType == 251 ? NO : %orig;
 }
 %end
 
@@ -614,6 +621,9 @@ static void replaceTab(YTIGuideResponse *response) {
 UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:1.0];
 %group gOLED
 %hook YTCommonColorPalette
+- (UIColor *)baseBackground {
+    return self.pageStyle == 1 ? [UIColor blackColor] : %orig;
+}
 - (UIColor *)brandBackgroundSolid {
     return self.pageStyle == 1 ? [UIColor blackColor] : %orig;
 }
@@ -631,6 +641,40 @@ UIColor* raisedColor = [UIColor colorWithRed:0.035 green:0.035 blue:0.035 alpha:
 }
 - (UIColor *)generalBackgroundA {
     return self.pageStyle == 1 ? [UIColor blackColor] : %orig;
+}
+%end
+
+// uYou settings
+%hook UITableViewCell
+- (void)_layoutSystemBackgroundView {
+    %orig;
+    NSString *backgroundViewKey = class_getInstanceVariable(self.class, "_colorView") ? @"_colorView" : @"_backgroundView";
+    ((UIView *)[[self valueForKey:@"_systemBackgroundView"] valueForKey:backgroundViewKey]).backgroundColor = [UIColor blackColor];
+}
+- (void)_layoutSystemBackgroundView:(BOOL)arg1 {
+    %orig;
+    ((UIView *)[[self valueForKey:@"_systemBackgroundView"] valueForKey:@"_colorView"]).backgroundColor = [UIColor blackColor];
+}
+%end
+
+%hook settingsReorderTable
+- (void)viewDidLayoutSubviews {
+    %orig;
+    self.tableView.backgroundColor = [UIColor blackColor];
+}
+%end
+
+%hook FRPSelectListTable
+- (void)viewDidLayoutSubviews {
+    %orig;
+    self.tableView.backgroundColor = [UIColor blackColor];
+}
+%end
+
+%hook FRPreferences
+- (void)viewDidLayoutSubviews {
+    %orig;
+    self.tableView.backgroundColor = [UIColor blackColor];
 }
 %end
 

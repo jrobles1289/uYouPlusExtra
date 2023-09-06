@@ -24,7 +24,6 @@
 #import "Tweaks/YouTubeHeader/YTReelPlayerViewController.h"
 #import "Tweaks/YouTubeHeader/YTAlertView.h"
 #import "Tweaks/YouTubeHeader/YTISectionListRenderer.h"
-#import "Tweaks/YouTubeHeader/YTIMenuConditionalServiceItemRenderer.h"
 
 #define LOC(x) [tweakBundle localizedStringForKey:x value:nil table:nil]
 #define YT_BUNDLE_ID @"com.google.ios.youtube"
@@ -181,14 +180,4 @@
 @end
 
 @interface UIPredictionViewController : UIViewController
-@end
-
-@interface FRPreferences : UITableViewController
-@end
-
-@interface FRPSelectListTable : UITableViewController
-@end
-
-@interface settingsReorderTable : UIViewController
-@property(nonatomic, strong) UITableView *tableView;
 @end

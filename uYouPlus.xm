@@ -509,6 +509,27 @@ static void repositionCreateTab(YTIGuideResponse *response) {
 %end
 
 // YTNoTracking - https://github.com/arichorn/YTNoTracking/
+%hook SBApplicationIcon
+- (void)launch
+{
+    NSString *cleanedURL = [self cleanURL:[self url]];
+    [self setUrl:cleanedURL];
+    %orig;
+}
+- (NSString *)cleanURL:(NSString *)url
+{
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\?.*?(\\?si=.*?)"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+    NSString *cleanedURL = [regex stringByReplacingMatchesInString:url
+                                                           options:0
+                                                             range:NSMakeRange(0, [url length])
+                                                      withTemplate:@""];
+    return cleanedURL;
+}
+%end
+
 %hook YTICompactLinkRenderer
 + (BOOL)hasTrackingParams { return NO; }
 %end
